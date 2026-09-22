@@ -1,6 +1,9 @@
 # Compatibilidad Windows 10/11 en la landing — 2026-09-22
 
-Estado: **borrador** (cambios locales en `index.html`, **sin publicar** / sin deploy).
+Estado: **PUBLICADO** en https://www.fixitsoluciones.com (deploy Vercel producción,
+`fixit-landing-l3lzyloej`, ✓ Ready in 6s) y **subido a GitHub** en
+`sigasa1990-ai/fixit-website` (commit `2f847c1`, rama `main`), por instrucción del dueño
+después de verificar el borrador.
 Archivo modificado: `index.html` (CSS + HTML). Ningún JS fue modificado.
 Documento nuevo: `CAMBIOS_COMPATIBILIDAD_2026-09-22.md`.
 
@@ -123,19 +126,34 @@ En `_capturas/compatibilidad/` (carpeta excluida del deploy vía `.vercelignore`
 
 Capturas tomadas con `prefers-reduced-motion: reduce` para congelar el revelado.
 
-## 8. Restricciones respetadas
+## 8. Restricciones respetadas durante el desarrollo
 
-- **No se publicó**: sin commit, sin `vercel deploy`; todo es borrador local.
+- El borrador se mantuvo sin publicar hasta que el dueño lo aprobó; la publicación se hizo
+  después del QA (commit + push + `npx vercel --prod --yes`).
 - **No se tocó el formulario de cotización** (`#quoteForm`) ni el modal de contratación.
 - **No se modificaron secciones existentes**: solo se insertó contenido nuevo (sección,
   nota y FAQ); los textos previos quedaron idénticos.
 - Sin librerías nuevas ni CDNs extra: iconos SVG inline (Lucide, ISC).
 
-## 9. Pendientes / notas
+## 9. Publicación (2026-09-22)
 
-1. Publicar cuando el dueño lo apruebe; al hacerlo, agregar
-   `CAMBIOS_COMPATIBILIDAD_2026-09-22.md` a `.vercelignore` (como los docs anteriores).
-2. Opcional: agregar un enlace "Compatibilidad" al menú (hoy no se agregó para no tocar
+- **Git**: `FixIT_Landing` se inicializó como repo git con remoto
+  `https://github.com/sigasa1990-ai/fixit-website.git` (rama `main`); commit `2f847c1`
+  ("Agrega la landing de FixIT con la nueva sección de compatibilidad Windows 10/11").
+  - `apps_script_backend.js` (contiene API keys) se excluyó vía `.gitignore` porque el repo
+    es público; `.env*`, `.vercel` y `portfolio/node_modules` ya estaban excluidos.
+- **Deploy**: `npx vercel --prod --yes` sobre el proyecto `fixit-landing`; alias
+  https://www.fixitsoluciones.com — ✓ Ready in 6s.
+- **Verificación post-deploy**: home 200 (74,190 bytes), `id="compatibilidad"` presente,
+  2 `.compat-card`, 2 checks, texto de no compatibilidad y 8 FAQ. Los docs
+  (`CAMBIOS_COMPATIBILIDAD_2026-09-22.md`, `CAMBIOS_MAPA_2026-09-22.md`) y `_capturas/`
+  devuelven 404 (agregados/ya listados en `.vercelignore`).
+
+## 10. Pendientes / notas
+
+1. Opcional: agregar un enlace "Compatibilidad" al menú (hoy no se agregó para no tocar
    navegación existente).
-3. Opcional: si se prefiere, usar el icono `laptop` en vez de `monitor` para Windows
+2. Opcional: si se prefiere, usar el icono `laptop` en vez de `monitor` para Windows
    (el brief permitía cualquiera de los dos).
+3. Vercel no está conectado al repo git (los deploys siguen siendo con CLI); si se conecta,
+   cada push a `main` desplegaría automáticamente.
