@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Soporte técnico remoto y presencial para negocios: impresoras y redes, mantenimiento preventivo de equipos y visitas en Mexicali.">
+  <title>FixIT Soluciones | Soporte técnico para negocios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lexend+Deca:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <style>
+:root {
+  --bg: #FFFFFF;
+  --bg2: #F5F6FA;
+  --text: #33475B;
+  --text2: #516F90;
+  --muted: #7C98B6;
+  --accent: #FF7A59;
+  --accent-hover: #FF8F73;
+  --accent-soft: rgba(255, 122, 89, 0.10);
+  --accent-border: rgba(255, 122, 89, 0.35);
+  --border: #CBD6E2;
+  --font: 'Inter', sans-serif;
+  --font-head: 'Lexend Deca', sans-serif;
+  --mw: 1200px;
+  --r: 16px;
+  --shadow: 0 1px 3px rgba(51, 71, 91, 0.08);
+  --shadow-lg: 0 14px 34px rgba(51, 71, 91, 0.12);
+}
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--font-head); letter-spacing: -0.02em; }
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .w { width: 92%; max-width: var(--mw); margin: 0 auto; }
+    .sp { padding: 100px 0; }
+    .sec-alt {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    section[id] { scroll-margin-top: 90px; }
+
+    .st {
+      text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 12px;
+      position: relative;
+    }
+    .st::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 64px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .ss { text-align: center; color: var(--text2); font-size: 1.05rem; max-width: 650px; margin: 0 auto 50px; }
+
+    /* ===== BOTONES ===== */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; border: none; transition: all 0.25s ease;
+      letter-spacing: -0.2px; font-family: var(--font);
+    }
+    .btn-wa { background: var(--accent); color: #fff; }
+    .btn-wa .fa-whatsapp { color: #25D366; }
+    .btn-wa:hover { background: var(--accent-hover); transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 26px rgba(255,122,89,0.30); }
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: var(--accent-hover); transform: translateY(-2px) scale(1.03); box-shadow: 0 10px 26px rgba(255,122,89,0.30); }
+    .btn-o {
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-o:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(255,122,89,0.15);
+    }
+    .btn:active { transform: translateY(0); }
+
+    /* ===== HEADER (transparente -> blanco al hacer scroll) ===== */
+    .hdr {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 16px 0; transition: all 0.3s ease;
+      background: transparent;
+    }
+    .hdr.scrolled {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(51,71,91,0.08);
+      padding: 10px 0;
+    }
+    .hdr-in { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img {
+      height: 44px; width: 44px; border-radius: 50%; padding: 3px;
+      background: #fff; border: 1px solid var(--border); object-fit: contain;
+    }
+    .logo span { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; }
+    .logo small { font-family: var(--font); font-weight: 400; color: var(--muted); font-size: 0.75rem; display: block; }
+    .nav { display: flex; align-items: center; gap: 26px; }
+    .nav a { font-size: 0.9rem; font-weight: 500; color: var(--text2); transition: color 0.25s; }
+    .nav a:hover { color: var(--accent); }
+    .mt { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 210px 0 110px;
+      position: relative; overflow: hidden;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(255,122,89,0.10) 0%, transparent 45%),
+        radial-gradient(circle at 5% 95%, rgba(81,111,144,0.08) 0%, transparent 40%),
+        var(--bg);
+    }
+    .hero-in { display: flex; flex-direction: column; gap: 2rem; }
+    @media (min-width: 768px) {
+      .hero-in { display: grid; grid-template-columns: 1fr 1.3fr; align-items: center; }
+    }
+    @media (max-width: 767px) {
+      .hero-media { order: -1; }
+    }
+    .hero h1 { font-size: 2.8rem; font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { color: var(--text2); font-size: 1.15rem; margin-bottom: 32px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-media { display: flex; justify-content: center; }
+    .hero-img-3d {
+      width: 100%; max-width: 850px;
+      border-radius: 20px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: 0 26px 50px -22px rgba(51,71,91,0.38);
+      transform: perspective(1200px) rotateX(2deg) rotateY(-2deg);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+    }
+    .hero-img-3d img {
+      display: block; width: 100%;
+      aspect-ratio: 16 / 9; object-fit: cover; object-position: center;
+    }
+    .hero-img-3d:hover {
+      transform: perspective(1200px) rotateX(0deg) rotateY(0deg);
+      box-shadow: 0 34px 60px -22px rgba(51,71,91,0.45);
+    }
+
+    .pill-group { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .pill {
+      background: var(--accent-soft); border: 1px solid var(--accent-border);
+      color: var(--text); padding: 4px 14px; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+
+    /* ===== ANIMACION DE ENTRADA (HERO, una sola vez; sin JS todo visible) ===== */
+    .js .hero-copy > * { opacity: 0; animation: heroIn 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+    .js .hero-copy > *:nth-child(1) { animation-delay: 0.05s; }
+    .js .hero-copy > *:nth-child(2) { animation-delay: 0.18s; }
+    .js .hero-copy > *:nth-child(3) { animation-delay: 0.32s; }
+    .js .hero-copy > *:nth-child(4) { animation-delay: 0.46s; }
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .js .hero-media { opacity: 0; animation: heroMediaIn 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards; }
+    @keyframes heroMediaIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ===== REVEAL AL SCROLL (secciones y tarjetas) ===== */
+    .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .js .reveal.visible { opacity: 1; transform: translateY(0); }
+    .js .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .js .stagger.visible > * { opacity: 1; transform: translateY(0); }
+    .js .stagger.visible > *:nth-child(1) { transition-delay: 0s; }
+    .js .stagger.visible > *:nth-child(2) { transition-delay: 0.09s; }
+    .js .stagger.visible > *:nth-child(3) { transition-delay: 0.18s; }
+    .js .stagger.visible > *:nth-child(4) { transition-delay: 0.27s; }
+    .js .stagger.visible > *:nth-child(5) { transition-delay: 0.36s; }
+    .js .stagger.visible > *:nth-child(6) { transition-delay: 0.45s; }
+
+    /* ===== GLASS CARD / PREMIUM GLOW ===== */
+    .glass-card {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+    }
+    .premium-glow { position: relative; }
+    .premium-glow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,122,89,0.12), transparent 35%, rgba(81,111,144,0.08));
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* ===== DOLOR ===== */
+    .pain-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r); padding: 28px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .pain-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .pain-card .icon {
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--accent-soft); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.15rem; margin-bottom: 14px;
+    }
+    .pain-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+    .pain-card p { font-size: 0.88rem; color: var(--text2); line-height: 1.6; }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+    /* ===== SERVICIOS ===== */
+    .valor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .valor-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r); padding: 22px 18px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .valor-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .valor-card .v-icon {
+      width: 40px; height: 40px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; margin-bottom: 12px;
+      background: var(--accent-soft); color: var(--accent);
+    }
+    .valor-card h3 { font-size: 0.95rem; margin-bottom: 6px; }
+    .valor-card .comercial { font-size: 0.82rem; color: var(--text2); line-height: 1.55; }
+
+    /* ===== TRANSFORMACION ===== */
+    .trans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .trans-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r); padding: 24px;
+      display: flex; gap: 14px; align-items: flex-start;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .trans-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .trans-card .antes {
+      flex: 1; font-size: 0.85rem; color: var(--text2); padding: 8px 12px;
+      background: var(--bg2); border-radius: 8px;
+      border-left: 3px solid var(--border);
+    }
+    .trans-card .despues {
+      flex: 1; font-size: 0.85rem; color: var(--text); padding: 8px 12px;
+      background: var(--accent-soft); border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+    .trans-card .despues strong { color: var(--accent); }
+    .trans-card .flecha { color: var(--accent); font-size: 1.1rem; padding-top: 8px; flex-shrink: 0; }
+
+    /* ===== PLANES DE SOPORTE ===== */
+    .support-plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+    .support-plan-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px; padding: 32px 28px;
+      display: flex; flex-direction: column; position: relative;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .support-plan-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .support-plan-card.popular { border: 2px solid var(--accent); background: #fff; }
+    .support-plan-card .popular-badge {
+      position: absolute; top: -13px; right: 18px;
+      background: var(--accent); color: #fff;
+      font-family: var(--font-head); font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px;
+    }
+    .support-plan-card .plan-name { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .support-plan-card .plan-minutes {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); margin-top: 6px;
+    }
+    .support-plan-card .plan-price { font-size: 2.1rem; font-weight: 700; color: var(--text); margin: 10px 0 16px; }
+    .support-plan-card .plan-price span { font-size: 0.85rem; color: var(--muted); font-weight: 400; }
+    .support-plan-card .plan-features { flex: 1; }
+    .support-plan-card .plan-features div {
+      font-size: 0.86rem; color: var(--text2);
+      padding: 7px 0; border-bottom: 1px solid var(--border);
+    }
+    .support-plan-card .plan-features div:last-child { border-bottom: none; }
+    .support-plan-card .plan-cta {
+      display: block; text-align: center; margin-top: 20px; padding: 12px;
+      border-radius: 10px; font-weight: 700; font-size: 0.9rem;
+      border: 1px solid var(--accent-border); color: var(--accent);
+      transition: all 0.25s ease; cursor: pointer;
+    }
+    .support-plan-card .plan-cta:hover { background: var(--accent-soft); transform: translateY(-2px); }
+    .support-plan-card .plan-cta.filled { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .support-plan-card .plan-cta.filled:hover { background: var(--accent-hover); box-shadow: 0 10px 26px rgba(255,122,89,0.30); }
+    .support-setup-note { text-align: center; color: var(--text2); font-size: 0.92rem; margin-top: 30px; }
+    .support-setup-note i { color: var(--accent); margin-right: 6px; }
+
+    /* ===== CTA ===== */
+    .cta {
+      text-align: center; padding: 56px 24px; margin-top: 70px;
+      position: relative; overflow: hidden;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 20px;
+    }
+    .cta-in { position: relative; z-index: 1; }
+    .cta .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #fff; border: 1px solid var(--accent-border);
+      color: var(--accent); padding: 6px 18px; border-radius: 50px;
+      font-weight: 700; font-size: 0.8rem; margin-bottom: 16px;
+    }
+    .cta h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 10px; }
+    .cta p { color: var(--text2); font-size: 1rem; max-width: 520px; margin: 0 auto 24px; }
+    .cta .btn { font-size: 1rem; padding: 13px 32px; }
+    .cta .tiny { margin-top: 14px; font-size: 0.8rem; color: var(--muted); }
+
+    /* ===== PROCESO ===== */
+    .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .how-step { text-align: center; }
+    .how-step .n {
+      width: 56px; height: 56px; margin: 0 auto 14px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; color: var(--accent);
+    }
+    .how-step h3 { font-size: 1rem; margin-bottom: 6px; }
+    .how-step p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+    /* ===== COTIZACION / FORMULARIO ===== */
+    .reg-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; max-width: 900px; margin: 0 auto; text-align: left;
+    }
+    .reg-info { display: flex; flex-direction: column; justify-content: center; }
+    .reg-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--accent); }
+    .reg-info p { color: var(--text2); font-size: 0.95rem; line-height: 1.6; margin-bottom: 8px; }
+    .reg-info ul { list-style: none; padding: 0; margin: 12px 0 0; }
+    .reg-info ul li { padding: 6px 0; color: var(--text2); font-size: 0.9rem; }
+    .reg-info ul li i { color: var(--accent); margin-right: 10px; width: 16px; }
+    .reg-form {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r); padding: 32px; text-align: left;
+      box-shadow: var(--shadow);
+    }
+    .reg-form h3 { font-size: 1.1rem; margin-bottom: 20px; color: var(--text); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--text2); margin-bottom: 6px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%; padding: 10px 14px; border-radius: 8px;
+      border: 1px solid var(--border); background: #fff;
+      color: var(--text); font-size: 0.95rem; font-family: var(--font);
+      outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-group textarea { resize: vertical; min-height: 96px; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255,122,89,0.15);
+    }
+    .reg-form .btn { width: 100%; margin-top: 6px; }
+    .reg-form .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .reg-msg { margin-top: 12px; font-size: 0.9rem; padding: 10px; border-radius: 8px; display: none; }
+    .reg-msg.success { display: block; background: var(--accent-soft); color: var(--text); border: 1px solid var(--accent-border); }
+    .reg-msg.error { display: block; background: #FDECEA; color: #B23B2E; border: 1px solid #F3B8AE; }
+    .reg-msg.loading { display: block; color: var(--text2); }
+
+    /* ===== TIPO DE SOLICITUD (radio) ===== */
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group .radio-option {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; font-size: 0.9rem; color: var(--text); font-weight: 400;
+      margin-bottom: 0;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .form-group .radio-option:hover { border-color: var(--accent-border); background: var(--accent-soft); }
+    .form-group .radio-option:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+    .form-group .radio-option input { accent-color: var(--accent); width: 16px; height: 16px; margin: 0; flex-shrink: 0; }
+    .form-group .radio-option:has(input:checked) span { font-weight: 600; }
+    .form-hint { margin: 6px 0 0; font-size: 0.78rem; color: var(--muted); }
+    .form-hint i { color: var(--accent); margin-right: 4px; }
+
+    /* ===== FAQ ===== */
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--r); overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.25s ease;
+    }
+    .faq-item:hover { border-color: var(--accent-border); }
+    .faq-item[open] { border-color: var(--accent); }
+    .faq-item summary {
+      padding: 18px 20px; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      list-style: none; font-family: var(--font-head);
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '\f107'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      color: var(--accent); transition: transform 0.3s;
+    }
+    .faq-item[open] summary::after { transform: rotate(180deg); }
+    .faq-body {
+      padding: 0 20px 18px; color: var(--text2); font-size: 0.9rem;
+      line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--bg2); padding: 60px 0 24px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-g {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px; margin-bottom: 32px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 12px; }
+    .footer-brand-top { display: flex; align-items: center; gap: 10px; }
+    .footer-brand-top img {
+      height: 40px; width: 40px; border-radius: 50%; padding: 2px;
+      background: #fff; border: 1px solid var(--border); object-fit: contain;
+    }
+    .footer-brand-top span { font-family: var(--font-head); font-weight: 700; font-size: 1rem; }
+    .footer-brand p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+    .footer-col h4 {
+      font-size: 0.85rem; font-weight: 700; color: var(--text);
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { font-size: 0.85rem; color: var(--text2); transition: color 0.25s; }
+    .footer-col ul li a:hover { color: var(--accent); }
+    .footer-col ul li i { color: var(--accent); width: 18px; margin-right: 6px; font-size: 0.8rem; }
+    .footer-btm {
+      border-top: 1px solid var(--border); padding-top: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .footer-btm a { color: var(--muted); transition: color 0.25s; }
+    .footer-btm a:hover { color: var(--accent); }
+    .footer-social { display: flex; gap: 10px; margin-top: 4px; }
+    .footer-social a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: #fff; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text2); font-size: 0.95rem;
+      transition: all 0.25s;
+    }
+    .footer-social a:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ===== COOKIES ===== */
+    .cookie {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 16px 20px; z-index: 10001; display: none;
+      box-shadow: 0 -6px 24px rgba(51,71,91,0.10);
+    }
+    .cookie.show { display: block; }
+    .cookie-in {
+      max-width: var(--mw); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .cookie-in p { font-size: 0.85rem; color: var(--text2); flex: 1; min-width: 240px; }
+    .cookie-in a { color: var(--accent); text-decoration: underline; }
+    .cookie-in .btn { padding: 8px 24px; font-size: 0.85rem; flex-shrink: 0; }
+
+    /* ===== WHATSAPP FLOTANTE (barra inferior en movil) ===== */
+    .wa-float { display: none; }
+    .wa-float .fa-whatsapp { color: #25D366; }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,122,89,0.40); }
+      70% { box-shadow: 0 0 0 12px rgba(255,122,89,0); }
+    }
+
+    /* ===== VOLVER ARRIBA (nuevo: aparece al llegar al footer, abajo a la izquierda) ===== */
+    .back-to-top {
+      position: fixed; left: 24px; bottom: 24px; z-index: 9998;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: #fff; border: 1px solid var(--border); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; cursor: pointer;
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease, background 0.25s ease, color 0.25s ease;
+      box-shadow: 0 8px 22px rgba(51,71,91,0.18);
+    }
+    .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .back-to-top:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 992px) {
+      .nav { display: none; }
+      .nav.open {
+        display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
+        width: 280px; height: 100vh; background: #fff; padding: 80px 24px 24px;
+        gap: 20px; box-shadow: -4px 0 24px rgba(51,71,91,0.15); z-index: 999;
+        border-left: 1px solid var(--border);
+      }
+      .mt { display: block; z-index: 1000; }
+      .nav.open a { font-size: 1rem; }
+      .hero-in { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .trans-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .reg-grid { grid-template-columns: 1fr; }
+      .footer-g { grid-template-columns: 1fr; text-align: center; }
+      .footer-brand { align-items: center; }
+      .footer-social { justify-content: center; }
+      .cookie-in { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 768px) {
+      .support-plan-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .sp { padding: 60px 0; }
+      .hero { padding: 130px 0 60px; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { width: 100%; }
+      .valor-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; gap: 24px; }
+      .how-step { max-width: 280px; margin: 0 auto; }
+      .st { font-size: 1.6rem; }
+      .cta h2 { font-size: 1.5rem; }
+      .cta .btn { width: 100%; }
+      .wa-float {
+        display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+        background: #fff; border-top: 1px solid var(--border); padding: 10px 16px;
+        box-shadow: 0 -6px 24px rgba(51,71,91,0.12);
+      }
+      .wa-float a {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        width: 100%; padding: 12px; border-radius: 8px;
+        background: var(--accent); color: #fff; font-weight: 700; font-size: 0.95rem;
+        text-decoration: none;
+        animation: waPulse 2.8s ease-out infinite;
+      }
+      .wa-float a:hover { background: var(--accent-hover); }
+      body { padding-bottom: 64px; }
+      .back-to-top { bottom: 84px; left: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .js .hero-copy > *, .js .hero-media { animation: none; opacity: 1; transform: none; }
+      .js .reveal, .js .stagger > * { opacity: 1; transform: none; transition: none; }
+      .wa-float a { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="cookie" id="cookieBanner">
+  <div class="cookie-in">
+    <p>Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas su uso. <a href="aviso-privacidad.html">Más información</a></p>
+    <button class="btn btn-accent" id="cookieAccept">Aceptar</button>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="w hdr-in">
+    <div class="logo">
+      <img src="assets/logo-fixit.png" alt="FixIT">
+      <span>FixIT <small>Soluciones</small></span>
+    </div>
+    <button class="mt" id="menuBtn" aria-label="Menú"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav" id="navMenu">
+      <a href="#servicios">Servicios</a>
+      <a href="#planes">Planes</a>
+      <a href="#how">Cómo funciona</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cotizar">Cotización</a>
+      <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener" class="btn btn-wa" style="padding:8px 18px;font-size:0.85rem;color:#fff;">
+        <i class="fa-brands fa-whatsapp"></i> Escríbenos
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="w hero-in">
+    <div class="hero-copy">
+      <div class="pill-group">
+        <span class="pill">Soporte remoto</span>
+        <span class="pill">Impresoras y redes</span>
+        <span class="pill">Mantenimiento preventivo</span>
+        <span class="pill">Visitas en Mexicali</span>
+      </div>
+      <h1>Soporte técnico para negocios <span>que no pueden detenerse.</span></h1>
+      <p>Atendemos impresoras, redes y mantenimiento de equipos de forma remota y presencial. Tú sigue trabajando; nosotros nos encargamos de que tu operación no se detenga.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener" class="btn btn-wa">
+          <i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp
+        </a>
+        <a href="#servicios" class="btn btn-o">
+          <i class="fa-solid fa-arrow-down"></i> Ver servicios
+        </a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <div class="hero-img-3d">
+        <img src="assets/hero.jpg" alt="Técnico de FixIT Soluciones brindando soporte">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOLOR -->
+<section class="pain sp sec-alt reveal">
+  <div class="w">
+    <h2 class="st">Tres riesgos que tu negocio corre a diario</h2>
+    <p class="ss">No importa el tamaño de tu empresa. Estos problemas siempre están ahí, aunque no los veas.</p>
+    <div class="pain-grid stagger">
+      <div class="pain-card">
+        <div class="icon"><i class="fa-solid fa-print"></i></div>
+        <h3>Impresoras y equipos que fallan en el peor momento</h3>
+        <p>Una impresora que no imprime, una computadora que se apaga o se pone lenta en medio del día. Horas perdidas, trabajo retrasado, clientes esperando.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon"><i class="fa-solid fa-network-wired"></i></div>
+        <h3>Redes lentas o inestables que frenan la operación</h3>
+        <p>La conexión se cae, el internet va lento o los equipos no se comunican entre sí. Nadie sabe por qué, pero todos trabajan a medias.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+        <h3>Información que puede perderse para siempre</h3>
+        <p>Archivos, configuraciones y documentos importantes. Si un equipo falla o un atacante lo cifra, ¿estás seguro de que puedes recuperarlo?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="valor sp reveal" id="servicios">
+  <div class="w">
+    <h2 class="st">Servicios de soporte técnico</h2>
+    <p class="ss">Atención remota para tu día a día y visitas presenciales cuando se necesita estar ahí.</p>
+    <div class="valor-grid stagger">
+      <div class="valor-card">
+        <div class="v-icon"><i class="fa-solid fa-print"></i></div>
+        <h3>Soporte remoto de impresoras y redes</h3>
+        <div class="comercial">Configuramos y resolvemos fallas de impresoras, conectividad y red sin que tengas que moverte.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Mantenimiento preventivo de equipos</h3>
+        <div class="comercial">Limpieza, optimización y revisión programada para evitar fallas antes de que ocurran.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon"><i class="fa-solid fa-location-dot"></i></div>
+        <h3>Soporte local en Mexicali</h3>
+        <div class="comercial">Visitas físicas para lo que requiere presencia. Atendemos tu negocio donde está.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMACION -->
+<section class="trans sp sec-alt reveal" id="trans">
+  <div class="w">
+    <h2 class="st">Así cambia tu día a día con FixIT</h2>
+    <p class="ss">No es solo lo que hacemos. Es cómo cambia la forma en que trabajas.</p>
+    <div class="trans-grid stagger">
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Cada problema era buscar quién lo resolviera.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Tienes un solo contacto de soporte para impresoras, red y equipos.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> La impresora o la red fallaban y nadie sabía por qué.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Lo revisamos y lo resolvemos de forma remota, muchas veces el mismo día.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> No sabías cuándo iban a atenderte ni cuánto iba a costar.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Con tu plan sabes el tiempo de respuesta y el costo por adelantado.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Los equipos se volvían lentos porque nadie les daba mantenimiento.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Mantenimiento preventivo programado para que rindan como el primer día.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Cada falla era un viaje y horas perdidas esperando a un técnico.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> La mayoría de los problemas los resolvemos de forma remota; si se requiere visita, vamos a tu negocio en Mexicali.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> No tenías registro de los trabajos de soporte.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Recibes un reporte de los servicios realizados según tu plan.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="sp sec-alt reveal" id="planes">
+  <div class="w">
+    <h2 class="st">Planes de soporte remoto</h2>
+    <p class="ss">Elige el plan que va con el tamaño de tu operación. Todos incluyen atención por WhatsApp.</p>
+    <div class="support-plan-grid stagger">
+      <div class="support-plan-card">
+        <div class="plan-name">Remoto Básico</div>
+        <div class="plan-minutes">1 equipo</div>
+        <div class="plan-price">desde $400 <span>MXN/mes</span></div>
+        <div class="plan-features">
+          <div>✓ Soporte remoto ilimitado</div>
+          <div>✓ Respuesta en 24–48 h</div>
+          <div>✓ 1 equipo cubierto</div>
+          <div>✓ Atención por WhatsApp</div>
+        </div>
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20cotizar%20el%20plan%20Remoto%20B%C3%A1sico" target="_blank" rel="noopener" class="plan-cta">Solicitar cotización</a>
+      </div>
+      <div class="support-plan-card popular">
+        <div class="popular-badge">Más popular</div>
+        <div class="plan-name">Remoto Profesional</div>
+        <div class="plan-minutes">Hasta 3 equipos</div>
+        <div class="plan-price">desde $700 <span>MXN/mes</span></div>
+        <div class="plan-features">
+          <div>✓ Todo lo del plan Básico</div>
+          <div>✓ Respuesta prioritaria el mismo día</div>
+          <div>✓ Hasta 3 equipos</div>
+        </div>
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20cotizar%20el%20plan%20Remoto%20Profesional" target="_blank" rel="noopener" class="plan-cta filled">Solicitar cotización</a>
+      </div>
+      <div class="support-plan-card">
+        <div class="plan-name">Remoto Empresarial</div>
+        <div class="plan-minutes">Hasta 8–10 equipos</div>
+        <div class="plan-price">desde $1,500 <span>MXN/mes</span></div>
+        <div class="plan-features">
+          <div>✓ Todo lo del plan Profesional</div>
+          <div>✓ Reporte mensual</div>
+          <div>✓ Hasta 8–10 equipos</div>
+        </div>
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20cotizar%20el%20plan%20Remoto%20Empresarial" target="_blank" rel="noopener" class="plan-cta">Solicitar cotización</a>
+      </div>
+    </div>
+    <p class="support-setup-note"><i class="fa-solid fa-circle-info"></i>Precios pueden variar según número de equipos, contáctanos para cotización exacta.</p>
+
+    <div class="cta">
+      <div class="cta-in">
+        <div class="badge"><i class="fa-solid fa-comments"></i> Te ayudamos a elegir</div>
+        <h2>¿No sabes qué plan te conviene?</h2>
+        <p>Cuéntanos cuántos equipos tienes y qué necesitas. Te recomendamos el plan más conveniente sin compromiso.</p>
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20que%20me%20ayuden%20a%20elegir%20un%20plan%20de%20soporte" target="_blank" rel="noopener" class="btn btn-wa">
+          <i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp
+        </a>
+        <p class="tiny">Sin compromiso · Te respondemos el mismo día</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="how sp reveal" id="how">
+  <div class="w">
+    <h2 class="st">Así de simple es empezar</h2>
+    <p class="ss">No necesitas saber de tecnología. Nosotros nos encargamos de todo.</p>
+    <div class="how-grid stagger">
+      <div class="how-step">
+        <div class="n">1</div>
+        <h3>Cuéntanos qué necesitas</h3>
+        <p>Escríbenos por WhatsApp o llena el formulario de cotización. Revisamos cuántos equipos tienes y qué problemas quieres resolver.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">2</div>
+        <h3>Diagnóstico y propuesta</h3>
+        <p>Revisamos el estado de tus equipos, impresoras y red. Te entregamos una propuesta clara con el plan y el costo exacto.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">3</div>
+        <h3>Implementación</h3>
+        <p>Realizamos el mantenimiento y las configuraciones de red e impresoras según el plan elegido. La mayoría de las tareas se hacen de forma remota.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">4</div>
+        <h3>Soporte continuo</h3>
+        <p>Cuando algo falla, lo atendemos de forma remota y, si se requiere presencia, visitamos tu negocio en Mexicali.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZACION -->
+<section class="reg sp sec-alt reveal" id="cotizar">
+  <div class="w">
+    <h2 class="st">Solicita tu cotización o reporta una falla</h2>
+    <p class="ss">Cuéntanos qué necesitas y te contactamos con una propuesta a tu medida.</p>
+    <div class="reg-grid">
+      <div class="reg-info">
+        <h3><i class="fa-brands fa-whatsapp"></i> Atención directa</h3>
+        <p>También puedes escribirnos por WhatsApp y te respondemos el mismo día hábil. Revisamos tu caso y te decimos exactamente qué plan te conviene.</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Diagnóstico inicial sin costo</li>
+          <li><i class="fa-solid fa-check"></i> Propuesta clara, sin sorpresas</li>
+          <li><i class="fa-solid fa-check"></i> Atención remota desde el primer día</li>
+          <li><i class="fa-solid fa-check"></i> Visitas locales en Mexicali</li>
+          <li><i class="fa-solid fa-check"></i> Sin contratos forzosos</li>
+        </ul>
+      </div>
+      <div class="reg-form">
+        <h3>Formulario de solicitud</h3>
+        <form id="quoteForm">
+          <div class="form-group">
+            <label id="tipoLabel">¿Qué necesitas?</label>
+            <div class="radio-group" role="radiogroup" aria-labelledby="tipoLabel">
+              <label class="radio-option">
+                <input type="radio" name="tipo" value="cotizacion" checked>
+                <span>Cotización de un servicio</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="tipo" value="ticket">
+                <span>Reportar una falla (ya soy cliente)</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="name">Nombre completo</label>
+            <input type="text" id="name" name="name" placeholder="Ej: Juan Pérez" required>
+          </div>
+          <div class="form-group">
+            <label for="company">Nombre de tu empresa</label>
+            <input type="text" id="company" name="company" placeholder="Ej: Mi Empresa S.A. de C.V." required>
+          </div>
+          <div class="form-group">
+            <label for="phone">WhatsApp (obligatorio para contactarte)</label>
+            <input type="tel" id="phone" name="phone" placeholder="Ej: 6861234567" required>
+          </div>
+          <div class="form-group">
+            <label for="location">Ciudad o ubicación</label>
+            <input type="text" id="location" name="location" placeholder="Ej: Mexicali, B.C.">
+          </div>
+          <div class="form-group">
+            <label for="serviceType">Servicio que necesitas</label>
+            <select id="serviceType" name="serviceType" required>
+              <option value="">Selecciona una opción</option>
+              <option value="Soporte remoto de impresoras y redes">Soporte remoto de impresoras y redes</option>
+              <option value="Mantenimiento preventivo de equipos">Mantenimiento preventivo de equipos</option>
+              <option value="Soporte local en Mexicali (visita física)">Soporte local en Mexicali (visita física)</option>
+              <option value="Plan de soporte mensual">Plan de soporte mensual</option>
+              <option value="Solicitud especial">Solicitud especial</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="priority">Prioridad</label>
+            <select id="priority" name="priority">
+              <option value="Normal">Normal</option>
+              <option value="Alta">Alta (urgente)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="description" id="descriptionLabel">Cuéntanos brevemente qué necesitas</label>
+            <textarea id="description" name="description" placeholder="Ej: Tenemos 3 equipos y una impresora de red que se desconecta seguido..."></textarea>
+            <p class="form-hint" id="ticketNote" hidden><i class="fa-solid fa-circle-info"></i> Si ya eres cliente y es urgente, escríbenos también por WhatsApp.</p>
+          </div>
+          <button type="submit" class="btn btn-accent" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> Enviar solicitud
+          </button>
+          <div class="reg-msg" id="formMessage"></div>
+          <p style="margin-top:12px;font-size:0.8rem;color:var(--muted);text-align:center;">Al enviar aceptas nuestro <a href="aviso-privacidad.html" style="color:var(--accent);">Aviso de Privacidad</a>.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq sp reveal" id="faq">
+  <div class="w">
+    <h2 class="st">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>¿El soporte es solo remoto o también van a mi negocio?</summary>
+        <div class="faq-body">Depende de lo que necesites. La mayoría de los problemas de impresoras, redes y equipos los resolvemos de forma remota. Cuando el caso requiere presencia física, hacemos visitas locales en Mexicali.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué necesito para que me den soporte remoto?</summary>
+        <div class="faq-body">Solo un equipo con conexión a internet y autorizar la sesión de acceso remoto cuando la solicites. Nosotros te guiamos paso a paso por WhatsApp y nos encargamos del resto.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cuántos equipos incluye cada plan?</summary>
+        <div class="faq-body">El plan Remoto Básico cubre 1 equipo, el Remoto Profesional hasta 3 equipos y el Remoto Empresarial entre 8 y 10 equipos. Si tienes más equipos, te cotizamos a tu medida.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si un equipo tiene una falla de hardware irreversible?</summary>
+        <div class="faq-body">Te lo informamos con claridad y te asesoramos sobre las opciones disponibles. No ofrecemos garantía sobre fallas de hardware irreversibles, pero te acompañamos en todo el proceso y evitamos que pierdas tu información.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Atienden sistemas de terceros como puntos de venta (POS) de otros proveedores?</summary>
+        <div class="faq-body">No damos soporte a sistemas de terceros, como puntos de venta (POS) de proveedores externos, salvo autorización expresa del negocio y del proveedor correspondiente. Podemos apoyarte con la parte de infraestructura: red, equipos e impresoras.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo cancelar mi plan mensual?</summary>
+        <div class="faq-body">Sí. Los planes son mensuales y sin plazo forzoso. Puedes cancelar avisando con al menos 10 días naturales de anticipación a tu siguiente fecha de facturación, por WhatsApp o correo electrónico.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo se paga y qué formas de pago aceptan?</summary>
+        <div class="faq-body">Las mensualidades se pagan por anticipado. Al contratar te compartimos las formas de pago disponibles y los datos para facturación. Cualquier cambio de precio se te informa antes de tu siguiente ciclo de facturación.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="w">
+    <div class="footer-g">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="assets/logo-fixit.png" alt="FixIT">
+          <span>FixIT Soluciones</span>
+        </div>
+        <p>Soporte técnico remoto y presencial para negocios: impresoras y redes, mantenimiento preventivo de equipos y visitas locales en Mexicali.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/526861959581" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/fixitsolociones" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@fxit_soluciones" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Impresoras y redes</a></li>
+          <li><a href="#servicios">Mantenimiento preventivo</a></li>
+          <li><a href="#servicios">Soporte local en Mexicali</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#how">Cómo funciona</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#cotizar">Cotización</a></li>
+          <li><a href="aviso-privacidad.html">Aviso de Privacidad</a></li>
+          <li><a href="terminos.html">Términos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><i class="fa-solid fa-envelope"></i> hola@fixitsoluciones.com</li>
+          <li><i class="fa-brands fa-whatsapp"></i> 686 195 9581</li>
+          <li><i class="fa-regular fa-clock"></i> Lun&ndash;Vie 9:00&ndash;18:00</li>
+          <li><i class="fa-regular fa-clock"></i> Sáb 9:00&ndash;14:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-btm">
+      <span>&copy; 2026 FixIT Soluciones &mdash; Todos los derechos reservados.</span>
+      <a href="#" id="footerTopLink"><i class="fa-solid fa-arrow-up"></i> Volver arriba</a>
+    </div>
+  </div>
+</footer>
+
+<div class="wa-float">
+  <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i> Cotizar por WhatsApp
+  </a>
+</div>
+
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var hdr = document.getElementById('hdr');
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() { hdr.classList.toggle('scrolled', window.scrollY > 50); ticking = false; });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  var mb = document.getElementById('menuBtn'), nm = document.getElementById('navMenu');
+  mb.addEventListener('click', function() {
+    nm.classList.toggle('open');
+    mb.querySelector('i').className = nm.classList.contains('open') ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+  });
+  nm.querySelectorAll('a:not(.btn)').forEach(function(l) {
+    l.addEventListener('click', function() { nm.classList.remove('open'); mb.querySelector('i').className = 'fa-solid fa-bars'; });
+  });
+  document.addEventListener('click', function(e) {
+    if (nm.classList.contains('open') && !nm.contains(e.target) && !mb.contains(e.target)) {
+      nm.classList.remove('open'); mb.querySelector('i').className = 'fa-solid fa-bars';
+    }
+  });
+
+  if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookieBanner').classList.add('show');
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  /* ===== Reveal al hacer scroll (secciones y tarjetas) ===== */
+  var revealEls = document.querySelectorAll('.reveal, .stagger');
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  /* ===== Volver arriba: aparece con fade-in al llegar al footer ===== */
+  var backToTop = document.getElementById('backToTop');
+  var footer = document.getElementById('contact');
+  var scrollTop = function(e) {
+    if (e) e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  backToTop.addEventListener('click', scrollTop);
+  document.getElementById('footerTopLink').addEventListener('click', scrollTop);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) { backToTop.classList.toggle('show', entry.isIntersecting); });
+    }, { threshold: 0.15 }).observe(footer);
+  }
+
+  /* ===== Tipo de solicitud: cotizacion o ticket ===== */
+  var tipoRadios = document.querySelectorAll('input[name="tipo"]');
+  var descLabel = document.getElementById('descriptionLabel');
+  var descInput = document.getElementById('description');
+  var quoteSubmit = document.getElementById('submitBtn');
+  var ticketNote = document.getElementById('ticketNote');
+  function updateTipo() {
+    var selected = document.querySelector('input[name="tipo"]:checked');
+    var isTicket = !!selected && selected.value === 'ticket';
+    if (descLabel) descLabel.textContent = isTicket ? 'Describe brevemente el problema' : 'Cuéntanos brevemente qué necesitas';
+    if (descInput) descInput.placeholder = isTicket
+      ? 'Ej: La impresora de recepción dejó de imprimir desde ayer...'
+      : 'Ej: Tenemos 3 equipos y una impresora de red que se desconecta seguido...';
+    if (quoteSubmit) quoteSubmit.innerHTML = isTicket
+      ? '<i class="fa-solid fa-triangle-exclamation"></i> Reportar falla'
+      : '<i class="fa-solid fa-paper-plane"></i> Enviar solicitud';
+    if (ticketNote) ticketNote.hidden = !isTicket;
+  }
+  tipoRadios.forEach(function(r) { r.addEventListener('change', updateTipo); });
+  updateTipo();
+
+  /* ===== Cotización: envía el ticket al backend de Google Apps Script ===== */
+  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwM6M56cq7txcSSmDRMKSf-f4OkRQmZBjid90LQREptPeSOv9fNevlnxD4N-AmFejCPHg/exec';
+  var form = document.getElementById('quoteForm');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('submitBtn');
+      var msg = document.getElementById('formMessage');
+      var original = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+      msg.className = 'reg-msg';
+      msg.textContent = '';
+
+      var data = {};
+      new FormData(form).forEach(function(value, key) { data[key] = value; });
+
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(data)
+      })
+      .then(function() {
+        form.reset();
+        msg.className = 'reg-msg success';
+        msg.innerHTML = '<i class="fa-solid fa-circle-check"></i> Solicitud enviada. Te contactaremos muy pronto.';
+        btn.disabled = false;
+        btn.innerHTML = original;
+        setTimeout(function() { msg.className = 'reg-msg'; msg.textContent = ''; }, 8000);
+      })
+      .catch(function() {
+        msg.className = 'reg-msg error';
+        msg.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Error de conexión. Intenta de nuevo o escríbenos por WhatsApp.';
+        btn.disabled = false;
+        btn.innerHTML = original;
+      });
+    });
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FixIT - Infraestructura silenciosa para negocios que no pueden detenerse. Monitoreo 24/7, seguridad, backups y soporte - sin que hagas nada.">
+  <title>FixIT Soluciones | Infraestructura silenciosa para negocios que no pueden detenerse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+:root {
+  --bg: #000000;
+  --bg2: #000000;
+  --bg3: #000000;
+  --bg4: #000000;
+  --bg5: #000000;
+  --card: rgba(10, 10, 12, 0.06);
+  --card-hover: rgba(12, 12, 15, 0.08);
+  --card-border: rgba(20, 20, 22, 0.01);
+  --card-hover-border: rgba(25, 25, 28, 0.015);
+  --text: #f8fafc;
+  --text2: #94a3b8;
+  --muted: #64748b;
+  --green: #00d4aa;
+  --green-hover: #00b894;
+  --blue: #3b82f6;
+  --border: rgba(20, 20, 22, 0.01);
+  --font: 'Inter', sans-serif;
+  --mw: 1200px;
+  --r: 16px;
+  --glow-teal: rgba(0, 50, 40, 0.0002);
+  --glow-blue: rgba(20, 30, 50, 0.0001);
+  --vignette-top: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.01) 6%);
+  --vignette-bottom: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.01) 6%);
+}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+
+   
+   
+   
+   
+   
+   
+   /* ===== PREMIUM CINEMATIC SAAS BACKGROUND ===== */
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+
+  /* === BASE OSCURA PROFUNDA === */
+  background-color: #040509;
+
+  /* === PARALLAX FEEL === */
+  background-attachment: fixed;
+
+  /* === CAPAS DEL FONDO === */
+  background-image:
+
+    /* Glow superior */
+    radial-gradient(
+      circle at top center,
+      rgba(0, 212, 170, 0.10) 0%,
+      rgba(0, 212, 170, 0.04) 18%,
+      transparent 42%
+    ),
+
+    /* Glow lateral */
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(59, 130, 246, 0.08) 0%,
+      transparent 35%
+    ),
+
+    /* Glow inferior */
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255,255,255,0.03) 0%,
+      transparent 45%
+    ),
+
+    /* Vignette cinematográfico */
+    radial-gradient(
+      circle at center,
+      transparent 45%,
+      rgba(0,0,0,0.45) 100%
+    ),
+
+    /* GRID PRINCIPAL */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.035) 80px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.035) 80px
+    ),
+
+    /* GRID SECUNDARIO */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 20px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 20px
+    ),
+
+    /* BASE PROFUNDA */
+    linear-gradient(
+      180deg,
+      #040509 0%,
+      #070b12 40%,
+      #040509 100%
+    );
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    80px 80px,
+    80px 80px,
+    20px 20px,
+    20px 20px,
+    100% 100%;
+
+  background-position: center;
+}
+
+
+/* ===== EFECTO 3D / DEPTH ===== */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.025),
+      transparent 25%
+    );
+
+  transform: perspective(1200px) rotateX(65deg) scale(2.2);
+  transform-origin: top center;
+
+  opacity: 0.45;
+}
+
+
+/* ===== NOISE PREMIUM ===== */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: -1;
+
+  opacity: 0.03;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+
+/* ===== GLASS CARDS ===== */
+
+.glass-card {
+  background: rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  border-radius: 24px;
+}
+
+
+/* ===== PREMIUM GLOW ===== */
+
+.premium-glow {
+  position: relative;
+}
+
+.premium-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      transparent 30%,
+      rgba(0,212,170,0.08)
+    );
+
+  opacity: 0.6;
+
+  pointer-events: none;
+}
+
+ 
+
+
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    .w { width: 92%; max-width: var(--mw); margin: 0 auto; }
+    .sp { padding: 120px 0; }
+.st {
+  text-align: center; font-size: 2rem; font-weight: 700; margin-bottom: 12px;
+  position: relative;
+}
+.st::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--glow), transparent);
+  border-radius: 2px;
+}
+    .ss { text-align: center; color: var(--text2); font-size: 1.05rem; max-width: 650px; margin: 0 auto 50px; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 28px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+  cursor: pointer; border: none; transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: -0.5px;
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: all 0.5s;
+}
+.btn:hover::before {
+  left: 100%;
+}
+.btn-wa { background: #25D366; color: #fff; }
+.btn-wa:hover { background: #20bd5a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+.btn-accent { 
+  background: var(--green); 
+  color: #0f172a;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.btn-accent:hover { 
+  background: var(--green-hover); 
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0,212,170,0.25);
+}
+.btn-o {
+  background: transparent; 
+  border: 1px solid var(--border);
+  color: var(--text);
+  backdrop-filter: blur(5px);
+}
+.btn-o:hover { 
+  border-color: var(--green); 
+  color: var(--green);
+  background: rgba(0,212,170,0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,212,170,0.15);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.hdr {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  padding: 16px 0; transition: all 0.3s ease;
+  background: rgba(10, 26, 47, 0.3);
+  backdrop-filter: blur(10px);
+}
+.hdr.scrolled {
+  background: rgba(5,8,22,0.6); 
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,212,170,0.1);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  padding: 10px 0;
+}
+    .hdr-in { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo img { height: 44px; width: 44px; border-radius: 50%; border: 2px solid var(--green); padding: 3px; background: var(--bg2); }
+    .logo span { font-weight: 700; font-size: 1.05rem; }
+    .logo small { font-weight: 400; color: var(--muted); font-size: 0.75rem; display: block; }
+    .nav { display: flex; align-items: center; gap: 28px; }
+    .nav a { font-size: 0.9rem; font-weight: 500; color: var(--text2); transition: color 0.3s; }
+    .nav a:hover { color: var(--green); }
+    .mt { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+.hero {
+  padding: 220px 0 120px;
+  background: var(--gradient-dark);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: 15%; left: -5%;
+  width: 1000px; height: 1000px;
+  background: radial-gradient(circle at center, rgba(0, 212, 170, 0.012) 0%, transparent 90%);
+  filter: blur(200px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: 10%; right: -5%;
+  width: 800px; height: 800px;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.008) 0%, transparent 92%);
+  filter: blur(180px);
+  pointer-events: none;
+  z-index: 0;
+}
+    .hero-in {
+      max-width: 100% !important;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 1200px) {
+      .hero-in { max-width: 1400px; margin: 0 auto; }
+    }
+    .hero-in {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .hero-in {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        align-items: center;
+      }
+    }
+    .hero-img-3d {
+      transform: perspective(1200px) rotateX(3deg) rotateY(-2deg);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 30px 40px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,212,170,0.06);
+      border-radius: 20px;
+    }
+    .hero-img-3d:hover {
+      transform: perspective(1200px) rotateX(0deg) rotateY(0deg);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(0,212,170,0.1);
+    }
+    .hero h1 {
+      font-size: 2.8rem; font-weight: 800; line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .hero h1 span { color: var(--green); }
+    .hero p {
+      color: var(--text2); font-size: 1.15rem;
+      margin-bottom: 32px; line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* PAIN SECTION - solo dolor, ninguna solucion */
+    .pain { position: relative; }
+    .pain::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,212,170,0.08), transparent);
+    }
+    .pain-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pain-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r); padding: 28px;
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.015);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.pain-card:hover {
+  border-color: var(--card-hover-border); 
+  background: rgba(20,25,35,0.18);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transform: translateY(-2px);
+}
+.pain-card:hover {
+  border-color: var(--card-hover-border); 
+  background: rgba(15,23,42,0.25);
+  box-shadow: 
+    0 6px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
+}
+    .pain-card:hover {
+      border-color: rgba(0,212,170,0.4); 
+      background: 
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%),
+        rgba(30,42,58,0.7);
+      box-shadow: 
+        0 8px 30px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(0,212,170,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+    .pain-card .icon {
+      font-size: 1.8rem; margin-bottom: 12px;
+    }
+    .pain-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .pain-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+    /* VALOR REAL - compacto, 4 columnas */
+    .valor { }
+    .valor-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    }
+.valor-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r); padding: 18px 16px;
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.015);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.valor-card:hover {
+  border-color: var(--card-hover-border); 
+  background: rgba(20,25,35,0.16);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 2px 14px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+    .valor-card:hover {
+      border-color: rgba(0,212,170,0.3); 
+      background: 
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 50%),
+        rgba(30,42,58,0.6);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 8px 24px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(0,212,170,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .valor-card .v-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; margin-bottom: 10px;
+    }
+    .valor-card .v-icon.green { background: rgba(0,212,170,0.12); color: var(--green); }
+    .valor-card .v-icon.blue { background: rgba(59,130,246,0.12); color: var(--blue); }
+    .valor-card .v-icon.orange { background: rgba(245,166,35,0.12); color: #f5a623; }
+    .valor-card .v-icon.red { background: rgba(255,71,87,0.12); color: #ff4757; }
+    .valor-card h3 { font-size: 0.9rem; margin-bottom: 2px; }
+    .valor-card .comercial { font-size: 0.78rem; color: var(--text2); line-height: 1.5; }
+
+    /* TRANSFORMACION - como cambia tu dia a dia (antes NUNCA mencionado) */
+    .trans { position: relative; }
+    .trans::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,212,170,0.06), transparent);
+    }
+    .trans-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
+    }
+.trans-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--r); padding: 28px;
+  display: flex; gap: 16px; align-items: flex-start;
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.trans-card:hover {
+  border-color: var(--card-hover-border); 
+  background: rgba(15,23,42,0.25);
+  box-shadow: 
+    0 6px 28px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
+}
+    .trans-card:hover {
+      border-color: rgba(0,212,170,0.35); 
+      background: 
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 50%),
+        rgba(30,42,58,0.65);
+      box-shadow: 
+        0 8px 30px rgba(0,0,0,0.4),
+        0 0 0 1px rgba(0,212,170,0.06),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+    .trans-card .antes {
+      flex: 1; font-size: 0.85rem; color: var(--muted); padding: 8px 12px;
+      background: rgba(255,71,87,0.06); border-radius: 8px;
+      border-left: 3px solid #ff475744;
+    }
+    .trans-card .despues {
+      flex: 1; font-size: 0.85rem; color: var(--text); padding: 8px 12px;
+      background: rgba(0,212,170,0.06); border-radius: 8px;
+      border-left: 3px solid var(--green);
+    }
+    .trans-card .despues strong { color: var(--green); }
+    .trans-card .flecha {
+      color: var(--green); font-size: 1.2rem; padding-top: 8px;
+      flex-shrink: 0;
+    }
+
+    /* COMO FUNCIONA - el proceso, no los features */
+    .how { }
+    .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .how-step { text-align: center; }
+    .how-step .n {
+      width: 56px; height: 56px; margin: 0 auto 14px;
+      background: linear-gradient(135deg, rgba(0,212,170,0.2) 0%, rgba(0,212,170,0.05) 100%);
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.2rem; color: var(--green);
+      box-shadow: 0 0 20px rgba(0,212,170,0.05);
+    }
+    .how-step h3 { font-size: 1rem; margin-bottom: 6px; }
+    .how-step p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+    /* REGISTRO / TRIAL */
+    .reg { text-align: center; position: relative; }
+    .reg::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,212,170,0.06), transparent);
+    }
+    .reg-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; max-width: 800px; margin: 0 auto; text-align: left;
+    }
+    @media (max-width: 768px) {
+      .reg-grid { grid-template-columns: 1fr; }
+    }
+    .reg-info { display: flex; flex-direction: column; justify-content: center; }
+    .reg-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--green); }
+    .reg-info p { color: var(--text2); font-size: 0.95rem; line-height: 1.6; margin-bottom: 8px; }
+    .reg-info ul { list-style: none; padding: 0; margin: 12px 0 0; }
+    .reg-info ul li { padding: 6px 0; color: var(--text2); font-size: 0.9rem; }
+    .reg-info ul li i { color: var(--green); margin-right: 10px; width: 16px; }
+.reg-form {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 32px; text-align: left;
+  box-shadow: 
+    0 4px 24px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+.reg-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+  transform: translateY(-50%);
+}
+    .reg-form h3 { font-size: 1.1rem; margin-bottom: 20px; color: var(--text); }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 0.85rem; font-weight: 600;
+      color: var(--text2); margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%; padding: 10px 14px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg);
+      color: var(--text); font-size: 0.95rem; font-family: var(--font);
+      outline: none; transition: border-color 0.3s;
+    }
+    .form-group input:focus { border-color: var(--green); }
+    .reg-form .btn { width: 100%; margin-top: 6px; }
+    .reg-form .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .reg-msg { margin-top: 12px; font-size: 0.9rem; padding: 10px; border-radius: 8px; display: none; }
+    .reg-msg.success { display: block; background: rgba(0,212,170,0.1); color: var(--green); border: 1px solid var(--green); }
+    .reg-msg.error { display: block; background: rgba(255,71,87,0.1); color: #ff4757; border: 1px solid #ff4757; }
+    .reg-msg.loading { display: block; color: var(--text2); }
+
+.cta {
+  text-align: center; padding: 80px 0; position: relative; overflow: hidden;
+  background: rgba(15, 23, 42, 0.2);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+}
+.cta::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(0,212,170,0.1) 0%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+}
+.cta::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,170,0.15), transparent);
+}
+    .cta-in { position: relative; z-index: 1; }
+    .cta .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.3);
+      color: var(--green); padding: 8px 20px; border-radius: 50px;
+      font-weight: 700; font-size: 0.9rem; margin-bottom: 20px;
+    }
+    .cta h2 { font-size: 2.2rem; font-weight: 800; margin-bottom: 12px; }
+    .cta p { color: var(--text2); font-size: 1.05rem; max-width: 500px; margin: 0 auto 28px; }
+    .cta .btn { font-size: 1.05rem; padding: 14px 36px; }
+    .cta .tiny { margin-top: 14px; font-size: 0.8rem; color: var(--muted); }
+
+    .faq { position: relative; }
+    .faq::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,212,170,0.06), transparent);
+    }
+    .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: var(--r); overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.faq-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateY(-50%);
+}
+.faq-item:hover {
+  border-color: rgba(0,212,170,0.15);
+}
+.faq-item[open] {
+  border-color: rgba(0,212,170,0.2);
+  background: rgba(30,41,59,0.45);
+}
+    .faq-item:hover { border-color: rgba(0,212,170,0.15); }
+    .faq-item[open] { border-color: rgba(0,212,170,0.2); }
+    .faq-item summary {
+      padding: 18px 20px; font-weight: 600; font-size: 0.95rem;
+      cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+      list-style: none;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '\f107'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      color: var(--green); transition: transform 0.3s;
+    }
+    .faq-item[open] summary::after { transform: rotate(180deg); }
+    .faq-item[open] { border-color: var(--green); }
+    .faq-body {
+      padding: 0 20px 18px; color: var(--text2); font-size: 0.9rem;
+      line-height: 1.7; border-top: 1px solid var(--border); padding-top: 14px;
+    }
+
+    .footer {
+      background: #03050a; padding: 60px 0 24px;
+      border-top: 1px solid rgba(42,48,64,0.4);
+      position: relative;
+    }
+    .footer::before {
+      content: ''; position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,212,170,0.15), transparent);
+    }
+    .footer-g {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px; margin-bottom: 32px;
+    }
+    .footer-brand { display: flex; flex-direction: column; gap: 12px; }
+    .footer-brand-top { display: flex; align-items: center; gap: 10px; }
+    .footer-brand-top img { height: 40px; width: 40px; border-radius: 50%; border: 2px solid var(--green); padding: 2px; background: var(--bg2); }
+    .footer-brand-top span { font-weight: 700; font-size: 1rem; }
+    .footer-brand p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    .footer-col h4 { font-size: 0.85rem; font-weight: 700; color: var(--text); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col ul li { margin-bottom: 8px; }
+    .footer-col ul li a { font-size: 0.85rem; color: var(--muted); transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--green); }
+    .footer-col ul li i { color: var(--green); width: 18px; margin-right: 6px; font-size: 0.8rem; }
+    .footer-btm {
+      border-top: 1px solid var(--border); padding-top: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 12px;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .footer-btm a { color: var(--muted); transition: color 0.3s; }
+    .footer-btm a:hover { color: var(--green); }
+    .footer-social { display: flex; gap: 10px; margin-top: 4px; }
+    .footer-social a {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover { background: var(--green); color: #0f172a; border-color: var(--green); }
+
+    .backup-plans-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+.backup-plan-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 28px;
+  display: flex; flex-direction: column; position: relative;
+  box-shadow: 
+    0 4px 24px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: all 0.4s ease;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+.backup-plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: translateY(-50%);
+}
+.backup-plan-card:hover {
+  border-color: rgba(0,212,170,0.12); 
+  background: rgba(15,23,42,0.35);
+  transform: translateY(-4px);
+  box-shadow: 
+    0 8px 32px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.backup-plan-card.popular { 
+  border: 1px solid var(--green);
+  box-shadow: 
+    0 4px 24px rgba(0,0,0,0.2),
+    0 0 0 1px rgba(0,212,170,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+  background: rgba(15,23,42,0.4);
+}
+    .backup-plan-card:hover {
+      border-color: rgba(0,212,170,0.25); background: rgba(37,50,68,0.6);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,212,170,0.04);
+    }
+    .backup-plan-card.popular { border: 2px solid var(--green); }
+    .backup-plan-card .popular-badge {
+      position: absolute; top: -10px; right: 14px;
+      background: var(--green); color: #0f172a;
+      font-size: 0.7rem; font-weight: 800; padding: 4px 14px; border-radius: 50px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .backup-plan-card .plan-name { font-size: 1rem; font-weight: 700; color: var(--text); }
+    .backup-plan-card .plan-price {
+      font-size: 2rem; font-weight: 800; color: var(--green);
+      margin: 8px 0 2px;
+    }
+    .backup-plan-card .plan-price span {
+      font-size: 0.9rem; color: var(--muted); font-weight: 400;
+    }
+    .backup-plan-card .plan-storage {
+      font-size: 0.85rem; color: var(--text2); margin-bottom: 14px;
+    }
+    .backup-plan-card .plan-features { flex: 1; }
+    .backup-plan-card .plan-features div {
+      font-size: 0.82rem; color: var(--text2);
+      padding: 5px 0; border-bottom: 1px solid var(--border);
+    }
+    .backup-plan-card .plan-features div:last-child { border-bottom: none; }
+    .backup-plan-card .btn-plan {
+      margin-top: 16px; padding: 10px; border-radius: 8px;
+      font-weight: 700; font-size: 0.85rem; cursor: pointer;
+      text-align: center; transition: all 0.3s; border: none;
+    }
+    .backup-plan-card .btn-plan:active { transform: scale(0.97); }
+    .backup-sub-text {
+      text-align: center; color: var(--text2); font-size: 1.05rem;
+      max-width: 600px; margin: 0 auto 36px; line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .backup-plans-grid { grid-template-columns: 1fr; }
+      .backup-plan-card { max-width: 400px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      .footer-g { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    .modal-checkout-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,.7); z-index: 10000; display: none;
+    }
+.modal-checkout {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 28px; width: 90%; max-width: 400px; z-index: 10001; display: none;
+  box-shadow: 
+    0 4px 24px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  border-left: 1px solid rgba(255, 255, 255, 0.04);
+}
+.modal-checkout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transform: translateY(-50%);
+}
+    .modal-checkout h3 { font-size: 1.1rem; color: var(--green); margin-bottom: 4px; }
+    .modal-checkout .plan-label { font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; }
+    .modal-checkout .field { margin-bottom: 12px; }
+    .modal-checkout .field label { display: block; font-size: 0.8rem; color: var(--text2); font-weight: 600; margin-bottom: 4px; }
+    .modal-checkout .field input {
+      width: 100%; padding: 10px 14px; border-radius: 8px;
+      border: 1px solid var(--border); background: var(--bg);
+      color: var(--text); font-size: 0.9rem; outline: none; font-family: var(--font);
+    }
+    .modal-checkout .field input:focus { border-color: var(--green); }
+    .modal-checkout .btn-row { display: flex; gap: 8px; margin-top: 16px; }
+    .modal-checkout .btn-row .btn { flex: 1; padding: 10px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; text-align: center; border: none; }
+    .modal-checkout .btn-row .btn-primary { background: var(--green); color: #0f172a; }
+    .modal-checkout .btn-row .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+    .modal-checkout .btn-row .btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text2); }
+    .modal-checkout .error-msg { font-size: 0.8rem; color: #ff4757; margin-top: 8px; display: none; }
+
+.cookie {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border);
+  padding: 16px 20px; z-index: 10001; display: none;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+  position: relative;
+  overflow: hidden;
+}
+.cookie::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateY(-50%);
+}
+    .cookie.show { display: block; }
+    .cookie-in {
+      max-width: var(--mw); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .cookie-in p { font-size: 0.85rem; color: var(--text2); flex: 1; min-width: 240px; }
+    .cookie-in a { color: var(--green); text-decoration: underline; }
+    .cookie-in .btn { padding: 8px 24px; font-size: 0.85rem; flex-shrink: 0; }
+
+    .pill-group {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;
+    }
+    .pill {
+      background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.25);
+      color: var(--green); padding: 4px 14px; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 600;
+    }
+
+    @media (max-width: 992px) {
+      .nav { display: none; }
+      .nav.open {
+        display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
+        width: 280px; height: 100vh; background: var(--bg2); padding: 80px 24px 24px;
+        gap: 20px; box-shadow: -4px 0 20px rgba(0,0,0,0.5); z-index: 999;
+      }
+      .mt { display: block; z-index: 1000; }
+      .nav.open a { font-size: 1rem; }
+      .hero-in { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 2.2rem; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .valor-grid { grid-template-columns: repeat(2, 1fr); }
+      .valor-card { padding: 14px 12px; }
+      .trans-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .footer-g { grid-template-columns: 1fr; text-align: center; }
+      .footer-brand { align-items: center; }
+      .footer-social { justify-content: center; }
+      .cookie-in { flex-direction: column; text-align: center; }
+    }
+    /* FLOATING WHATSAPP CTA */
+    .wa-float { display: none; }
+    @media (max-width: 768px) {
+      .grid-overlay { background-size: 48px 48px; }
+    }
+    @media (max-width: 600px) {
+      .sp { padding: 50px 0; }
+      .hero { padding: 130px 0 50px; }
+      .hero h1 { font-size: 1.8rem; }
+      .hero p { font-size: 1rem; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { width: 100%; }
+      .valor-grid { grid-template-columns: 1fr; }
+      .how-grid { grid-template-columns: 1fr; gap: 24px; }
+      .how-step { max-width: 280px; margin: 0 auto; }
+      .st { font-size: 1.6rem; }
+      .cta h2 { font-size: 1.6rem; }
+      .cta .btn { width: 100%; }
+      .grid-overlay { background-size: 40px 40px; }
+      .wa-float {
+        display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+        background: rgba(15,23,42,0.95); backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(42,48,64,0.5); padding: 10px 16px;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+      }
+      .wa-float a {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        width: 100%; padding: 12px; border-radius: 8px;
+        background: #25D366; color: #fff; font-weight: 700; font-size: 0.95rem;
+        text-decoration: none;
+      }
+      body { padding-bottom: 64px; }
+    }
+
+    /* ===== FIXIT VOICE (sección #voice) ===== */
+    .voice {
+      --voice: #1470F2;
+      --voice-hover: #0d5bdd;
+      --voice-light: #5e9bff;
+      --voice-soft: rgba(20,112,242,0.12);
+      --vink: #12130F;
+      --vorange: #F2874A;
+      --vorange-soft: rgba(242,135,74,0.12);
+      --mono: 'JetBrains Mono', monospace;
+    }
+    .voice .eyebrow {
+      font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.28em;
+      font-size: 0.75rem; font-weight: 700; color: var(--vorange);
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .voice .eyebrow::before { content: ''; width: 28px; height: 2px; background: var(--vorange); flex-shrink: 0; }
+    .voice-hero { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; }
+    .voice-title { font-size: 2.4rem; font-weight: 800; line-height: 1.15; margin: 18px 0 16px; }
+    .voice-title span { color: var(--voice-light); }
+    .voice-sub { color: var(--text2); font-size: 1.1rem; line-height: 1.7; margin-bottom: 32px; }
+
+    .voice .call-mockup {
+      max-width: 420px; margin: 0 auto; width: 100%;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 20px;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(20,112,242,0.08), inset 0 1px 0 rgba(255,255,255,0.04);
+      animation: voiceFloat 6s ease-in-out infinite;
+    }
+    @keyframes voiceFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    .voice .call-head { display: flex; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .voice .call-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--voice) 0%, #0b4dc0 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.05rem; flex-shrink: 0; box-shadow: 0 0 20px rgba(20,112,242,0.35); }
+    .voice .call-name { font-weight: 700; font-size: 0.95rem; }
+    .voice .call-status { font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #34d399; display: flex; align-items: center; gap: 7px; margin-top: 3px; }
+    .voice .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #34d399; animation: voiceLivePulse 2s infinite; }
+    @keyframes voiceLivePulse { 0% { box-shadow: 0 0 0 0 rgba(52,211,153,0.55); } 70% { box-shadow: 0 0 0 8px rgba(52,211,153,0); } 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); } }
+    .voice .call-timer { margin-left: auto; font-family: var(--mono); font-size: 0.78rem; font-weight: 700; color: var(--text2); letter-spacing: 0.08em; }
+    .voice .call-body { padding: 18px 0; display: flex; flex-direction: column; gap: 14px; }
+    .voice .msg { max-width: 86%; padding: 10px 14px; border-radius: 16px; font-size: 0.88rem; line-height: 1.55; }
+    .voice .msg-label { display: block; font-family: var(--mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 5px; }
+    .voice .msg.client { align-self: flex-start; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.09); border-bottom-left-radius: 4px; color: var(--text); }
+    .voice .msg.client .msg-label { color: var(--muted); }
+    .voice .msg.agent { align-self: flex-end; background: linear-gradient(135deg, var(--voice) 0%, #0e56c2 100%); border-bottom-right-radius: 4px; color: #fff; box-shadow: 0 8px 24px rgba(20,112,242,0.25); }
+    .voice .msg.agent .msg-label { color: rgba(255,255,255,0.75); }
+    .voice .call-foot { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 14px; display: flex; align-items: center; gap: 12px; }
+    .voice .wave { display: flex; gap: 3px; align-items: center; height: 18px; }
+    .voice .wave span { width: 3px; height: 100%; background: var(--vorange); border-radius: 2px; transform-origin: center; animation: voiceWave 1.1s infinite ease-in-out; }
+    .voice .wave span:nth-child(2) { animation-delay: 0.15s; background: var(--voice-light); }
+    .voice .wave span:nth-child(3) { animation-delay: 0.3s; }
+    .voice .wave span:nth-child(4) { animation-delay: 0.45s; background: var(--voice-light); }
+    .voice .wave span:nth-child(5) { animation-delay: 0.6s; }
+    @keyframes voiceWave { 0%,100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+    .voice .call-foot-text { font-family: var(--mono); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+
+    .voice-block { margin-top: 90px; }
+    .voice-eb { text-align: center; margin-bottom: 14px; }
+    .voice-h { text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 10px; }
+    .voice-s { text-align: center; color: var(--text2); font-size: 0.98rem; max-width: 600px; margin: 0 auto 40px; }
+
+    .voice-feat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .voice-feat-card { background: var(--card); backdrop-filter: blur(20px); border: 1px solid var(--card-border); border-radius: var(--r); padding: 24px 20px; transition: all 0.4s ease; }
+    .voice-feat-card:hover { border-color: rgba(20,112,242,0.35); background: linear-gradient(to bottom, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 50%), rgba(20,30,50,0.6); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+    .voice-feat-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; margin-bottom: 14px; }
+    .voice-feat-icon.blue { background: var(--voice-soft); color: var(--voice-light); }
+    .voice-feat-icon.orange { background: var(--vorange-soft); color: var(--vorange); }
+    .voice-feat-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .voice-feat-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+    .voice-chips { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; max-width: 860px; margin: 0 auto; }
+    .voice-chip { display: inline-flex; align-items: center; gap: 10px; background: var(--voice-soft); border: 1px solid rgba(20,112,242,0.3); color: var(--text); padding: 12px 22px; border-radius: 50px; font-size: 0.92rem; font-weight: 600; transition: all 0.3s ease; }
+    .voice-chip i { color: var(--vorange); }
+    .voice-chip:hover { border-color: var(--voice); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,112,242,0.2); }
+
+    .voice-steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .voice-step-card { background: var(--card); backdrop-filter: blur(20px); border: 1px solid var(--card-border); border-radius: var(--r); padding: 28px; transition: all 0.4s ease; }
+    .voice-step-card:hover { border-color: rgba(242,135,74,0.35); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.35); }
+    .voice-step-num { font-family: var(--mono); font-weight: 800; font-size: 1.5rem; letter-spacing: 0.12em; color: var(--vorange); margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
+    .voice-step-num::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(242,135,74,0.4), transparent); }
+    .voice-step-card p { color: var(--text2); font-size: 0.95rem; line-height: 1.7; }
+
+    .voice-plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+    .voice-plan-card { background: var(--card); backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; display: flex; flex-direction: column; position: relative; transition: all 0.4s ease; }
+    .voice-plan-card:hover { border-color: rgba(20,112,242,0.35); background: rgba(15,23,42,0.35); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+    .voice-plan-card.popular { border: 2px solid var(--vorange); background: rgba(20,30,50,0.5); }
+    .voice-plan-card .popular-badge { position: absolute; top: -13px; right: 18px; background: var(--vorange); color: var(--vink); font-family: var(--mono); font-size: 0.62rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; }
+    .voice-plan-card .plan-name { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+    .voice-plan-card .plan-minutes { font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+    .voice-plan-card .plan-price { font-size: 2.2rem; font-weight: 800; color: var(--voice-light); margin: 10px 0 16px; }
+    .voice-plan-card .plan-price span { font-size: 0.85rem; color: var(--muted); font-weight: 400; }
+    .voice-plan-card .plan-features { flex: 1; }
+    .voice-plan-card .plan-features div { font-size: 0.85rem; color: var(--text2); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .voice-plan-card .plan-features div:last-child { border-bottom: none; }
+    .voice-plan-card .plan-cta { display: block; text-align: center; margin-top: 20px; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 0.9rem; border: 1px solid rgba(20,112,242,0.4); color: var(--voice-light); transition: all 0.3s ease; cursor: pointer; }
+    .voice-plan-card .plan-cta:hover { background: var(--voice-soft); transform: translateY(-2px); }
+    .voice-plan-card .plan-cta.filled { background: var(--voice); color: #fff; border-color: var(--voice); }
+    .voice-plan-card .plan-cta.filled:hover { background: var(--voice-hover); box-shadow: 0 8px 24px rgba(20,112,242,0.35); }
+    .voice-setup-note { text-align: center; color: var(--text2); font-size: 0.92rem; margin-top: 32px; }
+    .voice-setup-note i { color: var(--voice-light); margin-right: 6px; }
+
+    .voice .cta { padding: 80px 24px; margin-top: 90px; }
+    .voice .cta::before { background: radial-gradient(circle, rgba(20,112,242,0.12) 0%, transparent 70%); }
+    .voice .cta::after { background: linear-gradient(90deg, transparent, rgba(20,112,242,0.2), transparent); }
+    .voice .cta .badge { background: var(--vorange-soft); border: 1px solid rgba(242,135,74,0.35); color: var(--vorange); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; }
+
+    @media (max-width: 992px) {
+      .voice-hero { grid-template-columns: 1fr; }
+      .voice-feat-grid { grid-template-columns: repeat(2, 1fr); }
+      .voice-steps-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    }
+    @media (max-width: 768px) {
+      .voice-plan-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .voice-title { font-size: 1.8rem; }
+      .voice-feat-grid { grid-template-columns: 1fr; }
+      .voice .eyebrow { font-size: 0.65rem; letter-spacing: 0.2em; }
+      .voice-block { margin-top: 60px; }
+      .voice .cta { margin-top: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="modal-checkout-bg" id="checkoutModalBg" onclick="closeCheckoutModal()"></div>
+<div class="modal-checkout" id="checkoutModal">
+  <h3 id="modalPlanName">FixIT Backup</h3>
+  <div class="plan-label" id="modalPlanDetail">Plan seleccionado</div>
+  <div class="field">
+    <label>Nombre completo</label>
+    <input type="text" id="checkoutName" placeholder="Ej: Juan Pérez">
+  </div>
+  <div class="field">
+    <label>Correo electrónico</label>
+    <input type="email" id="checkoutEmail" placeholder="correo@ejemplo.com">
+  </div>
+  <div class="field">
+    <label>Empresa</label>
+    <input type="text" id="checkoutCompany" placeholder="Mi Empresa S.A. de C.V.">
+  </div>
+  <div class="field">
+    <label>RFC (opcional — para factura CFDI)</label>
+    <input type="text" id="checkoutRfc" placeholder="XXX000101XXX" maxlength="13" style="text-transform:uppercase">
+  </div>
+  <div class="error-msg" id="checkoutError"></div>
+  <div class="btn-row">
+    <button class="btn btn-secondary" onclick="closeCheckoutModal()">Cancelar</button>
+    <button class="btn btn-primary" id="checkoutBtn" onclick="startCheckout()">Ir a pagar</button>
+  </div>
+</div>
+
+<div class="cookie" id="cookieBanner">
+  <div class="cookie-in">
+    <p>Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas su uso. <a href="aviso-privacidad.html">Más información</a></p>
+    <button class="btn btn-accent" id="cookieAccept">Aceptar</button>
+  </div>
+</div>
+
+<header class="hdr" id="hdr">
+  <div class="w hdr-in">
+    <div class="logo">
+      <img src="assets/logo-fixit.png" alt="FixIT">
+      <span>FixIT <small>Soluciones</small></span>
+    </div>
+    <button class="mt" id="menuBtn" aria-label="Menú"><i class="fa-solid fa-bars"></i></button>
+    <nav class="nav" id="navMenu">
+      <a href="#valor">Lo que incluye</a>
+      <a href="#trans">Tu día a día</a>
+      <a href="#how">Cómo funciona</a>
+      <a href="#faq">FAQ</a>
+      <a href="#voice">FixIT Voice</a>
+      <a href="#reg">Prueba gratis</a>
+      <a href="https://wa.me/526861959581" target="_blank" class="btn btn-wa" style="padding:8px 18px;font-size:0.85rem;color:#fff;">
+        <i class="fa-brands fa-whatsapp"></i> Activar prueba
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO: Promesa central -->
+<section class="hero">
+  <div class="w hero-in">
+    <div>
+      <div class="pill-group" style="margin-bottom:24px;">
+        <span class="pill">Monitoreo 24/7</span>
+        <span class="pill">Seguridad</span>
+        <span class="pill">Backups</span>
+        <span class="pill">Soporte</span>
+        <span class="pill" style="background:rgba(59,130,246,0.12);border-color:rgba(59,130,246,0.3);color:#3b82f6;"><i class="fa-brands fa-windows"></i> Windows</span>
+      </div>
+      <h1>Infraestructura silenciosa <span>para negocios que no pueden detenerse.</span></h1>
+      <p>No vendemos un programa de monitoreo. Vendemos tranquilidad operativa. Detectamos problemas, protegemos tu información y corregimos fallas automáticamente. Sin que tú hagas nada.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20activar%20mi%20prueba%20gratuita%20de%2014%20d%C3%ADas%20de%20FixIT" target="_blank" class="btn btn-wa">
+          <i class="fa-brands fa-whatsapp"></i> Quiero mi prueba gratis
+        </a>
+        <a href="#valor" class="btn btn-o">
+          <i class="fa-solid fa-arrow-down"></i> Ver lo que incluye
+        </a>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: center; margin-top: 2rem;">
+      <img src="/dashboard.png" alt="Panel principal de FixIT" class="hero-img-3d" style="width: 100%; max-width: 850px; height: auto;">
+    </div>
+  </div>
+</section>
+
+<!-- DOLOR: Solo los problemas, sin mencionar solucion -->
+<section class="pain sp">
+  <div class="w">
+    <h2 class="st">Tres riesgos que todo negocio corre a diario</h2>
+    <p class="ss">No importa el tamaño de tu empresa. Estos problemas siempre están ahí, aunque no los veas.</p>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="icon">&#128187;</div>
+        <h3>Equipos que fallan sin previo aviso</h3>
+        <p>Una PC que se apaga, se pone lenta o simplemente deja de funcionar en medio del día. Horas perdidas, trabajo retrasado, clientes esperando.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#128737;&#65039;</div>
+        <h3>Seguridad que no sabes si está funcionando</h3>
+        <p>Crees que estás protegido, pero nadie verifica que el antivirus, el firewall y las defensas estén realmente activas. Hasta que es demasiado tarde.</p>
+      </div>
+      <div class="pain-card">
+        <div class="icon">&#9729;</div>
+        <h3>Información que puede perderse para siempre</h3>
+        <p>Archivos, bases de datos, configuraciones. Si un equipo falla o un atacante lo cifra, ¿estás seguro de que puedes recuperarlo?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALOR: Lo que obtienes, en lenguaje claro -->
+<section class="valor sp" id="valor">
+  <div class="w">
+    <h2 class="st">Todo lo que incluye FixIT</h2>
+    <p class="ss">No son características técnicas. Es protección real para tu operación.</p>
+    <div class="valor-grid">
+      <div class="valor-card">
+        <div class="v-icon green"><i class="fa-solid fa-desktop"></i></div>
+        <h3>Monitoreo 24/7</h3>
+        <div class="comercial">Vigilamos cada equipo en tiempo real. Si algo se desvía, lo detectamos al instante.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon blue"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Seguridad</h3>
+        <div class="comercial">Confirmamos que todas tus defensas estén activas y funcionando.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon red"><i class="fa-solid fa-biohazard"></i></div>
+        <h3>Antiransomware</h3>
+        <div class="comercial">Detectamos actividad sospechosa antes de que pierdas información.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon orange"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+        <h3>Backups automáticos</h3>
+        <div class="comercial">Copias cifradas en la nube. Si un equipo falla, no pierdes nada.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon green"><i class="fa-solid fa-bell"></i></div>
+        <h3>Alertas</h3>
+        <div class="comercial">Te avisamos por WhatsApp solo cuando es importante. Sin falsas alarmas.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon blue"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3>Auto-reparación</h3>
+        <div class="comercial">Problemas menores corregidos automáticamente sin intervención humana.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon orange"><i class="fa-solid fa-chart-simple"></i></div>
+        <h3>Visibilidad total</h3>
+        <div class="comercial">El estado de todos tus equipos en un solo panel. En tiempo real.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon red"><i class="fa-solid fa-ticket"></i></div>
+        <h3>Soporte y tickets</h3>
+        <div class="comercial">Cada incidencia con seguimiento organizado hasta resolverse.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon green"><i class="fa-solid fa-sitemap"></i></div>
+        <h3>Control centralizado</h3>
+        <div class="comercial">Políticas de seguridad aplicadas a todos tus equipos desde un solo lugar.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon blue"><i class="fa-solid fa-file-pdf"></i></div>
+        <h3>Reportes automáticos</h3>
+        <div class="comercial">PDFs profesionales cada mes, sin que los hagas tú.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon orange"><i class="fa-solid fa-display"></i></div>
+        <h3>Soporte remoto inmediato</h3>
+        <div class="comercial">Resolvemos la mayoría de los problemas sin visitas ni tiempos muertos.</div>
+      </div>
+      <div class="valor-card">
+        <div class="v-icon green"><i class="fa-solid fa-building"></i></div>
+        <h3>Todas tus sucursales conectadas</h3>
+        <div class="comercial">Administra todos tus equipos desde un solo lugar, aunque estén en diferentes ubicaciones.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMACION: Antes y despues (angulo unico, no se repite en otra seccion) -->
+<section class="trans sp" id="trans">
+  <div class="w">
+    <h2 class="st">Así cambia tu día a día con FixIT</h2>
+    <p class="ss">No es solo lo que hace. Es cómo cambia la forma en que trabajas.</p>
+    <div class="trans-grid">
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Te enterabas de los problemas porque un cliente o empleado te llamaba.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Te avisamos antes de que alguien tenga que reportarlo. Llegas primero.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> No sabías si realmente todos tus equipos estaban protegidos.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Sabes con certeza que cada computadora tiene sus defensas activas y funcionando.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Perdías horas revisando equipos uno por uno.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Abres el panel y ves el estado completo de toda tu infraestructura en segundos.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Los respaldos eran un "espero que esté funcionando".</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Los backups se hacen solos y sabes que están bien porque los verificamos.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> Cada visita técnica era un viaje y horas perdidas.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> La mayoría de los problemas los resolvemos de forma remota sin que nadie se desplace.</div>
+      </div>
+      <div class="trans-card">
+        <div class="antes"><strong>Antes:</strong> No tenías reports formales para tus clientes o jefes.</div>
+        <div class="flecha"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="despues"><strong>Después:</strong> Recibes PDFs profesionales automáticos. Luces bien sin hacer nada extra.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section class="sp" style="border-top:1px solid rgba(42,48,64,0.3);border-bottom:1px solid rgba(42,48,64,0.3);position:relative;">
+  <div class="w" style="text-align:center;">
+    <h2 class="st">Así se ve tener el control</h2>
+    <p class="ss">Tú solo ves los resultados. Nosotros vemos los detalles para que tú no tengas que hacerlo.</p>
+    <div style="max-width:700px;margin:0 auto 30px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 28px;text-align:left;font-size:0.95rem;color:var(--text2);line-height:1.7;">
+      <p style="margin-bottom:0;">FixIT te da un dashboard donde ves <strong style="color:var(--text);">tus equipos, su estado y score en tiempo real</strong>. Puedes descargar reportes PDF, abrir tickets cuando necesites soporte, y verificar que tus backups se están haciendo. <strong style="color:var(--green);">Nosotros hacemos todo el trabajo pesado — tú solo ves los resultados.</strong></p>
+    </div>
+    <img src="/dashboard-detalle.png" alt="Detalle de equipo en FixIT" loading="lazy" style="width:100%;max-width:900px;border-radius:var(--r);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(0,212,170,0.06);margin:0 auto;display:block;">
+  </div>
+</section>
+
+<!-- FIXIT BACKUP: Seccion independiente -->
+<section class="sp" id="backup" style="border-top:1px solid rgba(42,48,64,0.3);border-bottom:1px solid rgba(42,48,64,0.3);position:relative;">
+  <div class="w">
+    <h2 class="st">FixIT Backup</h2>
+    <p class="backup-sub-text">¿Solo necesitas backups? Contrata solo este servicio. No importa si tienes otro proveedor de monitoreo o ninguno.</p>
+    <div class="backup-plans-grid">
+      <div class="backup-plan-card">
+        <div class="plan-name">Básico</div>
+        <div class="plan-price">$379 <span>MXN/mes</span></div>
+        <div class="plan-storage">100 GB de almacenamiento</div>
+        <div class="plan-features">
+          <div>✓ Backup automático diario</div>
+          <div>✓ Cifrado AES-256</div>
+          <div>✓ Monitoreo 24/7</div>
+          <div>✓ Restauración bajo demanda</div>
+          <div>✓ Historial 30 días</div>
+          <div>✓ Soporte por correo</div>
+        </div>
+        <a onclick="openCheckout(1,'Básico','$379','100 GB')" class="btn-plan btn-o" style="display:block;text-decoration:none;cursor:pointer">Contratar solo backup</a>
+      </div>
+      <div class="backup-plan-card popular">
+        <div class="popular-badge">MÁS POPULAR</div>
+        <div class="plan-name">Negocio</div>
+        <div class="plan-price">$969 <span>MXN/mes</span></div>
+        <div class="plan-storage">500 GB de almacenamiento</div>
+        <div class="plan-features">
+          <div>✓ Backup automático diario</div>
+          <div>✓ Cifrado AES-256</div>
+          <div>✓ Monitoreo 24/7</div>
+          <div>✓ Restauración bajo demanda</div>
+          <div>✓ Historial 90 días</div>
+          <div>✓ Retención extendida</div>
+          <div>✓ Soporte prioritario</div>
+          <div>✓ Alertas en tiempo real</div>
+        </div>
+        <a onclick="openCheckout(2,'Negocio','$969','500 GB')" class="btn-plan btn-accent" style="display:block;text-decoration:none;color:#0f172a;cursor:pointer">Contratar solo backup</a>
+      </div>
+      <div class="backup-plan-card">
+        <div class="plan-name">Empresa</div>
+        <div class="plan-price">$2,999 <span>MXN/mes</span></div>
+        <div class="plan-storage">2 TB de almacenamiento</div>
+        <div class="plan-features">
+          <div>✓ Backup automático diario</div>
+          <div>✓ Cifrado AES-256</div>
+          <div>✓ Monitoreo 24/7</div>
+          <div>✓ Restauración ilimitada</div>
+          <div>✓ Historial 365 días</div>
+          <div>✓ Retención personalizada</div>
+          <div>✓ Soporte dedicado 24/7</div>
+          <div>✓ Alertas en tiempo real</div>
+          <div>✓ Panel white-label</div>
+          <div>✓ API de integración</div>
+        </div>
+        <a onclick="openCheckout(3,'Empresa','$2,999','2 TB')" class="btn-plan btn-o" style="display:block;text-decoration:none;cursor:pointer">Contratar solo backup</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIXIT VOICE: Seccion independiente (precios generados desde voice-plans.js) -->
+<section class="sp voice" id="voice" style="border-top:1px solid rgba(42,48,64,0.3);border-bottom:1px solid rgba(42,48,64,0.3);position:relative;">
+  <div class="w">
+    <div class="voice-hero">
+      <div>
+        <span class="eyebrow">Para negocios que no pueden perder llamadas</span>
+        <h2 class="voice-title">Contesta cada llamada. <span>Aunque no estés tú.</span></h2>
+        <p class="voice-sub">Un agente de voz con inteligencia artificial que atiende tu negocio las 24 horas, toma pedidos, agenda citas y nunca deja a un cliente esperando en la línea.</p>
+        <div class="hero-btns">
+          <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20demo%20de%20FixIT%20Voice" target="_blank" class="btn btn-wa js-voice-demo">
+            <i class="fa-brands fa-whatsapp"></i> Quiero una demo gratis
+          </a>
+          <a href="#voice-precios" class="btn btn-o">
+            <i class="fa-solid fa-arrow-down"></i> Ver precios
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="call-mockup">
+          <div class="call-head">
+            <div class="call-avatar"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="call-name">FixIT Voice</div>
+              <div class="call-status"><span class="live-dot"></span> En llamada</div>
+            </div>
+            <div class="call-timer">00:12</div>
+          </div>
+          <div class="call-body">
+            <div class="msg client">
+              <span class="msg-label">Cliente</span>
+              ¿Tienen servicio de entrega a domicilio hoy?
+            </div>
+            <div class="msg agent">
+              <span class="msg-label">FixIT Voice &middot; IA</span>
+              Sí, claro. ¿Me confirmas tu dirección para calcular el tiempo de entrega?
+            </div>
+          </div>
+          <div class="call-foot">
+            <div class="wave"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="call-foot-text">Respondiendo en tiempo real</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-eb"><span class="eyebrow">Características</span></div>
+      <h3 class="voice-h">Todo lo que hace por tu negocio</h3>
+      <p class="voice-s">No es un contestador. Es un agente que entiende, responde y registra cada llamada.</p>
+      <div class="voice-feat-grid">
+        <div class="voice-feat-card">
+          <div class="voice-feat-icon blue"><i class="fa-solid fa-clock"></i></div>
+          <h3>Disponible siempre</h3>
+          <p>Contesta a cualquier hora, incluso de madrugada o en día festivo.</p>
+        </div>
+        <div class="voice-feat-card">
+          <div class="voice-feat-icon orange"><i class="fa-solid fa-clipboard-check"></i></div>
+          <h3>Toma pedidos y citas</h3>
+          <p>Pregunta lo necesario y registra todo sin errores ni malentendidos.</p>
+        </div>
+        <div class="voice-feat-card">
+          <div class="voice-feat-icon blue"><i class="fa-solid fa-chart-simple"></i></div>
+          <h3>Reportes a tu medida</h3>
+          <p>Recibe un resumen de tus llamadas diario, semanal o mensual, como prefieras.</p>
+        </div>
+        <div class="voice-feat-card">
+          <div class="voice-feat-icon orange"><i class="fa-solid fa-microphone-lines"></i></div>
+          <h3>Suena natural</h3>
+          <p>Habla español mexicano, con el tono y ritmo de tu negocio.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-eb"><span class="eyebrow">Casos de uso</span></div>
+      <h3 class="voice-h">Ideal para negocios como el tuyo</h3>
+      <p class="voice-s">Si tus clientes te llaman, FixIT Voice contesta.</p>
+      <div class="voice-chips">
+        <span class="voice-chip"><i class="fa-solid fa-pizza-slice"></i> Restaurantes y pizzerías</span>
+        <span class="voice-chip"><i class="fa-solid fa-user-doctor"></i> Consultorios médicos y dentales</span>
+        <span class="voice-chip"><i class="fa-solid fa-wrench"></i> Talleres y servicios técnicos</span>
+        <span class="voice-chip"><i class="fa-solid fa-spa"></i> Salones y spas</span>
+      </div>
+    </div>
+
+    <div class="voice-block">
+      <div class="voice-eb"><span class="eyebrow">Implementación</span></div>
+      <h3 class="voice-h">Cómo lo implementamos</h3>
+      <p class="voice-s">Tres pasos y tu negocio empieza a contestar solo.</p>
+      <div class="voice-steps-grid">
+        <div class="voice-step-card">
+          <div class="voice-step-num">01</div>
+          <p>Nos compartes tu menú, precios y horarios de atención.</p>
+        </div>
+        <div class="voice-step-card">
+          <div class="voice-step-num">02</div>
+          <p>Armamos y afinamos tu agente antes de vernos, listo para probarlo.</p>
+        </div>
+        <div class="voice-step-card">
+          <div class="voice-step-num">03</div>
+          <p>Te llamamos en vivo con tu celular, lo apruebas y activamos tu número.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="voice-block" id="voice-precios">
+      <div class="voice-eb"><span class="eyebrow">Precios</span></div>
+      <h3 class="voice-h">Planes y precios</h3>
+      <p class="voice-s">Elige el plan que va con el volumen de llamadas de tu negocio.</p>
+      <div class="voice-plan-grid" id="voicePlansGrid"></div>
+      <p class="voice-setup-note"><i class="fa-solid fa-circle-info"></i><span id="voiceSetupNote"></span></p>
+    </div>
+
+    <div class="cta">
+      <div class="cta-in">
+        <div class="badge"><i class="fa-solid fa-gift"></i> Demo gratis, sin compromiso</div>
+        <h2>Agenda tu demo hoy mismo</h2>
+        <p>Escríbenos por WhatsApp y escucha cómo sonaría tu propio agente de voz atendiendo a tus clientes.</p>
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20demo%20de%20FixIT%20Voice" target="_blank" class="btn btn-wa js-voice-demo">
+          <i class="fa-brands fa-whatsapp"></i> Agendar demo por WhatsApp
+        </a>
+        <p class="tiny">Sin compromiso &middot; Te respondemos el mismo día</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO: Como funciona -->
+<section class="how sp" id="how" style="border-top:1px solid rgba(42,48,64,0.3);position:relative;">
+  <div class="w">
+    <h2 class="st">Así de simple es empezar</h2>
+    <p class="ss">No necesitas saber de tecnología. Solo instalas y olvidas.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="n">1</div>
+        <h3>Nos dices cuántos equipos tienes</h3>
+        <p>Por WhatsApp o el formulario. Te activamos la prueba en minutos. Sin papeleo, sin tarjeta de crédito.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">2</div>
+        <h3>Nosotros instalamos el agente</h3>
+        <p>De forma remota en tus equipos Windows. No tienes que tocar nada, no afecta el rendimiento, no molesta a los usuarios. Solo queda trabajando en silencio.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">3</div>
+        <h3>Empiezas a ver todo desde tu panel</h3>
+        <p>El estado de cada equipo, alertas si hay algo raro, reportes automáticos. Sin tener que revisar nada tú mismo.</p>
+      </div>
+      <div class="how-step">
+        <div class="n">4</div>
+        <h3>Nosotros vigilamos, tú trabajas</h3>
+        <p>Si algo necesita atención, te avisamos. Si se puede corregir solo, lo hacemos. Tú nunca te preocupas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIAL -->
+<section class="reg sp" id="reg">
+  <div class="w">
+    <h2 class="st">Activa tu prueba gratuita de 14 días</h2>
+    <p class="ss">Sin tarjeta de crédito. Sin compromiso. Solo dinos cuántos equipos tienes y te activamos hoy.</p>
+    <div class="reg-grid">
+      <div class="reg-info">
+        <h3><i class="fa-brands fa-whatsapp"></i> Así funciona</h3>
+        <p>Te contactamos por WhatsApp, activamos el agente en tus equipos en minutos y empiezas a ver todo desde tu dashboard. Sin instalaciones complicadas, sin esperar días.</p>
+        <ul>
+          <li><i class="fa-solid fa-check"></i> Activación en minutos vía WhatsApp</li>
+          <li><i class="fa-solid fa-check"></i> Monitoreo 24/7 desde el día 1</li>
+          <li><i class="fa-solid fa-check"></i> Dashboard y alertas incluidas</li>
+          <li><i class="fa-solid fa-check"></i> Soporte durante toda la prueba</li>
+          <li><i class="fa-solid fa-check"></i> Sin tarjeta de crédito</li>
+        </ul>
+      </div>
+      <div class="reg-form">
+        <h3>Regístrate para tu prueba gratis</h3>
+        <div class="form-group">
+          <label for="regName">Nombre completo</label>
+          <input type="text" id="regName" placeholder="Ej: Juan Pérez" required>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Correo electrónico</label>
+          <input type="email" id="regEmail" placeholder="Ej: juan@miempresa.com" required>
+        </div>
+        <div class="form-group">
+          <label for="regEmpresa">Nombre de tu empresa</label>
+          <input type="text" id="regEmpresa" placeholder="Ej: Mi Empresa S.A. de C.V." required>
+        </div>
+        <div class="form-group">
+          <label for="regPhone">WhatsApp (obligatorio para activación)</label>
+          <input type="tel" id="regPhone" placeholder="Ej: 6861234567">
+        </div>
+        <button class="btn btn-accent" id="regBtn" onclick="handleRegister()">
+          <i class="fa-solid fa-paper-plane"></i> Activar prueba gratis
+        </button>
+        <div class="reg-msg" id="regMsg"></div>
+        <p style="margin-top:12px;font-size:0.8rem;color:var(--muted);text-align:center;">Al registrarte aceptas nuestro <a href="terminos.html" style="color:var(--green);">Aviso de Privacidad</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq sp" id="faq" style="position:relative;">
+  <div class="w">
+    <h2 class="st">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>¿Funciona en cualquier computadora? ¿Mac o Linux?</summary>
+        <div class="faq-body">FixIT está diseñado y optimizado para equipos con <strong>Windows 10 y 11</strong>. Es donde mejor se desempeña porque aprovecha todas las capacidades de seguridad y monitoreo que Windows ofrece. Por ahora no está disponible para Mac ni Linux, pero si tienes equipos con esos sistemas, podemos apoyarte igual con soporte remoto asistiéndote directamente.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Realmente no tengo que hacer nada después de que me activen?</summary>
+        <div class="faq-body">Así es. Nosotros instalamos todo de forma remota. Desde ese momento el sistema cuida tus equipos: revisa que estén bien, los optimiza y te avisa solo si hay algo que atender. No tienes que abrirlo, configurarlo ni acordarte de él.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué pasa si se detecta un problema grave?</summary>
+        <div class="faq-body">Te llega una alerta al WhatsApp al instante. Si el problema se puede corregir automáticamente, el sistema lo hace solo. Si requiere atención de nuestro equipo, te contactamos para resolverlo. No te enteras cuando ya es tarde, sino antes.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Cómo sé que realmente está funcionando?</summary>
+        <div class="faq-body">Cada mes recibes un reporte PDF con el estado de todos tus equipos. También puedes ver tu panel en tiempo real cuando quieras. Pero si todo está bien, no te molestamos. Así debe ser: silencioso cuando funciona, presente cuando hay que atender algo.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿El sistema vuelve lenta la computadora?</summary>
+        <div class="faq-body">No. Está diseñado para ser invisible. Ocupa menos del 1% de los recursos del equipo. Trabaja en segundo plano sin que nadie note su presencia, sin afectar programas, velocidad ni el trabajo diario.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Puedo tener varias sucursales o negocios?</summary>
+        <div class="faq-body">Sí. Puedes tener todas tus ubicaciones, sucursales o clientes administrados desde un solo lugar. Cada uno con sus propios equipos, alertas y reportes. Ideal si tienes varios negocios o si le das servicio a diferentes clientes.</div>
+      </details>
+      <details class="faq-item">
+        <summary>¿Qué incluye el soporte de su equipo?</summary>
+        <div class="faq-body">Atención remota para resolver problemas de software, renovación de equipos cuando sea necesario y visitas técnicas presenciales si algo requiere estar ahí. El sistema se encarga del cuidado diario; nosotros nos encargamos de lo que necesita personas.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="contact">
+  <div class="w">
+    <div class="footer-g">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="assets/logo-fixit.png" alt="FixIT">
+          <span>FixIT Soluciones</span>
+        </div>
+        <p>Infraestructura silenciosa para negocios que no pueden detenerse. Monitoreo 24/7, seguridad, backups y soporte — sin que hagas nada.</p>
+        <div class="footer-social">
+          <a href="https://wa.me/526861959581" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="https://www.facebook.com/fixitsolociones" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@fxit_soluciones" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#valor">Monitoreo 24/7</a></li>
+          <li><a href="#valor">Seguridad</a></li>
+          <li><a href="#valor">Antiransomware</a></li>
+          <li><a href="#valor">Backups</a></li>
+          <li><a href="#valor">Soporte remoto</a></li>
+          <li><a href="#voice">FixIT Voice</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#how">Cómo funciona</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#reg">Prueba gratis</a></li>
+          <li><a href="aviso-privacidad.html">Aviso de Privacidad</a></li>
+          <li><a href="terminos.html">Términos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><i class="fa-solid fa-envelope"></i> hola@fixitsoluciones.com</li>
+          <li><i class="fa-brands fa-whatsapp"></i> 686 195 9581</li>
+          <li><i class="fa-regular fa-clock"></i> Lun&ndash;Vie 9:00&ndash;18:00</li>
+          <li><i class="fa-regular fa-clock"></i> Sáb 9:00&ndash;14:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-btm">
+      <span>&copy; 2026 FixIT Soluciones &mdash; Todos los derechos reservados.</span>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><i class="fa-solid fa-arrow-up"></i> Volver arriba</a>
+    </div>
+  </div>
+</footer>
+
+<div class="wa-float">
+  <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20activar%20mi%20prueba%20gratuita%20de%2014%20d%C3%ADas%20de%20FixIT" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i> Activar prueba gratis
+  </a>
+</div>
+
+<script src="voice-plans.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var hdr = document.getElementById('hdr');
+  var ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      requestAnimationFrame(function() { hdr.classList.toggle('scrolled', window.scrollY > 50); ticking = false; });
+      ticking = true;
+    }
+  });
+
+  var mb = document.getElementById('menuBtn'), nm = document.getElementById('navMenu');
+  mb.addEventListener('click', function() {
+    nm.classList.toggle('open');
+    mb.querySelector('i').className = nm.classList.contains('open') ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+  });
+  nm.querySelectorAll('a:not(.btn)').forEach(function(l) {
+    l.addEventListener('click', function() { nm.classList.remove('open'); mb.querySelector('i').className = 'fa-solid fa-bars'; });
+  });
+  document.addEventListener('click', function(e) {
+    if (nm.classList.contains('open') && !nm.contains(e.target) && !mb.contains(e.target)) {
+      nm.classList.remove('open'); mb.querySelector('i').className = 'fa-solid fa-bars';
+    }
+  });
+
+  if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookieBanner').classList.add('show');
+  document.getElementById('cookieAccept').addEventListener('click', function() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookieBanner').classList.remove('show');
+  });
+
+  /* ===== FixIT Voice: precios y enlaces generados desde voice-plans.js ===== */
+  var voiceCfg = window.FIXIT_VOICE;
+  if (voiceCfg) {
+    var vfmt = function(n) { return n.toLocaleString('es-MX'); };
+    var vWaBase = 'https://wa.me/' + voiceCfg.whatsappNumber;
+    var vDemoUrl = vWaBase + '?text=' + encodeURIComponent(voiceCfg.whatsappMessage);
+    document.querySelectorAll('.js-voice-demo').forEach(function(el) { el.href = vDemoUrl; });
+
+    var vGrid = document.getElementById('voicePlansGrid');
+    if (vGrid) {
+      voiceCfg.plans.forEach(function(plan) {
+        var card = document.createElement('div');
+        card.className = 'voice-plan-card' + (plan.popular ? ' popular' : '');
+
+        if (plan.popular) {
+          var badge = document.createElement('div');
+          badge.className = 'popular-badge';
+          badge.textContent = 'MÁS POPULAR';
+          card.appendChild(badge);
+        }
+
+        var name = document.createElement('div');
+        name.className = 'plan-name';
+        name.textContent = plan.name;
+        card.appendChild(name);
+
+        var mins = document.createElement('div');
+        mins.className = 'plan-minutes';
+        mins.textContent = vfmt(plan.minutes) + ' min/mes incluidos';
+        card.appendChild(mins);
+
+        var price = document.createElement('div');
+        price.className = 'plan-price';
+        price.textContent = '$' + vfmt(plan.price) + ' ';
+        var cur = document.createElement('span');
+        cur.textContent = voiceCfg.currency + '/mes';
+        price.appendChild(cur);
+        card.appendChild(price);
+
+        var feats = document.createElement('div');
+        feats.className = 'plan-features';
+        plan.features.forEach(function(f) {
+          var d = document.createElement('div');
+          d.textContent = '✓ ' + f;
+          feats.appendChild(d);
+        });
+        card.appendChild(feats);
+
+        var cta = document.createElement('a');
+        cta.className = 'plan-cta' + (plan.popular ? ' filled' : '');
+        cta.target = '_blank';
+        cta.href = vWaBase + '?text=' + encodeURIComponent(
+          'Hola, quiero una demo de FixIT Voice — plan ' + plan.name + ' (' + vfmt(plan.minutes) + ' min/mes)'
+        );
+        cta.textContent = 'Agendar demo';
+        card.appendChild(cta);
+
+        vGrid.appendChild(card);
+      });
+    }
+
+    var vNote = document.getElementById('voiceSetupNote');
+    if (vNote) {
+      vNote.textContent = '+ $' + vfmt(voiceCfg.setupFee) + ' ' + voiceCfg.currency + ' de implementación inicial (pago único).';
+    }
+  }
+});
+
+let selectedPlanId = null;
+
+function openCheckout(planId, name, price, storage) {
+  selectedPlanId = planId;
+  document.getElementById('modalPlanName').textContent = 'FixIT Backup - ' + name;
+  document.getElementById('modalPlanDetail').textContent = price + ' MXN/mes — ' + storage;
+  document.getElementById('checkoutError').style.display = 'none';
+  document.getElementById('checkoutName').value = '';
+  document.getElementById('checkoutEmail').value = '';
+  document.getElementById('checkoutCompany').value = '';
+  document.getElementById('checkoutRfc').value = '';
+  document.getElementById('checkoutBtn').disabled = false;
+  document.getElementById('checkoutBtn').textContent = 'Ir a pagar';
+  document.getElementById('checkoutModalBg').style.display = 'block';
+  document.getElementById('checkoutModal').style.display = 'block';
+}
+
+function closeCheckoutModal() {
+  document.getElementById('checkoutModalBg').style.display = 'none';
+  document.getElementById('checkoutModal').style.display = 'none';
+}
+
+function startCheckout() {
+  const email = document.getElementById('checkoutEmail').value.trim();
+  const name = document.getElementById('checkoutName').value.trim();
+  const company = document.getElementById('checkoutCompany').value.trim();
+  const rfc = document.getElementById('checkoutRfc').value.trim().toUpperCase();
+  const errEl = document.getElementById('checkoutError');
+
+  if (!email) { errEl.textContent = 'Ingresa tu correo electrónico'; errEl.style.display = 'block'; return; }
+  if (!email.includes('@')) { errEl.textContent = 'Correo inválido'; errEl.style.display = 'block'; return; }
+  if (!name) { errEl.textContent = 'Ingresa tu nombre'; errEl.style.display = 'block'; return; }
+
+  const btn = document.getElementById('checkoutBtn');
+  btn.disabled = true;
+  btn.textContent = 'Redirigiendo a Stripe...';
+  errEl.style.display = 'none';
+
+  var apiUrl;
+  if (window.location.hostname === 'fixitsoluciones.com' || window.location.hostname === 'www.fixitsoluciones.com') {
+    apiUrl = 'https://rmm.fixitsoluciones.com/api/public/backup-checkout';
+  } else {
+    apiUrl = '/api/public/backup-checkout';
+  }
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ planId: selectedPlanId, email: email, name: name, company: company, rfc: rfc || undefined }),
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      errEl.textContent = data.error || 'Error al crear el pago';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Ir a pagar';
+    }
+  })
+  .catch(function() {
+    errEl.textContent = 'Error de conexión. Intenta de nuevo.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Ir a pagar';
+  });
+}
+
+function handleRegister() {
+  const btn = document.getElementById('regBtn');
+  const msg = document.getElementById('regMsg');
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const empresa = document.getElementById('regEmpresa').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+
+  if (!name || !email || !empresa || !phone) {
+    msg.className = 'reg-msg error';
+    msg.textContent = 'Por favor completa todos los campos incluyendo WhatsApp (lo necesitamos para activarte).';
+    return;
+  }
+
+  if (!email.includes('@') || !email.includes('.')) {
+    msg.className = 'reg-msg error';
+    msg.textContent = 'Por favor ingresa un correo electrónico válido.';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Registrando...';
+  msg.className = 'reg-msg loading';
+  msg.textContent = 'Procesando tu registro...';
+
+  var apiUrl;
+  if (window.location.hostname === 'fixitsoluciones.com' || window.location.hostname === 'www.fixitsoluciones.com') {
+    apiUrl = 'https://rmm.fixitsoluciones.com/api/public/register';
+  } else {
+    apiUrl = '/api/public/register';
+  }
+
+  fetch(apiUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nombre: empresa, email: email, contactName: name, phone: phone || undefined }),
+  })
+  .then(function(r) { return r.json().then(function(d) { return { status: r.status, data: d }; }); })
+  .then(function(res) {
+    if (res.status === 201) {
+      msg.className = 'reg-msg success';
+      msg.innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + (res.data.message || 'Registro exitoso. Te contactaremos por WhatsApp para activar tu prueba.');
+      document.getElementById('regName').value = '';
+      document.getElementById('regEmail').value = '';
+      document.getElementById('regEmpresa').value = '';
+      document.getElementById('regPhone').value = '';
+    } else {
+      msg.className = 'reg-msg error';
+      msg.textContent = res.data.error || 'Error al registrarse. Intenta de nuevo.';
+    }
+  })
+  .catch(function(err) {
+    msg.className = 'reg-msg error';
+    msg.textContent = 'Error de conexión. Verifica tu internet e intenta de nuevo.';
+  })
+  .finally(function() {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Activar prueba gratis';
+  });
+}
+</script>
+</body>
+</html>

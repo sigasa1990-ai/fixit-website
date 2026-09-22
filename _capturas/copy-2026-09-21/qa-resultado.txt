@@ -1,0 +1,26 @@
+OK   desktop-1440 h1 original restaurado -> Soporte técnico y respaldo automático para negocios que no pueden detenerse.
+OK   desktop-1440 subtítulo original restaurado -> Impresoras, redes y equipos, más respaldos cifrados en la nube que realmente puedes recuperar. Remoto y presencial en Mexicali. Cuando algo falla, respondemos el mismo día.
+OK   desktop-1440 6 tarjetas diferenciadores -> 6
+OK   desktop-1440 3 tarjetas cuando-falla -> 3
+OK   desktop-1440 columnas nueva sección = 2 -> 2
+OK   desktop-1440 sin títulos viejos -> 
+OK   desktop-1440 7 FAQ intactas -> 7
+OK   desktop-1440 sección paquetes eliminada
+OK   desktop-1440 3 testimonios -> 3
+OK   desktop-1440 3 planes soporte + 3 backup -> 3/3
+OK   desktop-1440 campos del formulario intactos (8) -> 8
+OK   desktop-1440 sin overflow -> 0
+OK   movil-390 h1 original restaurado -> Soporte técnico y respaldo automático para negocios que no pueden detenerse.
+OK   movil-390 subtítulo original restaurado -> Impresoras, redes y equipos, más respaldos cifrados en la nube que realmente puedes recuperar. Remoto y presencial en Mexicali. Cuando algo falla, respondemos el mismo día.
+OK   movil-390 6 tarjetas diferenciadores -> 6
+OK   movil-390 3 tarjetas cuando-falla -> 3
+OK   movil-390 columnas nueva sección = 1 -> 1
+OK   movil-390 sin títulos viejos -> 
+OK   movil-390 7 FAQ intactas -> 7
+OK   movil-390 sección paquetes eliminada
+OK   movil-390 3 testimonios -> 3
+OK   movil-390 3 planes soporte + 3 backup -> 3/3
+OK   movil-390 campos del formulario intactos (8) -> 8
+OK   movil-390 sin overflow -> 0
+
+FAILS: 0

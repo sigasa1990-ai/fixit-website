@@ -1,0 +1,248 @@
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* =============================================================
+       1. MENÚ MÓVIL
+       ============================================================= */
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav');
+
+    // Función para cerrar menú visualmente
+    const safeCloseMenu = () => {
+        if (navMenu && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            document.body.style.overflow = ''; 
+            
+            if (mobileToggle) {
+                const icon = mobileToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        }
+    };
+
+    if (mobileToggle && navMenu) {
+        const newToggle = mobileToggle.cloneNode(true);
+        mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+
+        newToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            
+            const icon = newToggle.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                if(icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+                document.body.style.overflow = 'hidden';
+            } else {
+                if(icon) { icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+                document.body.style.overflow = '';
+            }
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', safeCloseMenu);
+        });
+
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && !navMenu.contains(e.target) && !newToggle.contains(e.target)) {
+                safeCloseMenu();
+            }
+        });
+    }
+
+    /* =============================================================
+       2. ANIMACIONES Y UI
+       ============================================================= */
+    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+    const elementObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                elementObserver.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-on-scroll, .section-reveal').forEach(el => elementObserver.observe(el));
+
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) backToTopBtn.classList.add('show');
+            else backToTopBtn.classList.remove('show');
+        });
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    /* =============================================================
+       3. LÓGICA DE SERVICIOS
+       ============================================================= */
+    const serviceSelect = document.getElementById('serviceType');
+    const descBox = document.getElementById('serviceDescription');
+    const descText = document.getElementById('serviceText');
+    const descIcon = document.getElementById('serviceIcon');
+
+    const serviceDetails = {
+        "Mantenimiento Preventivo": { text: "Limpieza profunda y optimización.", icon: "fa-broom" },
+        "Mantenimiento Correctivo": { text: "Reparación de fallas y reemplazo de partes.", icon: "fa-screwdriver-wrench" },
+        "Revisión Técnica Programada": { text: "Visitas agendadas para empresas.", icon: "fa-calendar-check" },
+        "Renovación de Hardware": { text: "Upgrade de SSD, RAM o procesadores.", icon: "fa-memory" },
+        "Soporte por Incidencia": { text: "Solución urgente a problema específico.", icon: "fa-triangle-exclamation" },
+        "Plan Control Operativo": { text: "Cotización para Póliza de Mantenimiento Preventivo recurrente.", icon: "fa-file-contract" },
+        "Plan Continuidad Administrativa": { text: "Cotización para Póliza de Soporte Diario y Tickets ilimitados.", icon: "fa-briefcase" },
+        "Plan Cobertura Multi-Sede": { text: "Cotización para atención a múltiples sucursales.", icon: "fa-building" },
+        "Solicitud Especial": { text: "Describe tu requerimiento en el campo de abajo.", icon: "fa-comments" }
+    };
+
+    if (serviceSelect) {
+        serviceSelect.addEventListener('change', function() {
+            const val = this.value;
+            const detail = serviceDetails[val] || serviceDetails["Solicitud Especial"];
+            if (detail && descBox) {
+                descBox.classList.remove('hidden');
+                descText.textContent = detail.text;
+                descIcon.className = `fa-solid ${detail.icon}`;
+            }
+        });
+    }
+});
+
+/* =============================================================
+   4. FUNCIONES GLOBALES (MODAL + HISTORIAL)
+   ============================================================= */
+const modal = document.getElementById('ticketModal');
+const serviceSelectElement = document.getElementById('serviceType');
+
+window.openModal = function(serviceName = null) {
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Historial para botón atrás
+        window.history.pushState({modalOpen: true}, "", "#ticket");
+
+        if (serviceName && serviceSelectElement) {
+            let found = false;
+            for (let i = 0; i < serviceSelectElement.options.length; i++) {
+                if (serviceSelectElement.options[i].value === serviceName) {
+                    serviceSelectElement.selectedIndex = i;
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                serviceSelectElement.value = 'Solicitud Especial';
+                const desc = document.getElementById('description');
+                if(desc) desc.value = `Solicitud de cotización para: ${serviceName}. `;
+            }
+            const event = new Event('change');
+            serviceSelectElement.dispatchEvent(event);
+        }
+    }
+}
+
+window.closeModal = function() {
+    if (window.location.hash === "#ticket") {
+        window.history.back();
+    } else {
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+}
+
+window.addEventListener('popstate', function(event) {
+    if (modal && modal.style.display === 'flex') {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+});
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+        if (window.location.hash === "#ticket") {
+            history.replaceState(null, null, ' ');
+        }
+    }
+}
+
+/* =============================================================
+   5. ENVÍO DE FORMULARIO (CORREGIDO: VARIABLES COINCIDEN)
+   ============================================================= */
+const form = document.getElementById('ticketForm');
+const msgDiv = document.getElementById('formMessage'); // Se llama msgDiv
+const submitBtn = document.getElementById('submitBtn');
+
+// TU URL REAL
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxwE1zHHI61_WpuarflyeRDIpoPto4e5ZSiL0o30UNd9u384Bpo9SrDzKmwpWrkDhZEuw/exec'; 
+
+if (form) {
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // Guardar estado original
+        const originalText = submitBtn.innerHTML;
+        
+        // Estado Cargando
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+        
+        // AQUÍ ESTABA EL ERROR: Antes decía messageDiv, ahora es msgDiv (correcto)
+        msgDiv.innerHTML = ''; 
+
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => data[key] = value);
+
+        // FETCH CON NO-CORS + TEXT/PLAIN
+        fetch(APPS_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', 
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(() => {
+            // ÉXITO
+            form.reset();
+            // Corrección aquí también: msgDiv
+            msgDiv.innerHTML = '<div class="success-message" style="color:green; text-align:center;">¡Enviado!</div>';
+
+            setTimeout(() => {
+                // Cerrar modal manualmente
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = '';
+                    if (window.location.hash === "#ticket") {
+                        history.replaceState(null, null, ' ');
+                    }
+                }
+                
+                // Corrección aquí también: msgDiv
+                msgDiv.innerHTML = '';
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalText;
+
+                // Alerta Final
+                alert("✅ ¡Ticket Creado Exitosamente!\n\nHemos recibido tu solicitud.");
+            }, 1500);
+        })
+        .catch(error => {
+            // ERROR
+            console.error(error);
+            // Corrección aquí también: msgDiv
+            msgDiv.innerHTML = '<div class="error-message" style="color:red; text-align:center;">Error de red.</div>';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+            alert("⚠️ Error de conexión. Intenta de nuevo.");
+        });
+    });
+}

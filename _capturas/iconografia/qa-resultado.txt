@@ -1,0 +1,32 @@
+OK   desktop-1440 grid columnas = 2 -> 2
+OK   desktop-1440 6 bloques -> 6
+OK   desktop-1440 12 svg .ico -> 12
+OK   desktop-1440 10 con role img -> 10
+OK   desktop-1440 todos con aria-label -> 0
+OK   desktop-1440 sin iconos ocultos -> 0
+OK   desktop-1440 4 iconos en Servicios -> 4
+OK   desktop-1440 badge pin presente
+OK   desktop-1440 sin overflow horizontal -> 0
+OK   desktop-1440 separador vertical en columna derecha -> 1px
+OK   tablet-768 grid columnas = 1 -> 1
+OK   tablet-768 6 bloques -> 6
+OK   tablet-768 12 svg .ico -> 12
+OK   tablet-768 10 con role img -> 10
+OK   tablet-768 todos con aria-label -> 0
+OK   tablet-768 sin iconos ocultos -> 0
+OK   tablet-768 4 iconos en Servicios -> 4
+OK   tablet-768 badge pin presente
+OK   tablet-768 sin overflow horizontal -> 0
+OK   tablet-768 sin separador vertical (1 col) -> 0px
+OK   movil-390 grid columnas = 1 -> 1
+OK   movil-390 6 bloques -> 6
+OK   movil-390 12 svg .ico -> 12
+OK   movil-390 10 con role img -> 10
+OK   movil-390 todos con aria-label -> 0
+OK   movil-390 sin iconos ocultos -> 0
+OK   movil-390 4 iconos en Servicios -> 4
+OK   movil-390 badge pin presente
+OK   movil-390 sin overflow horizontal -> 0
+OK   movil-390 sin separador vertical (1 col) -> 0px
+
+FAILS: 0

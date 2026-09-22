@@ -1,0 +1,579 @@
+<html lang="es-MX"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjRkY3QTU5Ii8+PHRleHQgeD0iNTAiIHk9IjcwIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkY8L3RleHQ+PC9zdmc+">
+<title>Cotizador — FixIT Soluciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6FA;
+    --card:#FFFFFF;
+    --text:#33475B;
+    --text2:#516F90;
+    --accent:#FF7A59;
+    --accent-hover:#FF8F73;
+    --accent-soft:rgba(255,122,89,.10);
+    --accent-border:rgba(255,122,89,.35);
+    --border:#CBD6E2;
+    --radius:14px;
+    --error:#D64545;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    padding:24px 16px 60px;
+  }
+  .wrap{max-width:520px;margin:0 auto;}
+  h1{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:1.5rem;
+    font-weight:700;
+    margin:0 0 4px;
+  }
+  .sub{color:var(--text2);font-size:.9rem;margin:0 0 24px;}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+  .brand-logo{
+    width:52px;height:52px;object-fit:contain;flex-shrink:0;
+    border-radius:12px;border:1px solid var(--border);background:#fff;
+  }
+  .brand h1{margin:0 0 2px;}
+  .brand .sub{margin:0;}
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .field{margin-bottom:16px;}
+  .field:last-child{margin-bottom:0;}
+  label{
+    display:block;
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:8px;
+    color:var(--text);
+  }
+  .req{color:var(--accent);}
+  .opt{color:var(--text2);font-weight:400;}
+  .toggle-group{
+    display:flex;
+    gap:8px;
+  }
+  .toggle-btn{
+    flex:1;
+    padding:10px 8px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:var(--card);
+    color:var(--text2);
+    font-family:'Inter',sans-serif;
+    font-size:.85rem;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .15s ease;
+    text-align:center;
+  }
+  .toggle-btn.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+    font-weight:600;
+  }
+  select, input[type=number], input[type=text], input[type=tel]{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-size:.95rem;
+    color:var(--text);
+    background:#fff;
+  }
+  input.input-error{border-color:var(--error);box-shadow:0 0 0 2px rgba(214,69,69,.15);}
+  .stepper{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .step-btn{
+    width:38px;height:38px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#fff;
+    font-size:1.1rem;
+    color:var(--text);
+    cursor:pointer;
+  }
+  .step-val{
+    flex:1;
+    text-align:center;
+    font-weight:600;
+    font-size:1.05rem;
+  }
+  .result{
+    background:var(--text);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:22px;
+    text-align:center;
+  }
+  .result .plan-name{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:.85rem;
+    font-weight:600;
+    color:#B8C4D4;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .result .price{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:2.1rem;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+  .result .price span{font-size:1rem;color:#B8C4D4;font-weight:500;}
+  .result .detail{
+    font-size:.85rem;
+    color:#D3DCE6;
+    line-height:1.5;
+  }
+  .wa-btn{
+    display:block;
+    text-align:center;
+    margin-top:16px;
+    padding:14px;
+    background:var(--accent);
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    font-size:.95rem;
+  }
+  .wa-btn:active{background:var(--accent-hover);}
+  .hidden{display:none;}
+
+  /* ===== Aviso de firma remota ===== */
+  .firma-notice{
+    background:var(--accent-soft);
+    border:1px solid var(--accent-border);
+    color:var(--text);
+    border-radius:12px;
+    padding:12px 14px;
+    font-size:.85rem;
+    margin-bottom:16px;
+  }
+  .firma-highlight{border-color:var(--accent) !important;box-shadow:0 0 0 3px rgba(255,122,89,.15);}
+
+  /* ===== Link de firma remota ===== */
+  .link-btn{
+    display:block;width:100%;margin-top:10px;padding:13px;
+    background:#fff;color:var(--accent);
+    border:1px solid var(--accent-border);border-radius:10px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;cursor:pointer;
+  }
+  .link-btn:hover{background:var(--accent-soft);}
+  .link-panel{
+    margin-top:12px;padding:16px;
+    border:1px dashed var(--accent-border);border-radius:12px;
+    background:var(--accent-soft);
+  }
+  .link-panel-title{
+    font-family:'Lexend Deca',sans-serif;font-size:.8rem;font-weight:600;
+    color:var(--text);margin-bottom:8px;
+  }
+  .link-field{
+    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+    font-size:.78rem;color:var(--text2);background:#fff;margin-bottom:10px;
+    font-family:'Inter',sans-serif;
+  }
+  .link-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .link-actions .clear-btn{flex:1;margin-top:0;}
+  .wa-share-btn{
+    flex:1;text-align:center;padding:8px 14px;border-radius:10px;
+    background:var(--accent);color:#fff;font-weight:600;font-size:.8rem;
+    text-decoration:none;
+  }
+  .wa-share-btn:hover{background:var(--accent-hover);}
+
+  /* ===== Firma ===== */
+  .canvas-wrap{
+    position:relative;
+    border:2px dashed var(--border);
+    border-radius:10px;
+    background:#fff;
+    overflow:hidden;
+  }
+  .canvas-wrap.signed{border-style:solid;border-color:var(--accent);}
+  #firma{
+    display:block;
+    width:100%;
+    height:150px;
+    touch-action:none;
+    cursor:crosshair;
+  }
+  .canvas-ph{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#A9B8C9;
+    font-size:.9rem;
+    pointer-events:none;
+  }
+  .clear-btn{
+    margin-top:10px;
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--text2);
+    border-radius:10px;
+    padding:8px 14px;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .clear-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ===== Boton aceptar y errores ===== */
+  .accept-btn{
+    display:block;
+    width:100%;
+    margin-top:10px;
+    padding:14px;
+    background:var(--text);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+  }
+  .accept-btn:hover{background:#243447;}
+  .form-error{
+    margin-top:12px;
+    padding:10px 12px;
+    background:#FDECEA;
+    border:1px solid #F3B8AE;
+    color:#B23B2E;
+    border-radius:10px;
+    font-size:.85rem;
+  }
+
+  /* ===== Recibo ===== */
+  .ticket{
+    max-width:380px;
+    margin:0 auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:22px 20px;
+    font-size:.82rem;
+    color:var(--text);
+    line-height:1.5;
+  }
+  .pl-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .pl-logo{width:56px;height:56px;object-fit:contain;border-radius:12px;flex-shrink:0;}
+  .pl-head-text{flex:1;min-width:0;}
+  .pl-head-text .tk-brand{text-align:left;font-size:1rem;}
+  .pl-head-text .tk-brand-sub{text-align:left;margin-bottom:0;}
+  .pl-folio{background:#F5F6FA;border:1px solid var(--border);border-radius:10px;padding:8px 12px;text-align:right;flex-shrink:0;}
+  .pl-folio-label{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#7C98B6;font-weight:600;}
+  .pl-folio-id{font-family:'Courier New',monospace;font-weight:700;font-size:.82rem;color:#000;}
+  .pl-folio-fecha{font-size:.62rem;color:var(--text2);white-space:nowrap;}
+  .tk-brand{
+    font-family:'Lexend Deca',sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    text-align:center;
+  }
+  .tk-brand-sub{
+    text-align:center;
+    font-size:.7rem;
+    color:#7C98B6;
+    margin-bottom:14px;
+  }
+  .tk-title{
+    text-align:center;
+    font-family:'Lexend Deca',sans-serif;
+    font-weight:700;
+    letter-spacing:.14em;
+    font-size:1.05rem;
+    text-transform:uppercase;
+    padding:10px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    margin:0 0 4px;
+  }
+  .pl-section{border-top:1px solid var(--border);padding-top:12px;margin-top:12px;}
+  .pl-section-first{border-top:none;padding-top:6px;margin-top:6px;}
+  .pl-section-title{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:.7rem;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+  }
+  .pl-clausulas{position:relative;overflow:hidden;}
+  .pl-clausulas .tk-policy{position:relative;z-index:1;}
+  .pl-watermark{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:170px;opacity:0.06;pointer-events:none;z-index:0;
+  }
+  .tk-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:4px 0;}
+  .tk-row span{color:#7C98B6;flex-shrink:0;}
+  .tk-row strong{font-weight:600;text-align:right;flex:1 1 auto;min-width:0;overflow-wrap:anywhere;}
+  .tk-sep{border-top:1px dashed var(--border);margin:12px 0;}
+  .tk-plan{font-family:'Lexend Deca',sans-serif;font-weight:600;font-size:.95rem;}
+  .tk-price{font-family:'Courier New',monospace;font-size:1.15rem;font-weight:700;margin:4px 0;color:#000;}
+  .tk-detail{color:var(--text2);font-size:.78rem;}
+  .tk-accepted{font-size:.78rem;color:#7C98B6;margin-bottom:6px;}
+  .tk-firma{max-width:190px;height:auto;display:block;border-bottom:1px solid var(--text);}
+  .tk-policy{
+    margin:0;
+    font-size:.7rem;
+    line-height:1.55;
+    color:var(--text2);
+    text-align:left;
+  }
+  .tk-foot{
+    text-align:center;
+    font-size:.72rem;
+    color:var(--text2);
+    border-top:1px solid var(--border);
+    padding-top:10px;
+    margin-top:12px;
+  }
+  .recibo-actions{
+    max-width:380px;
+    margin:16px auto 0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .print-btn{
+    padding:14px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+  }
+  .print-btn:hover{background:var(--accent-hover);}
+  .new-btn{
+    padding:13px;
+    background:#fff;
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    cursor:pointer;
+  }
+  .new-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ===== Pantalla de agradecimiento (firma desde link remoto) ===== */
+  .gracias-card{
+    max-width:380px;margin:48px auto 0;background:#fff;
+    border:1px solid var(--border);border-radius:16px;
+    padding:36px 26px;text-align:center;
+  }
+  .gracias-icon{
+    width:58px;height:58px;margin:0 auto 18px;border-radius:50%;
+    background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;font-weight:700;
+  }
+  .gracias-title{
+    font-family:'Lexend Deca',sans-serif;font-size:1.15rem;
+    color:var(--text);margin-bottom:10px;
+  }
+  .gracias-text{font-size:.9rem;color:var(--text2);line-height:1.6;}
+
+  /* ===== Impresion: solo el recibo ===== */
+  @page{size:auto;margin:0;}
+  @media print{
+    body{background:#fff;margin:14mm;padding:0;}
+    #cotizador-view,.recibo-actions,.no-print{display:none !important;}
+    #recibo-view{display:block !important;}
+    .ticket{
+      max-width:380px;
+      margin:0 auto;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+      padding:0;
+    }
+    .tk-brand,.tk-title,.tk-plan,.tk-price,.tk-row strong{color:#000;}
+    .tk-brand-sub,.tk-row span,.tk-detail,.tk-policy,.tk-foot,.tk-accepted{color:#444;}
+    .tk-firma{max-width:200px;}
+    .pl-folio{background:#fff;border-color:#999;}
+    .pl-section-title{color:#000;}
+    .pl-watermark{opacity:0.05;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="cotizador-view" class="hidden">
+    <div class="brand">
+      <img class="brand-logo" src="/assets/logo-fixit.png" alt="FixIT Soluciones">
+      <div>
+        <h1>Cotizador FixIT</h1>
+        <p class="sub">Herramienta interna — precio sugerido para dar en el momento</p>
+      </div>
+    </div>
+
+    <div class="firma-notice hidden" id="aviso-firma">Cotización enviada por FixIT Soluciones. Revisa tus datos, firma y acepta para generar tu póliza.</div>
+
+    <div class="card">
+      <div class="field">
+        <label>Tipo de servicio</label>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn" id="btn-remoto" onclick="setModo('remoto')">Plan mensual remoto</button>
+          <button type="button" class="toggle-btn active" id="btn-local" onclick="setModo('local')">Servicio local único</button>
+        </div>
+      </div>
+
+      <div id="bloque-remoto" class="hidden">
+        <div class="field">
+          <label>Número de equipos</label>
+          <div class="stepper">
+            <button type="button" class="step-btn" onclick="cambiarEquipos(-1)">−</button>
+            <div class="step-val" id="equipos-val">1</div>
+            <button type="button" class="step-btn" onclick="cambiarEquipos(1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="bloque-local" class="">
+        <div class="field">
+          <label>Tipo de servicio local</label>
+          <select id="tipo-local" onchange="calcular()">
+            <option value="visita">Visita / soporte único</option>
+            <option value="diag-torre">Diagnóstico + limpieza (torre)</option>
+            <option value="diag-laptop">Diagnóstico + limpieza (laptop)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <label for="cli-nombre">Nombre del cliente <span class="req">*</span></label>
+        <input type="text" id="cli-nombre" placeholder="Nombre completo" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="cli-telefono">Teléfono <span class="req">*</span></label>
+        <input type="tel" id="cli-telefono" placeholder="Ej: 6861234567" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="cli-empresa">Empresa / negocio <span class="opt">(opcional)</span></label>
+        <input type="text" id="cli-empresa" placeholder="Nombre del negocio" autocomplete="organization">
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="plan-name" id="res-nombre">Visita / soporte único</div>
+      <div class="price" id="res-precio">$350–450 <span>MXN</span></div>
+      <div class="detail" id="res-detalle">Un solo servicio, sin mensualidad</div>
+    </div>
+
+    <a href="https://wa.me/526861959581?text=Hola%2C%20te%20comparto%20la%20cotizaci%C3%B3n%20de%20FixIT%20Soluciones%3A%0A%0A%F0%9F%93%8B%20Plan%3A%20Visita%20%2F%20soporte%20%C3%BAnico%0A%F0%9F%92%B5%20%24350%E2%80%93450%20MXN%20(pago%20%C3%BAnico)%0A%E2%9C%85%20Incluye%3A%20Un%20solo%20servicio%2C%20sin%20mensualidad%0A%0ACualquier%20duda%2C%20quedo%20al%20pendiente.%20%E2%80%94%20FixIT%20Soluciones" class="wa-btn" id="wa-link" target="_blank">Enviar cotización por WhatsApp</a>
+
+    <div class="card" id="firma-card" style="margin-top:16px;">
+      <div class="field">
+        <label>Firma del cliente <span class="req">*</span></label>
+        <div class="canvas-wrap" id="canvas-wrap">
+          <canvas id="firma" width="474" height="150"></canvas>
+          <span class="canvas-ph" id="firma-ph">Firme aquí</span>
+        </div>
+        <button type="button" class="clear-btn" id="btn-borrar-firma">Borrar firma</button>
+      </div>
+    </div>
+
+    <button type="button" class="accept-btn" id="btn-aceptar">Aceptar y generar recibo</button>
+    <div class="form-error hidden" id="form-error"></div>
+
+    <button type="button" class="link-btn" id="btn-generar-link">Generar link para que el cliente firme</button>
+    <div class="link-panel hidden" id="link-panel">
+      <div class="link-panel-title">Link de firma remota</div>
+      <input type="text" class="link-field" id="link-field" readonly="">
+      <div class="link-actions">
+        <button type="button" class="clear-btn" id="btn-copiar-link">Copiar link</button>
+        <a class="wa-share-btn" id="wa-share-btn" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="recibo-view" class="">
+    <div class="ticket">
+      <div class="pl-head">
+        <img class="pl-logo" src="/assets/logo-fixit.png" alt="FixIT Soluciones">
+        <div class="pl-head-text">
+          <div class="tk-brand">FixIT Soluciones</div>
+          <div class="tk-brand-sub">Soporte técnico remoto y presencial</div>
+        </div>
+        <div class="pl-folio">
+          <div class="pl-folio-label">Póliza</div>
+          <div class="pl-folio-id" id="tk-id">FIXTEST</div>
+          <div class="pl-folio-fecha" id="tk-fecha">18 sep 2026, 7:36 p.m.</div>
+        </div>
+      </div>
+      <div class="tk-title">Póliza de Servicio</div>
+      <div class="pl-section pl-section-first">
+        <div class="pl-section-title">Datos del cliente</div>
+        <div class="tk-row"><span>Cliente</span><strong id="tk-nombre">Cliente Prueba</strong></div>
+        <div class="tk-row"><span>Teléfono</span><strong id="tk-telefono">6861234567</strong></div>
+        <div class="tk-row" id="tk-empresa-row" style="display: none;"><span>Empresa</span><strong id="tk-empresa">—</strong></div>
+      </div>
+      <div class="pl-section">
+        <div class="pl-section-title">Plan contratado</div>
+        <div class="tk-plan" id="tk-plan">Visita / soporte único</div>
+        <div class="tk-price" id="tk-precio">$350–450 MXN</div>
+        <div class="tk-detail" id="tk-detalle">Un solo servicio, sin mensualidad</div>
+        <div class="tk-row" style="margin-top:8px;"><span>Vigencia</span><strong id="tk-vigencia">Servicio único</strong></div>
+      </div>
+      <div class="pl-section pl-clausulas">
+        <img class="pl-watermark" src="/assets/logo-fixit.png" alt="" aria-hidden="true">
+        <div class="pl-section-title">Cláusulas</div>
+        <p class="tk-policy">Esta póliza confirma la contratación del servicio/plan indicado. El pago se realiza conforme a lo acordado por WhatsApp. Los planes mensuales se renuevan automáticamente salvo cancelación con 5 días de anticipación. No se ofrece soporte a sistemas o software de terceros (POS, licencias externas) salvo autorización expresa del proveedor. FixIT Soluciones no se hace responsable por fallas de hardware irreversibles previas a la contratación del servicio. Términos completos en fixitsoluciones.com/terminos</p>
+      </div>
+      <div class="pl-section pl-firma">
+        <div class="pl-section-title">Firma del cliente</div>
+        <div class="tk-accepted">Aceptado por:</div>
+        <img class="tk-firma" id="tk-firma" alt="Firma del cliente" src="">
+      </div>
+      <div class="tk-foot">WhatsApp: 686 195 9581 · fixitsoluciones.com</div>
+    </div>
+    <div class="recibo-actions no-print">
+      <button type="button" class="print-btn" id="btn-imprimir" onclick="imprimirRecibo()">Imprimir / Guardar como PDF</button>
+      <button type="button" class="new-btn" id="btn-nueva" onclick="nuevaCotizacion()">Nueva cotización</button>
+    </div>
+  </div>
+
+  <div id="gracias-view" class="hidden">
+    <div class="gracias-card">
+      <div class="gracias-icon">✓</div>
+      <h2 class="gracias-title">¡Gracias, <span id="gracias-nombre">cliente</span>!</h2>
+      <p class="gracias-text">Tu póliza con FixIT Soluciones quedó registrada. Nos pondremos en contacto contigo por WhatsApp para coordinar los siguientes pasos.</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</body></html>

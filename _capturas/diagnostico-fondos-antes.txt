@@ -1,0 +1,53 @@
+TOTAL elementos con fondo no transparente: 51
+
+# 1 [html.js.rv-ready] bg=rgb(255, 255, 255) area=1440x4818 | FixIT Soluciones | Soporte técnico para 
+# 2 [section#cotizar.sp.sec-alt] bg=rgba(251, 237, 227, 0.94) area=1440x1405 | Cotiza o reporta una falla Cuéntanos
+# 3 [canvas#bgVideo] bg=rgb(245, 246, 250) area=1440x900
+# 4 [section#planes.sp.sec-alt] bg=rgba(251, 237, 227, 0.94) area=1440x825 | Planes de soporte remoto Elige el pl
+# 5 [section#clientes.sp] bg=rgba(255, 255, 255, 0.8) area=1440x545 | Negocios en Mexicali que ya trabajan con
+# 6 [section#cierre.sp] bg=rgba(255, 255, 255, 0.8) area=1440x486 | Tu operación, estable otra vez Un 
+# 7 [section#faq.sp] bg=rgba(255, 255, 255, 0.9) area=1440x462 | Preguntas frecuentes ¿Puedo c
+# 8 [div.reg-form.rv] bg=rgb(255, 255, 255) area=620x1073 | ¿Qué necesitas? Cotización de un servici
+# 9 [section.hero] bg=rgba(255, 255, 255, 0.66) area=1440x455 | Soporte técnico para negocios que no pue
+#10 [footer#contact.footer] bg=rgba(247, 229, 217, 0.95) area=1440x358 | FixIT SolucionesSoporte técnico remoto y
+#11 [section#servicios.sp] bg=rgba(255, 255, 255, 0.8) area=1440x282 | Servicios Impresoras y redes · Mante
+#12 [div.final-cta.rv] bg=rgb(34, 52, 77) area=1200x294 | Tu operación, estable otra vez Un 
+#13 [div.support-plan-card.popular.rv] bg=rgb(255, 255, 255) area=387x414 | Más popularRemoto ProfesionalHasta 3 equ
+#14 [div.support-plan-card.rv] bg=rgb(255, 255, 255) area=387x414 | Remoto Básico1 equipodesde $400 MXN/mes✓
+#15 [div.support-plan-card.rv] bg=rgb(255, 255, 255) area=387x414 | Remoto EmpresarialHasta 8–10 equiposdesd
+#16 [div#cookieBanner.cookie.show] bg=rgb(255, 255, 255) area=1440x81 | Usamos cookies para mejorar tu experienc
+#17 [article.t-card.rv] bg=rgb(255, 255, 255) area=389x215 | Alejandra ArreguínGerente — City Express
+#18 [article.t-card.rv] bg=rgb(255, 255, 255) area=389x215 | Daniel GutierrezMantenimiento y reparaci
+#19 [article.t-card.rv] bg=rgb(255, 255, 255) area=389x215 | Ing. Germán ArandaSocio — RAG / Construc
+#20 [textarea#description] bg=rgb(255, 255, 255) area=554x96
+#21 [details.faq-item.rv] bg=rgb(255, 255, 255) area=720x62 | ¿Puedo cancelar mi plan mensual?Sí. Avis
+#22 [details.faq-item.rv] bg=rgb(255, 255, 255) area=720x62 | ¿El soporte es solo remoto o también van
+#23 [details.faq-item.rv] bg=rgb(255, 255, 255) area=720x62 | ¿Atienden sistemas de terceros como punt
+#24 [label.radio-option] bg=rgba(255, 122, 89, 0.1) area=554x80 | Cotización de un servicio
+#25 [input#name] bg=rgb(255, 255, 255) area=554x48
+#26 [input#company] bg=rgb(255, 255, 255) area=554x48
+#27 [input#phone] bg=rgb(255, 255, 255) area=554x48
+#28 [input#location] bg=rgb(255, 255, 255) area=554x48
+#29 [select#serviceType] bg=rgb(255, 255, 255) area=554x48 | Selecciona una opciónSoporte remoto de i
+#30 [select#priority] bg=rgb(255, 255, 255) area=554x48 | NormalAlta (urgente)
+#31 [button#submitBtn.btn.btn-accent] bg=rgb(255, 122, 89) area=554x48 | Enviar solicitud
+#32 [a.plan-cta.filled] bg=rgb(255, 122, 89) area=327x49 | Solicitar cotización
+#33 [a.btn.btn-wa] bg=rgb(255, 122, 89) area=251x54 | Cotizar por WhatsApp
+#34 [a.btn.btn-wa] bg=rgb(255, 122, 89) area=226x48 | Cotizar por WhatsApp
+#35 [a.skip-link] bg=rgb(34, 52, 77) area=172x46 | Saltar al contenido
+#36 [a.btn.btn-wa] bg=rgb(255, 122, 89) area=119x44 | Escríbenos
+#37 [button#cookieAccept.btn.btn-accent] bg=rgb(255, 122, 89) area=108x48 | Aceptar
+#38 [input#website_hp] bg=rgb(255, 255, 255) area=173x19
+#39 [div.popular-badge] bg=rgb(255, 122, 89) area=119x26 | Más popular
+#40 [img.rv-photo] bg=rgb(245, 246, 250) area=53x53
+#41 [img.rv-photo] bg=rgb(245, 246, 250) area=53x53
+#42 [img.rv-photo] bg=rgb(245, 246, 250) area=53x53
+#43 [button#backToTop.back-to-top] bg=rgb(255, 255, 255) area=46x46
+#44 [img] bg=rgb(255, 255, 255) area=44x44
+#45 [a] bg=rgb(255, 255, 255) area=44x44
+#46 [a] bg=rgb(255, 255, 255) area=44x44
+#47 [a] bg=rgb(255, 255, 255) area=44x44
+#48 [img] bg=rgb(255, 255, 255) area=40x40
+#49 [input] bg=rgb(255, 255, 255) area=18x48
+#50 [input] bg=rgb(255, 255, 255) area=18x48
+#51 [div#scrollProgress] bg=rgb(255, 122, 89) area=0x3

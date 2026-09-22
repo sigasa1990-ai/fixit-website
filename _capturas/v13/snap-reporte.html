@@ -1,0 +1,248 @@
+<html lang="es-MX"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/logo-fixit.png">
+<title>Reportes — FixIT Soluciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6FA;
+    --card:#FFFFFF;
+    --text:#33475B;
+    --text2:#516F90;
+    --accent:#FF7A59;
+    --accent-hover:#FF8F73;
+    --accent-soft:rgba(255,122,89,.10);
+    --accent-border:rgba(255,122,89,.35);
+    --border:#CBD6E2;
+    --radius:14px;
+    --error:#D64545;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    padding:24px 16px 60px;
+  }
+  .wrap{max-width:760px;margin:0 auto;}
+  h1{font-family:'Lexend Deca',sans-serif;font-size:1.5rem;font-weight:700;margin:0 0 4px;}
+  .sub{color:var(--text2);font-size:.9rem;margin:0 0 24px;}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+  .brand-logo{width:52px;height:52px;object-fit:contain;flex-shrink:0;border-radius:12px;border:1px solid var(--border);background:#fff;}
+  .brand h1{margin:0 0 2px;}
+  .brand .sub{margin:0;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;}
+  .field{margin-bottom:16px;}
+  .field:last-child{margin-bottom:0;}
+  label{display:block;font-size:.85rem;font-weight:600;margin-bottom:8px;color:var(--text);}
+  input[type=text],input[type=password],input[type=date]{
+    width:100%;max-width:100%;min-width:0;padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:.95rem;color:var(--text);background:#fff;
+  }
+  .fechas .field{min-width:0;}
+  .input-error{border-color:var(--error);box-shadow:0 0 0 2px rgba(214,69,69,.15);}
+  .fechas{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .accept-btn{
+    display:block;width:100%;margin-top:10px;padding:14px;
+    background:var(--text);color:#fff;border:none;border-radius:10px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;
+  }
+  .accept-btn:hover{background:#243447;}
+  .accept-btn[disabled]{opacity:.6;cursor:default;}
+  .form-error{margin-top:12px;padding:10px 12px;background:#FDECEA;border:1px solid #F3B8AE;color:#B23B2E;border-radius:10px;font-size:.85rem;}
+  .hint{margin-top:12px;font-size:.78rem;color:var(--text2);text-align:center;}
+  .hint a{color:var(--accent);font-weight:600;text-decoration:none;}
+  .hidden{display:none;}
+  .ticket{
+    max-width:380px;margin:0 auto;background:#fff;border:1px solid var(--border);
+    border-radius:12px;padding:22px 20px;font-size:.82rem;color:var(--text);line-height:1.5;
+  }
+  .reporte{max-width:100%;}
+  .pl-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .pl-logo{width:56px;height:56px;object-fit:contain;border-radius:12px;flex-shrink:0;}
+  .pl-head-text{flex:1;min-width:0;}
+  .pl-head-text .tk-brand{text-align:left;font-size:1rem;}
+  .pl-head-text .tk-brand-sub{text-align:left;margin-bottom:0;}
+  .tk-brand{font-family:'Lexend Deca',sans-serif;font-weight:700;font-size:1.05rem;text-align:center;}
+  .tk-brand-sub{text-align:center;font-size:.7rem;color:#7C98B6;margin-bottom:14px;}
+  .tk-title{
+    text-align:center;font-family:'Lexend Deca',sans-serif;font-weight:700;
+    letter-spacing:.14em;font-size:1.05rem;text-transform:uppercase;padding:10px 0;
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:0 0 4px;
+  }
+  .pl-section{border-top:1px solid var(--border);padding-top:12px;margin-top:12px;}
+  .pl-section-first{border-top:none;padding-top:6px;margin-top:6px;}
+  .pl-section-title{
+    font-family:'Lexend Deca',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+  }
+  .tk-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:4px 0;}
+  .tk-row span{color:#7C98B6;flex-shrink:0;}
+  .tk-row strong{font-weight:600;text-align:right;flex:1 1 auto;min-width:0;overflow-wrap:anywhere;}
+  .tk-foot{text-align:center;font-size:.72rem;color:var(--text2);border-top:1px solid var(--border);padding-top:10px;margin-top:12px;}
+  .rp-tabla{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:4px;}
+  .rp-tabla th{
+    text-align:left;font-family:'Lexend Deca',sans-serif;font-size:.66rem;font-weight:600;
+    letter-spacing:.06em;text-transform:uppercase;color:var(--text2);
+    background:#F5F6FA;border:1px solid var(--border);padding:7px 8px;
+  }
+  .rp-tabla td{border:1px solid var(--border);padding:7px 8px;vertical-align:top;overflow-wrap:anywhere;}
+  .rp-tabla td.rp-fecha{white-space:nowrap;}
+  .rp-tabla td.rp-folio{white-space:nowrap;font-family:'Courier New',monospace;font-weight:700;color:#000;}
+  .rp-tabla a{color:var(--accent);font-weight:600;text-decoration:none;white-space:nowrap;}
+  .rp-tabla a:hover{text-decoration:underline;}
+  .rv-fotos-fila td{background:#FAFBFD;border-top:none;padding:8px 8px 10px;}
+  .rv-thumbs{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start;}
+  .rv-thumb{width:120px;}
+  .rv-thumb img{width:120px;height:90px;object-fit:cover;border:1px solid var(--border);border-radius:6px;display:block;background:#F0F2F6;}
+  .rv-thumb span{display:block;font-size:.62rem;color:var(--text2);text-align:center;margin-top:3px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;}
+  .rv-thumb-fallback{
+    width:120px;height:90px;border:1px dashed var(--border);border-radius:6px;background:#F5F6FA;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    font-size:.68rem;color:var(--text2);text-align:center;padding:4px;
+  }
+  .rv-thumb-fallback svg{width:22px;height:22px;stroke:#9FB2C6;fill:none;stroke-width:1.6;}
+  .rv-ver-todas{font-size:.72rem;font-weight:600;color:var(--accent);text-decoration:none;align-self:center;white-space:nowrap;}
+  .rv-ver-todas:hover{text-decoration:underline;}
+  .rp-vacio{font-size:.85rem;color:var(--text2);padding:10px 0 2px;}
+  .rp-omitidos{font-size:.75rem;color:var(--text2);margin-top:8px;}
+  .rp-total .tk-row{margin:0;}
+  .rp-total .tk-row strong{font-family:'Lexend Deca',sans-serif;font-size:1rem;}
+  .recibo-actions{max-width:760px;margin:16px auto 0;display:flex;flex-direction:column;gap:10px;}
+  .print-btn{padding:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-family:'Inter',sans-serif;font-weight:600;font-size:.95rem;cursor:pointer;}
+  .print-btn:hover{background:var(--accent-hover);}
+  @media (max-width:600px){
+    .fechas{grid-template-columns:1fr;}
+    .ticket{padding:18px 14px;}
+    .rp-tabla{font-size:.68rem;table-layout:fixed;}
+    .rp-tabla th,.rp-tabla td{padding:4px 3px;}
+    #rp-tabla th:nth-child(1),#rp-tabla td:nth-child(1){width:23%;}
+    #rp-tabla th:nth-child(2),#rp-tabla td:nth-child(2){width:24%;}
+    #rp-tabla th:nth-child(3),#rp-tabla td:nth-child(3){width:25%;}
+    #rp-tabla th:nth-child(4),#rp-tabla td:nth-child(4){width:28%;}
+    .rp-tabla td.rp-fecha,.rp-tabla td.rp-folio{white-space:normal;}
+    #rv-tabla{font-size:.64rem;}
+    #rv-tabla th:nth-child(1),#rv-tabla td:nth-child(1){width:17%;}
+    #rv-tabla th:nth-child(2),#rv-tabla td:nth-child(2){width:20%;}
+    #rv-tabla th:nth-child(3),#rv-tabla td:nth-child(3){width:26%;}
+    #rv-tabla th:nth-child(4),#rv-tabla td:nth-child(4){width:22%;}
+    #rv-tabla th:nth-child(5),#rv-tabla td:nth-child(5){width:15%;}
+    #rv-tabla a{white-space:normal;}
+  }
+  @page{size:auto;margin:0;}
+  @media print{
+    body{background:#fff;margin:14mm;padding:0;}
+    .no-print,#acceso-card{display:none !important;}
+    #app{display:block !important;}
+    .ticket{max-width:none;margin:0;border:none;border-radius:0;box-shadow:none;padding:0;font-size:.78rem;}
+    .tk-brand,.tk-title,.rp-tabla td.rp-folio,.rp-total .tk-row strong{color:#000;}
+    .tk-brand-sub,.tk-row span,.tk-foot,.rp-tabla th{color:#444;}
+    .pl-section-title{color:#000;}
+    .rp-tabla th{background:#F0F2F6 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .rp-tabla a{color:#000;text-decoration:underline;}
+    .rv-fotos-fila td{background:#fff;border-top:1px dashed var(--border);}
+    .rv-thumb img{border-color:#999;}
+    .rv-ver-todas{color:#000;text-decoration:underline;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand no-print">
+    <img class="brand-logo" src="assets/logo-fixit.png" alt="FixIT Soluciones">
+    <div>
+      <h1>Reportes FixIT</h1>
+      <p class="sub">Herramienta interna — reporte mensual de servicios</p>
+    </div>
+  </div>
+
+  <div class="card hidden" id="acceso-card">
+    <div class="field">
+      <label for="clave">Clave de acceso</label>
+      <input type="password" id="clave" placeholder="Clave interna" autocomplete="current-password">
+    </div>
+    <button type="button" class="accept-btn" id="btn-acceso">Entrar</button>
+    <div class="form-error hidden" id="acceso-error"></div>
+  </div>
+
+  <div id="app" class="">
+    <div class="card no-print">
+      <div class="field">
+        <label for="f-cliente">Cliente o empresa</label>
+        <input type="text" id="f-cliente" placeholder="Nombre del cliente o empresa" autocomplete="off">
+      </div>
+      <div class="fechas">
+        <div class="field">
+          <label for="f-desde">Desde</label>
+          <input type="date" id="f-desde">
+        </div>
+        <div class="field">
+          <label for="f-hasta">Hasta</label>
+          <input type="date" id="f-hasta">
+        </div>
+      </div>
+      <button type="button" class="accept-btn" id="btn-generar">Generar reporte</button>
+      <div class="form-error hidden" id="gen-error"></div>
+      <p class="hint">Datos en vivo de las hojas “Tickets” y “Visitas”. <a href="#" id="btn-salir">Cambiar clave</a></p>
+    </div>
+
+    <div id="reporte-view" class="">
+      <div class="ticket reporte">
+        <div class="pl-head">
+          <img class="pl-logo" src="assets/logo-fixit.png" alt="FixIT Soluciones">
+          <div class="pl-head-text">
+            <div class="tk-brand">FixIT Soluciones</div>
+            <div class="tk-brand-sub">Reporte generado desde el sistema interno de tickets</div>
+          </div>
+        </div>
+        <div class="tk-title">Reporte de servicios</div>
+        <div class="pl-section pl-section-first">
+          <div class="tk-row"><span>Cliente</span><strong id="rp-cliente">Todos los clientes</strong></div>
+          <div class="tk-row"><span>Periodo</span><strong id="rp-periodo">01/09/2026 al 18/09/2026</strong></div>
+          <div class="tk-row"><span>Generado</span><strong id="rp-generado">18 sep 2026, 7:36 p.m.</strong></div>
+        </div>
+        <div class="pl-section">
+          <div class="pl-section-title">Servicios atendidos</div>
+          <table class="rp-tabla hidden" id="rp-tabla">
+            <thead>
+              <tr><th>Fecha</th><th>Folio</th><th>Tipo de servicio</th><th>Descripción</th></tr>
+            </thead>
+            <tbody id="rp-tbody"></tbody>
+          </table>
+          <p class="rp-vacio" id="rp-vacio">No se encontraron servicios en el periodo seleccionado.</p>
+          <p class="rp-omitidos hidden" id="rp-omitidos"></p>
+        </div>
+        <div class="pl-section rp-total">
+          <div class="tk-row"><span>Total de servicios atendidos</span><strong id="rp-total">0</strong></div>
+        </div>
+        <div class="pl-section">
+          <div class="pl-section-title">Visitas en sitio realizadas</div>
+          <table class="rp-tabla hidden" id="rv-tabla">
+            <thead>
+              <tr><th>Fecha</th><th>Tipo de servicio</th><th>Checklist completado</th><th>Notas</th><th>Fotos</th></tr>
+            </thead>
+            <tbody id="rv-tbody"></tbody>
+          </table>
+          <p class="rp-vacio" id="rv-vacio">Sin visitas en sitio en el periodo seleccionado.</p>
+          <p class="rp-omitidos hidden" id="rv-omitidos"></p>
+        </div>
+        <div class="pl-section rp-total">
+          <div class="tk-row"><span>Total de visitas en sitio</span><strong id="rv-total">0</strong></div>
+        </div>
+        <div class="tk-foot">WhatsApp: 686 195 9581 · fixitsoluciones.com</div>
+      </div>
+      <div class="recibo-actions no-print">
+        <button type="button" class="print-btn" id="btn-imprimir">Imprimir / Guardar como PDF</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</body></html>

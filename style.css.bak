@@ -1,0 +1,770 @@
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --color-primary: #0A2540;    /* Azul Marino Profundo */
+    --color-secondary: #1F2933;
+    --color-accent: #2E6BFF;     /* Azul Eléctrico */
+    --color-white: #FFFFFF;
+    --color-bg-light: #F5F7FA;
+    --color-text-dark: #1F2933;
+    --color-text-light: #CBD2D9;
+    --font-main: 'Inter', sans-serif;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    background-color: var(--color-bg-light);
+}
+a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-sm); }
+
+/* =========================================
+   2. TYPOGRAPHY & BUTTONS
+   ========================================= */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary); /* ESTO ERA LO QUE OCULTABA EL TEXTO EN EL CTA */
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.25rem; color: var(--color-secondary); }
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+.section-title::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 4px; background-color: var(--color-accent); border-radius: 99px;
+}
+
+.btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 600;
+    cursor: pointer; transition: all 0.3s ease; border: none; gap: 0.5rem;
+}
+.btn-primary { background-color: var(--color-accent); color: white; box-shadow: 0 4px 14px rgba(46, 107, 255, 0.4); }
+.btn-primary:hover { background-color: #1a54db; transform: translateY(-2px); }
+.btn-secondary { background-color: var(--color-primary); color: white; }
+.btn-secondary:hover { background-color: #061a2e; }
+.btn-outline { background-color: transparent; border: 2px solid var(--color-primary); color: var(--color-primary); }
+.btn-outline:hover { background-color: var(--color-primary); color: white; }
+.full-width { width: 100%; }
+
+.animate-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
+.header {
+    background-color: transparent; /* Transparente al inicio */
+    position: fixed; /* Fijo para que flote */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1rem 0;
+    transition: all 0.4s ease; /* Animación suave */
+}
+
+/* CLASE QUE SE ACTIVA AL BAJAR EL SCROLL */
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95); /* Blanco al 95% */
+    backdrop-filter: blur(10px); /* Efecto vidrio borroso */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+    padding: 0.5rem 0; /* Se hace un poco más compacto */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { display: flex; align-items: center; gap: 0.8rem; }
+
+.header-logo {
+    height: 90px;
+    width: 90px;
+    object-fit: contain;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    background-color: #f8fafc;
+    padding: 6px;
+    transition: transform 0.3s ease;
+}
+
+/* Efecto: El logo se hace un poco más chico al bajar para verse elegante */
+.header.scrolled .header-logo {
+    height: 70px;
+    width: 70px;
+}
+
+.header-logo:hover { transform: scale(1.08); }
+
+/* --- PC: OCULTAR BOTÓN MÓVIL --- */
+@media (min-width: 992px) {
+    .mobile-menu-toggle { display: none !important; }
+    .nav { display: flex; gap: 2rem; align-items: center; }
+}
+
+.nav a:not(.btn) { 
+    font-weight: 500; 
+    color: var(--color-secondary);
+    position: relative;
+}
+
+/* Efecto hover en los enlaces (Subrayado animado) */
+.nav a:not(.btn)::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--color-accent);
+    transition: width 0.3s;
+}
+.nav a:not(.btn):hover::after {
+    width: 100%;
+}
+
+.nav a:not(.btn):hover { color: var(--color-primary); }
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero { padding: 10rem 0 6rem 0; background: linear-gradient(135deg, #ffffff 0%, #f0f5ff 100%); overflow: hidden; border-bottom: 1px solid #e2e8f0;} 
+.hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-headline { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; }
+.hero-subheadline { font-size: 1.25rem; color: #4b5563; margin-bottom: 2rem; max-width: 90%; }
+.hero-buttons { display: flex; gap: 1rem; }
+.hero-image img { border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+/* =========================================
+   5. SECCIONES SPLIT (CORRECTIVO & BENEFICIOS)
+   ========================================= */
+.corrective-section { padding: var(--spacing-lg) 0; background-color: #0f172a; color: white; }
+.corrective-section h2, .corrective-section h3, .corrective-section p { color: white; }
+.corrective-section .section-title::after { background-color: var(--color-accent); }
+
+.benefits { padding: var(--spacing-lg) 0; background-color: #FFFFFF; }
+
+.split-header, .benefits-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+.split-text, .benefits-content { text-align: left; }
+.text-left::after { left: 0; transform: none; }
+
+/* =========================================
+   6. CARDS, GRID Y TIMELINE
+   ========================================= */
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+.tech-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; }
+.tech-card h3 { color: white; margin-top: 1rem; }
+.card-header .icon-box { font-size: 2rem; color: var(--color-accent); }
+.spec-row { display: flex; gap: 10px; margin-bottom: 0.8rem; color: #cbd5e1; }
+.spec-row i { color: var(--color-accent); margin-top: 4px; }
+
+.timeline-container { text-align: center; }
+.timeline-title { color: white; margin-bottom: 2rem; font-size: 1.8rem; }
+.timeline { display: flex; justify-content: space-between; position: relative; margin-bottom: 2rem; }
+.timeline-step { flex: 1; display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative; }
+.step-icon { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem; }
+.timeline-step h4 { color: white; font-size: 1rem; }
+.timeline-connector { flex: 1; height: 2px; background: rgba(255,255,255,0.2); margin-top: 30px; }
+
+/* =========================================
+   7. SECCIONES PROBLEMAS, SERVICIOS Y PLANES
+   ========================================= */
+.problems { background-color: #FFFFFF; padding: 5rem 0; border-bottom: 1px solid #E2E8F0; }
+.problem-card { background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 2rem; border-radius: 12px; text-align: center; }
+.problem-card i { font-size: 2.5rem; color: var(--color-accent); margin-bottom: 1rem; display: block; }
+.problem-card:hover { background-color: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: var(--color-accent); }
+
+.services { background-color: #EEF2FF; position: relative; z-index: 1; padding: 5rem 0; }
+.services .section-title { color: var(--color-primary); }
+.service-item { background-color: #0A2540; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 10px 20px rgba(10, 37, 64, 0.15); }
+.service-item i { font-size: 2.5rem; color: #4FA3FF; margin-bottom: 1rem; display: block; }
+.service-item h3 { color: white; }
+.service-item p { color: #CBD5E1; }
+
+.plans { padding: 5rem 0; background-color: #F4F7FB; }
+.plan-card { padding: 3rem 2rem; background: white; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; }
+.plan-card.featured { border: 2px solid var(--color-accent); transform: scale(1.05); z-index: 2; box-shadow: 0 20px 40px rgba(46, 107, 255, 0.15); }
+.badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--color-accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+
+/* Grid System */
+@media (min-width: 1024px) {
+    .problems-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; justify-content: center; }
+    .services-grid, .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .problem-card, .service-item, .plan-card { min-width: 0; width: auto; }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+    .problems-grid, .services-grid, .plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .plan-card.featured { transform: none; }
+}
+@media (max-width: 599px) {
+    .problems-grid, .services-grid, .plans-grid { grid-template-columns: 1fr; }
+    .plan-card.featured { transform: none; margin: 1rem 0; }
+}
+
+/* =========================================
+   8. FAQ, FOOTER, MODAL
+   ========================================= */
+.faq { padding: 4rem 0; background-color: white; }
+.faq-wrapper { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+.faq-accordion { background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; }
+.faq-accordion[open] { box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--color-accent); }
+.faq-accordion summary { padding: 1.2rem; font-weight: 600; color: var(--color-primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+.faq-accordion summary::after { content: '\f067'; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1rem; color: var(--color-accent); }
+.faq-accordion[open] summary::after { content: '\f068'; }
+.faq-body { padding: 0 1.2rem 1.2rem; color: #4b5563; font-size: 0.95rem; border-top: 1px solid #f1f5f9; text-align: left; }
+
+.footer { background: black; color: white; padding: 3rem 0; text-align: center; }
+.footer-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.footer-logo-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 1.5rem; }
+.footer-logo-img { height: 80px; margin: 0 auto; display: block; }
+.footer-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.copyright { color: #666; font-size: 0.9rem; border-top: 1px solid #333; padding-top: 1rem; margin-top: 1rem; width: 100%; }
+
+.floating-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 900; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.fab { background: var(--color-accent); color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; box-shadow: 0 4px 10px rgba(46, 107, 255, 0.4); }
+.back-to-top { width: 40px; height: 40px; background: var(--color-primary); color: white; border-radius: 50%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+.modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 3000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(3px);
+    align-items: center; 
+    justify-content: center;
+    padding: 1rem; 
+}
+
+/* Regla para activar el flex cuando JS lo pone visible */
+.modal[style*="display: flex"] { display: flex !important; }
+
+.modal-content { 
+    background: white; 
+    width: 100%; 
+    max-width: 500px; 
+    border-radius: 12px; 
+    overflow: hidden; 
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-height: 85vh; /* Altura controlada */
+    overflow-y: auto; /* Scroll interno */
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER DEL MODAL (FIX COLOR) */
+.modal-header { 
+    background: var(--color-primary) !important; /* Fondo Azul */
+    color: white !important; 
+    padding: 1.5rem; 
+    text-align: center; 
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* AQUÍ ESTÁ EL ARREGLO: Título H2 BLANCO */
+.modal-header h2 {
+    color: #FFFFFF !important; 
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Subtítulo gris claro */
+.modal-header p {
+    color: #CBD5E1 !important;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.close-modal { 
+    position: absolute; 
+    right: 15px; 
+    top: 15px; 
+    color: rgba(255,255,255,0.7) !important; /* X blanca semi-transparente */
+    cursor: pointer; 
+    font-size: 1.8rem; 
+    line-height: 1;
+    transition: transform 0.2s;
+}
+.close-modal:hover { 
+    transform: scale(1.1); 
+    color: #FFFFFF !important; /* X blanca brillante al pasar mouse */
+}
+
+.ticket-form { 
+    padding: 1.5rem; 
+    overflow-y: auto; 
+}
+
+.form-group { margin-bottom: 1rem; }
+.form-group input, .form-group select, .form-group textarea { 
+    width: 100%; 
+    padding: 0.8rem; 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    font-size: 16px; 
+    background-color: #fff;
+    color: #333;
+}
+
+/* =========================================
+   9. CTA SECTION (AQUÍ ESTÁ EL ARREGLO)
+   ========================================= */
+.cta-section { 
+    background: var(--color-primary) !important; /* Azul Obscuro */
+    text-align: center; padding: 6rem 0; position: relative; overflow: hidden; 
+}
+.cta-icon-wrapper i { 
+    font-size: 4rem; color: rgba(255, 255, 255, 0.2); margin-bottom: 1.5rem; display: block; 
+}
+
+/* FORZAMOS EL COLOR BLANCO EN ESTOS ELEMENTOS */
+.cta-section h2, .cta-title { 
+    color: #FFFFFF !important; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; 
+}
+.cta-section p, .cta-text { 
+    color: #E2E8F0 !important; font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; 
+}
+
+.btn-whatsapp-large {
+    background-color: #25D366 !important; color: white !important; font-size: 1.1rem; font-weight: 700;
+    padding: 1rem 2.5rem; border-radius: 50px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 10px;
+}
+.btn-whatsapp-large:hover { 
+    background-color: #20bd5a !important; transform: translateY(-3px); 
+}
+
+/* =========================================
+   10. RESPONSIVE MÓVIL
+   ========================================= */
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --color-primary: #0A2540;
+    --color-secondary: #1F2933;
+    --color-accent: #2E6BFF;
+    --color-white: #FFFFFF;
+    --color-bg-light: #F5F7FA;
+    --color-text-dark: #1F2933;
+    --color-text-light: #CBD2D9;
+    --font-main: 'Inter', sans-serif;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    background-color: var(--color-bg-light);
+}
+a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-sm); }
+
+/* =========================================
+   2. TYPOGRAPHY & BUTTONS
+   ========================================= */
+h1, h2, h3, h4 {
+    font-weight: 700; line-height: 1.2; margin-bottom: var(--spacing-sm); color: var(--color-primary);
+}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.25rem; color: var(--color-secondary); }
+
+.section-title {
+    text-align: center; margin-bottom: var(--spacing-lg); position: relative; padding-bottom: var(--spacing-sm);
+}
+.section-title::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 4px; background-color: var(--color-accent); border-radius: 99px;
+}
+
+.btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0.75rem 1.5rem; border-radius: var(--radius-md); font-weight: 600;
+    cursor: pointer; transition: all 0.3s ease; border: none; gap: 0.5rem;
+}
+.btn-primary { background-color: var(--color-accent); color: white; box-shadow: 0 4px 14px rgba(46, 107, 255, 0.4); }
+.btn-primary:hover { background-color: #1a54db; transform: translateY(-2px); }
+.btn-secondary { background-color: var(--color-primary); color: white; }
+.btn-secondary:hover { background-color: #061a2e; }
+.btn-outline { background-color: transparent; border: 2px solid var(--color-primary); color: var(--color-primary); }
+.btn-outline:hover { background-color: var(--color-primary); color: white; }
+.full-width { width: 100%; }
+
+.animate-on-scroll { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+/* =========================================
+   3. HEADER & NAVIGATION
+   ========================================= */
+.header { background-color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; padding: 0.8rem 0; }
+.header-container { display: flex; justify-content: space-between; align-items: center; }
+.logo { display: flex; align-items: center; gap: 0.8rem; }
+
+.header-logo {
+    height: 90px; width: 90px; object-fit: contain; border-radius: 50%;
+    border: 2px solid var(--color-primary); background-color: #f8fafc; padding: 6px; transition: transform 0.25s ease;
+}
+.header-logo:hover { transform: scale(1.08); }
+
+/* PC: Ocultar botón móvil */
+@media (min-width: 992px) {
+    .mobile-menu-toggle { display: none !important; }
+    .nav { display: flex; gap: 2rem; align-items: center; }
+}
+.nav a:not(.btn) { font-weight: 500; color: var(--color-secondary); }
+.nav a:not(.btn):hover { color: var(--color-accent); }
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero { padding: 6rem 0; background: linear-gradient(135deg, #ffffff 0%, #f0f5ff 100%); overflow: hidden; border-bottom: 1px solid #e2e8f0; }
+.hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.hero-headline { font-size: 3rem; line-height: 1.1; margin-bottom: 1.5rem; }
+.hero-subheadline { font-size: 1.25rem; color: #4b5563; margin-bottom: 2rem; max-width: 90%; }
+.hero-buttons { display: flex; gap: 1rem; }
+.hero-image img { border-radius: var(--radius-lg); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+/* =========================================
+   5. SECCIONES SPLIT
+   ========================================= */
+.corrective-section { padding: var(--spacing-lg) 0; background-color: #0f172a; color: white; }
+.corrective-section h2, .corrective-section h3, .corrective-section p { color: white; }
+.corrective-section .section-title::after { background-color: var(--color-accent); }
+
+.benefits { padding: var(--spacing-lg) 0; background-color: #FFFFFF; }
+
+.split-header, .benefits-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem; }
+.split-text, .benefits-content { text-align: left; }
+.text-left::after { left: 0; transform: none; }
+
+.split-image, .benefits-image-col { display: flex; justify-content: center; align-items: center; }
+.split-image img, .benefits-image-col img { width: 100%; max-width: 550px; height: auto; border-radius: var(--radius-lg); box-shadow: 0 10px 30px rgba(0,0,0,0.2); object-fit: cover; }
+
+/* =========================================
+   6. CARDS & TIMELINE
+   ========================================= */
+.tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem; }
+.tech-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 2rem; }
+.tech-card h3 { color: white; margin-top: 1rem; }
+.card-header .icon-box { font-size: 2rem; color: var(--color-accent); }
+.spec-row { display: flex; gap: 10px; margin-bottom: 0.8rem; color: #cbd5e1; }
+.spec-row i { color: var(--color-accent); margin-top: 4px; }
+
+.timeline-container { text-align: center; }
+.timeline-title { color: white; margin-bottom: 2rem; font-size: 1.8rem; }
+.timeline { display: flex; justify-content: space-between; position: relative; margin-bottom: 2rem; }
+.timeline-step { flex: 1; display: flex; flex-direction: column; align-items: center; z-index: 2; position: relative; }
+.step-icon { width: 60px; height: 60px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-primary); font-size: 1.5rem; margin-bottom: 1rem; }
+.timeline-step h4 { color: white; font-size: 1rem; }
+.timeline-connector { flex: 1; height: 2px; background: rgba(255,255,255,0.2); margin-top: 30px; }
+
+/* =========================================
+   7. SECCIONES PROBLEMAS, SERVICIOS, PLANES
+   ========================================= */
+/* PROBLEMAS: Blanco */
+.problems { background-color: #FFFFFF; padding: 5rem 0; border-bottom: 1px solid #E2E8F0; }
+.problem-card { background-color: #F8FAFC; border: 1px solid #E2E8F0; padding: 2rem; border-radius: 12px; text-align: center; }
+.problem-card i { font-size: 2.5rem; color: var(--color-accent); margin-bottom: 1rem; display: block; }
+.problem-card:hover { background-color: white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transform: translateY(-5px); border-color: var(--color-accent); }
+
+/* SERVICIOS: Azul Tenue */
+.services { background-color: #EEF2FF; position: relative; z-index: 1; padding: 5rem 0; }
+.services .section-title { color: var(--color-primary); }
+.service-item { background-color: #0A2540; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 10px 20px rgba(10, 37, 64, 0.15); }
+.service-item i { font-size: 2.5rem; color: #4FA3FF; margin-bottom: 1rem; display: block; }
+.service-item h3 { color: white; }
+.service-item p { color: #CBD5E1; }
+
+/* PLANES: Gris Profesional */
+.plans { padding: 5rem 0; background-color: #F4F7FB; }
+.plan-card { padding: 3rem 2rem; background: white; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; }
+.plan-card.featured { border: 2px solid var(--color-accent); transform: scale(1.05); z-index: 2; box-shadow: 0 20px 40px rgba(46, 107, 255, 0.15); }
+.badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--color-accent); color: white; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+
+/* GRIDS */
+@media (min-width: 1024px) {
+    .problems-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; justify-content: center; }
+    .services-grid, .plans-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .problem-card, .service-item, .plan-card { min-width: 0; width: auto; }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+    .problems-grid, .services-grid, .plans-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+    .plan-card.featured { transform: none; }
+}
+@media (max-width: 599px) {
+    .problems-grid, .services-grid, .plans-grid { grid-template-columns: 1fr; }
+    .plan-card.featured { transform: none; margin: 1rem 0; }
+}
+
+/* =========================================
+   8. FAQ (ICONOS PRO), FOOTER, MODAL
+   ========================================= */
+.faq { padding: 4rem 0; background-color: white; }
+.faq-wrapper { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+.faq-accordion { background: white; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; transition: all 0.3s ease; }
+.faq-accordion[open] { box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-color: var(--color-accent); }
+.faq-accordion summary { padding: 1.2rem; font-weight: 600; color: var(--color-primary); cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+/* ICONOS DE FONT AWESOME PARA FAQ */
+.faq-accordion summary::after { content: '\f067'; font-family: "Font Awesome 6 Free"; font-weight: 900; font-size: 1rem; color: var(--color-accent); }
+.faq-accordion[open] summary::after { content: '\f068'; }
+.faq-body { padding: 0 1.2rem 1.2rem; color: #4b5563; font-size: 0.95rem; border-top: 1px solid #f1f5f9; text-align: left; }
+
+.footer { background: black; color: white; padding: 3rem 0; text-align: center; }
+.footer-container { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.footer-logo-wrapper { width: 100%; display: flex; justify-content: center; margin-bottom: 1.5rem; }
+.footer-logo-img { 
+    height: 80px; 
+    width: 80px; /* Obligatorio: Mismo ancho que alto */
+    object-fit: contain; /* Para que el logo no se deforme adentro */
+    border-radius: 50%; /* La magia del círculo */
+    background-color: white; /* Fondo blanco para que contraste con el footer negro */
+    padding: 8px; /* Un poco de aire para que se vea limpio */
+    margin: 0 auto; 
+    display: block; 
+    border: 2px solid var(--color-secondary); /* Borde sutil para definir el círculo */
+}
+.footer-links { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.copyright { color: #666; font-size: 0.9rem; border-top: 1px solid #333; padding-top: 1rem; margin-top: 1rem; width: 100%; }
+
+.floating-buttons { position: fixed; bottom: 20px; right: 20px; z-index: 900; display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+.fab { background: var(--color-accent); color: white; padding: 10px 20px; border-radius: 8px; cursor: pointer; border: none; font-weight: bold; box-shadow: 0 4px 10px rgba(46, 107, 255, 0.4); }
+.back-to-top {
+    width: 40px;
+    height: 40px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    
+    /* Estado Inicial: Oculto */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    pointer-events: none; /* Importante: Para que no estorbe cuando es invisible */
+}
+
+/* Estado Activo (Cuando JS agregue esta clase) */
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto; /* Reactivamos el clic */
+}
+
+.back-to-top:hover {
+    background-color: var(--color-secondary);
+    transform: translateY(-3px);
+}
+
+.modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+.modal-content { background: white; padding: 0; width: 90%; max-width: 500px; border-radius: 12px; overflow: hidden; }
+.modal-header { background: var(--color-primary); color: white; padding: 1.5rem; text-align: center; position: relative; }
+.close-modal { position: absolute; right: 15px; top: 10px; color: white; cursor: pointer; font-size: 1.5rem; }
+.ticket-form { padding: 1.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 6px; }
+
+/* =========================================
+   9. CTA SECTION (TEXTO BLANCO CORREGIDO)
+   ========================================= */
+.cta-section { 
+    background: var(--color-primary) !important; /* Azul Obscuro */
+    text-align: center; padding: 6rem 0; position: relative; overflow: hidden; 
+}
+.cta-icon-wrapper i { 
+    font-size: 4rem; color: rgba(255, 255, 255, 0.2); margin-bottom: 1.5rem; display: block; 
+}
+/* FORZAMOS EL COLOR BLANCO */
+.cta-section h2, .cta-title { 
+    color: #FFFFFF !important; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; 
+}
+.cta-section p, .cta-text { 
+    color: #E2E8F0 !important; font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 700px; margin-left: auto; margin-right: auto; 
+}
+.btn-whatsapp-large {
+    background-color: #25D366 !important; color: white !important; font-size: 1.1rem; font-weight: 700;
+    padding: 1rem 2.5rem; border-radius: 50px; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+    text-transform: uppercase; letter-spacing: 0.5px; display: inline-flex; align-items: center; gap: 10px;
+}
+.btn-whatsapp-large:hover { 
+    background-color: #20bd5a !important; transform: translateY(-3px); 
+}
+
+/* =========================================
+   10. RESPONSIVE MÓVIL (MENÚ VISUALMENTE CORRECTO)
+   ========================================= */
+@media (max-width: 991px) {
+    /* Botón Hamburguesa */
+    .mobile-menu-toggle { 
+        display: block !important; font-size: 2rem; background: none; border: none; 
+        color: var(--color-primary); cursor: pointer; z-index: 2000 !important; position: relative;
+    }
+    
+    /* Menú Lateral */
+    .nav {
+        display: flex !important; position: fixed !important; top: 0 !important; right: -100% !important; 
+        width: 80% !important; height: 100vh !important; background: white !important;
+        flex-direction: column !important; 
+        justify-content: flex-start !important; /* Arreglo visual: empiezan arriba */
+        align-items: center !important; padding-top: 120px;
+        gap: 2.5rem !important; box-shadow: -5px 0 15px rgba(0,0,0,0.2) !important;
+        transition: right 0.3s ease-in-out !important; z-index: 1500 !important;
+    }
+    .nav.active { right: 0 !important; }
+
+    /* Enlaces */
+    .nav a { 
+        font-size: 1.4rem !important; color: var(--color-primary) !important; font-weight: 600;
+        border-bottom: 1px solid #f0f0f0; width: 80%; text-align: center; padding-bottom: 10px;
+    }
+    /* Botón Contacto en móvil */
+    .nav .btn-secondary {
+        background-color: var(--color-primary) !important; color: white !important;
+        width: 80% !important; padding: 1rem !important; border-radius: 8px !important;
+        margin-top: 1rem; border: none !important; display: flex !important; justify-content: center;
+    }
+
+    /* Layout Móvil */
+    .header-logo { height: 60px; width: 60px; }
+    .hero-container { grid-template-columns: 1fr; text-align: center; }
+    .hero-headline { font-size: 2.2rem; }
+    .hero-buttons { justify-content: center; }
+    .hero-image { order: -1; margin-bottom: 2rem; }
+
+    .split-header, .benefits-wrapper { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .split-text, .benefits-content { text-align: center; padding: 0; }
+    .section-title::after, .text-left::after { left: 50%; transform: translateX(-50%); }
+    .timeline { flex-direction: column; gap: 2rem; }
+    .timeline-connector { display: none; }
+    
+    .cta-section { padding: 4rem 0; }
+    .cta-title { font-size: 2rem; }
+    .cta-text { font-size: 1.1rem; }
+
+
+
+    /* =======================================================
+   FIX FINAL DE EMERGENCIA (MÓVIL Y FLOTANTES)
+   Pegar esto al final del archivo style.css
+   ======================================================= */
+
+/* 1. ARREGLO DEL HEADER EN MÓVIL (Para que baje contigo) */
+@media (max-width: 991px) {
+    .header {
+        position: fixed !important; /* Obligatorio que flote */
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95); /* Blanco semi-transparente siempre en móvil para leer bien */
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        z-index: 1100 !important; /* Encima de todo el contenido */
+    }
+    
+    /* Ajuste para que el Hero no se corte en móvil por el header fijo */
+    .hero {
+        padding-top: 140px !important; 
+    }
+}
+
+/* 2. ARREGLO DE BOTONES FLOTANTES (Para que se vean siempre) */
+.floating-buttons {
+    z-index: 9999 !important; /* El número más alto posible */
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 15px !important;
+}
+
+/* Asegurar que el botón FAB (Ticket) sea visible */
+.fab {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+}
+
+/* Asegurar que el botón Back-To-Top funcione */
+.back-to-top {
+    z-index: 10000 !important;
+}
+
+
+/* =========================================
+   FIX CIERRE MODAL (UX MÓVIL)
+   ========================================= */
+.close-modal {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: rgba(255, 255, 255, 0.8) !important;
+    cursor: pointer;
+    font-size: 2.5rem; /* Más grande para el dedo */
+    line-height: 30px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover,
+.close-modal:active {
+    color: #FFFFFF !important;
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+
+}

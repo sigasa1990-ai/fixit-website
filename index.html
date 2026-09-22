@@ -1,0 +1,819 @@
+﻿<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixIT Soluciones | Soporte técnico y respaldo automático para negocios en Mexicali</title>
+  <meta name="description" content="Soporte técnico remoto y presencial para negocios en Mexicali: impresoras, redes y mantenimiento preventivo, más respaldos cifrados en la nube que realmente puedes recuperar. Cotiza por WhatsApp.">
+  <link rel="canonical" href="https://fixitsoluciones.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:url" content="https://fixitsoluciones.com/">
+  <meta property="og:title" content="FixIT Soluciones | Soporte técnico y respaldo automático para negocios en Mexicali">
+  <meta property="og:description" content="Impresoras, redes y equipos, más respaldos cifrados en la nube que realmente puedes recuperar. Remoto y presencial en Mexicali.">
+  <meta property="og:image" content="https://fixitsoluciones.com/assets/og-fixit.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FixIT Soluciones | Soporte técnico y respaldo automático para negocios en Mexicali">
+  <meta name="twitter:description" content="Impresoras, redes y equipos, más respaldos cifrados en la nube. Remoto y presencial en Mexicali. Cotiza por WhatsApp.">
+  <meta name="twitter:image" content="https://fixitsoluciones.com/assets/og-fixit.jpg">
+  <meta name="theme-color" content="#FF7A59">
+  <link rel="icon" type="image/png" href="assets/logo-fixit.png">
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-var.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/sora-var.woff2" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script>document.documentElement.classList.add('js');</script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"FixIT Soluciones","description":"Soporte técnico remoto y presencial para negocios: impresoras, redes y mantenimiento preventivo en Mexicali.","email":"hola@fixitsoluciones.com","telephone":"+52 686 195 9581","address":{"@type":"PostalAddress","addressLocality":"Mexicali","addressCountry":"MX"},"openingHours":["Mo-Fr 09:00-18:00","Sa 09:00-14:00"],"priceRange":"$450 - $2000 MXN/mes"}
+  </script>
+  <style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:400 700;font-display:optional;src:url('assets/fonts/inter-var.woff2') format('woff2')}
+@font-face{font-family:'Sora';font-style:normal;font-weight:600 800;font-display:optional;src:url('assets/fonts/sora-var.woff2') format('woff2')}
+:root{
+  --bg:#FFFFFF; --bg2:#F5F6FA; --text:#33475B; --text2:#3F5A75; --muted:#5B7A99;
+  --accent:#FF7A59; --accent-hover:#F2633E; --accent-ink:#FFFFFF;
+  --accent-soft:rgba(255,122,89,.10); --accent-border:rgba(255,122,89,.35);
+  --border:#CBD6E2; --slate:#22344D;
+  --font:'Inter',system-ui,sans-serif; --font-head:'Sora','Lexend Deca',sans-serif;
+  --mw:1200px; --r:12px;
+  --shadow:0 1px 3px rgba(51,71,91,.08); --shadow-lg:0 14px 34px rgba(51,71,91,.12);
+  --dur-fast:120ms; --dur:240ms; --dur-slow:480ms;
+  --ease:cubic-bezier(.2,0,0,1); --ease-out:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:clip}
+h1,h2,h3,h4{font-family:var(--font-head);letter-spacing:-.02em;text-wrap:balance}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.w{width:92%;max-width:var(--mw);margin:0 auto}
+.sp{padding:96px 0}
+.hero{padding:150px 0 96px;position:relative}
+/* Fondo vivo: red de conexiones procedural en canvas (el contenido manda; el canvas nunca bloquea) */
+section[id]{scroll-margin-top:90px}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--slate);color:#fff;padding:10px 18px;border-radius:0 0 8px 0;z-index:10002;font-weight:600}
+.skip-link:focus{left:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+#scrollProgress{position:fixed;top:0;left:0;right:0;height:3px;background:var(--accent);transform:scaleX(0);transform-origin:left center;z-index:10001}
+.st{text-align:center;font-size:2rem;font-weight:700;margin-bottom:12px;position:relative}
+.st::after{content:'';position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:64px;height:4px;background:var(--accent);border-radius:2px}
+.ss{text-align:center;color:var(--text2);font-size:1.05rem;max-width:650px;margin:0 auto 48px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;min-height:48px;border-radius:10px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),background var(--dur) var(--ease);letter-spacing:-.2px;font-family:var(--font)}
+.btn-wa{background:var(--accent);color:#fff}
+.btn-wa .fa-whatsapp{color:#fff}
+.btn-wa:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,122,89,.30)}
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,122,89,.30)}
+.btn:active{transform:translateY(0)}
+.hdr{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 0;transition:all .3s var(--ease);background:transparent}
+.hdr.scrolled{background:#fff;border-bottom:1px solid var(--border);box-shadow:0 2px 16px rgba(51,71,91,.08);padding:10px 0}
+.hdr-in{display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px}
+.logo img{height:44px;width:44px;border-radius:50%;padding:3px;background:#fff;border:1px solid var(--border);object-fit:contain}
+.logo span{font-family:var(--font-head);font-weight:700;font-size:1.05rem}
+.logo small{font-family:var(--font);font-weight:400;color:var(--muted);font-size:.75rem;display:block}
+.nav{display:flex;align-items:center;gap:26px}
+.nav a{font-size:.9rem;font-weight:500;color:var(--text2);transition:color var(--dur);min-height:44px;display:inline-flex;align-items:center}
+.nav a:hover{color:var(--accent)}
+.mt{display:none;background:none;border:none;color:var(--text);font-size:1.5rem;cursor:pointer;min-width:44px;min-height:44px}
+.hero{padding:150px 0 96px;position:relative}
+.hero-in{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:2.4rem;font-weight:800;line-height:1.12;margin-bottom:16px}
+.hero h1 span{color:var(--accent)}
+.hero p{color:var(--text2);font-size:1.13rem;margin-bottom:28px;line-height:1.7}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-media img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;border-radius:20px;box-shadow:var(--shadow-lg)}
+.sec-alt{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.t-card{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--shadow);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.t-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.t-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.t-head img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--accent-border);background:transparent;flex-shrink:0}
+.t-head strong{display:block;font-size:.95rem}
+.t-head small{display:block;font-size:.78rem;color:var(--muted);line-height:1.5}
+.t-desc{font-size:.88rem;color:var(--text2)}
+.t-loc{font-size:.75rem;color:var(--muted);margin-top:10px}
+.t-loc i{color:var(--accent);margin-right:5px}
+.support-plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.support-plan-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;position:relative;box-shadow:var(--shadow);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+.support-plan-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.support-plan-card.popular{border:2px solid var(--accent)}
+.support-plan-card .popular-badge{position:absolute;top:-13px;right:18px;background:var(--accent);color:#fff;font-family:var(--font-head);font-size:.62rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:5px 14px;border-radius:50px}
+.support-plan-card .plan-name{font-size:1.1rem;font-weight:700}
+.support-plan-card .plan-minutes{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.support-plan-card .plan-price{font-size:2.1rem;font-weight:700;margin:10px 0 16px}
+  .support-plan-card .plan-price span{font-size:.85rem;color:var(--muted);font-weight:400}
+  .support-plan-card .plan-price span.precio-num{font-size:inherit;color:inherit;font-weight:inherit}
+.support-plan-card .plan-features{flex:1}
+.support-plan-card .plan-features div{font-size:.86rem;color:var(--text2);padding:7px 0;border-bottom:1px solid var(--border)}
+.support-plan-card .plan-features div:last-child{border-bottom:none}
+.plan-cta{display:flex;align-items:center;justify-content:center;text-align:center;margin-top:20px;padding:12px;min-height:48px;border-radius:10px;font-weight:700;font-size:.9rem;border:1px solid var(--accent-border);color:var(--accent);transition:all var(--dur) var(--ease)}
+.plan-cta:hover{background:var(--accent-soft);transform:translateY(-2px)}
+.plan-cta.filled{background:var(--accent);color:#fff;border-color:var(--accent)}
+.plan-cta.filled:hover{background:var(--accent-hover)}
+  #planes .plan-price{font-size:1.8rem}
+  #planes .plan-price .precio-num{white-space:nowrap}
+  .plan-quote-cta{text-align:center;margin-top:34px}
+  .plan-quote-cta p{color:var(--text2);font-size:.95rem;margin-bottom:14px}
+  .support-setup-note{text-align:center;color:var(--text2);font-size:.92rem;margin-top:28px}
+  .support-setup-note i{color:var(--accent);margin-right:6px}
+  .extras-box{display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:26px 30px;margin-top:40px}
+  .extras-box h3{font-size:1.08rem;margin:0 0 8px;color:var(--text)}
+  .extras-box p{font-size:.92rem;color:var(--text2);margin:0;max-width:720px}
+  .extras-box .btn{white-space:nowrap}
+  @media (max-width:768px){.extras-box{flex-direction:column;align-items:flex-start}.extras-box .btn{width:100%;justify-content:center}}
+.reg-form{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:32px;box-shadow:var(--shadow)}
+.reg-form h3{font-size:1.1rem;margin-bottom:20px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:.85rem;font-weight:600;color:var(--text2);margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 14px;min-height:48px;border-radius:8px;border:1px solid var(--border);background:#fff;color:var(--text);font-size:.95rem;font-family:var(--font);outline:none;transition:border-color var(--dur-fast) ease,box-shadow var(--dur-fast) ease}
+.form-group textarea{min-height:96px;resize:vertical}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(255,122,89,.15)}
+.form-group input.invalid{border-color:#C0392B}
+.field-err{font-size:.8rem;color:#B23B2E;margin-top:6px;min-height:1.2em}
+.reg-form .btn{width:100%;margin-top:6px}
+.reg-msg{margin-top:12px;font-size:.9rem;padding:12px;border-radius:8px;display:none}
+.reg-msg.success{display:block;background:var(--accent-soft);color:var(--text);border:1px solid var(--accent-border)}
+.reg-msg.error{display:block;background:#FDECEA;color:#B23B2E;border:1px solid #F3B8AE}
+.radio-group{display:flex;flex-direction:column;gap:8px}
+.radio-option{display:flex;align-items:center;gap:10px;padding:12px 14px;min-height:48px;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:.9rem;transition:border-color var(--dur-fast) ease,background var(--dur-fast) ease}
+.radio-option:hover{border-color:var(--accent-border);background:var(--accent-soft)}
+.radio-option:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.radio-option input{accent-color:var(--accent);width:18px;height:18px;margin:0;flex-shrink:0;background:transparent}
+.hp{position:absolute!important;left:-9999px!important;top:auto!important;width:1px;height:1px;overflow:hidden}.hp input{background:transparent!important}
+.form-hint{margin:6px 0 0;font-size:.78rem;color:var(--muted)}
+.form-hint i{color:var(--accent);margin-right:4px}
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.faq-item[open]{border-color:var(--accent)}
+.faq-item summary{padding:18px 20px;font-weight:600;font-size:.95rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;list-style:none;font-family:var(--font-head);min-height:56px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:'\f107';font-family:'Font Awesome 6 Free';font-weight:900;color:var(--accent);transition:transform .3s}
+.faq-item[open] summary::after{transform:rotate(180deg)}
+.faq-body{padding:0 20px 18px;color:var(--text2);font-size:.9rem;line-height:1.7;border-top:1px solid var(--border);padding-top:14px}
+.final-cta{background:var(--slate);color:#EAF0F7;border-radius:20px;padding:64px 28px;text-align:center;position:relative;overflow:hidden}
+.final-cta h2{font-size:2rem;margin-bottom:10px;color:#fff}
+.final-cta p{color:#B9CCE2;max-width:540px;margin:0 auto 26px}
+.footer{background:var(--bg2);padding:60px 0 24px;border-top:1px solid var(--border)}
+.footer-g{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;margin-bottom:32px}
+.footer-brand-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.footer-brand-top img{height:40px;width:40px;border-radius:50%;padding:2px;background:#fff;border:1px solid var(--border);object-fit:contain}
+.footer-brand p{font-size:.85rem;color:var(--text2)}
+.footer-col h4{font-size:.85rem;font-weight:700;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:8px}
+.footer-col ul li a{font-size:.85rem;color:var(--text2)}
+.footer-col ul li a:hover{color:var(--accent)}
+.footer-col ul li i{color:var(--accent);width:18px;margin-right:6px;font-size:.8rem}
+.footer-btm{border-top:1px solid var(--border);padding-top:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--muted)}
+.footer-social{display:flex;gap:10px;margin-top:12px}
+.footer-social a{width:44px;height:44px;border-radius:8px;background:#fff;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:.95rem}
+.footer-social a:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.cookie{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:16px 20px;z-index:10001;display:none;box-shadow:0 -6px 24px rgba(51,71,91,.10)}
+.cookie.show{display:block}
+.cookie-in{max-width:var(--mw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.cookie-in p{font-size:.85rem;color:var(--text2);flex:1;min-width:240px}
+.cookie-in a{color:var(--accent);text-decoration:underline}
+.wa-float{display:none}
+.wa-float.hidden-near-form{display:none!important}
+@keyframes waPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,122,89,.40)}70%{box-shadow:0 0 0 12px rgba(255,122,89,0)}}
+.back-to-top{position:fixed;left:24px;bottom:24px;z-index:9998;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--border);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1rem;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease,visibility .4s ease;box-shadow:0 8px 22px rgba(51,71,91,.18)}
+.back-to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+
+
+  #servicios{background:var(--accent)}
+  .srv-line{text-align:center;font-size:1.05rem;font-weight:500;color:var(--text);max-width:760px;margin:0 auto}
+  .srv-line span{color:var(--accent);padding:0 6px}
+  .srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+  .srv-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:26px 22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px;transition:transform var(--dur) ease,box-shadow var(--dur) ease}
+  .srv-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .srv-ico{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+  .srv-card h3{font-size:1.05rem;margin:6px 0 0;color:var(--text)}
+  .srv-card p{font-size:.88rem;color:var(--text2);margin:0}
+  .srv-card .srv-link{margin-top:auto;font-size:.88rem;font-weight:700;color:var(--accent);text-decoration:none}
+  .srv-card .srv-link:hover{text-decoration:underline}
+  @media (max-width:992px){.srv-grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.srv-grid{grid-template-columns:1fr}}
+.sp-tight{padding:64px 0}
+.quote-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.quote-copy .st{text-align:left}
+.quote-copy .st::after{left:0;transform:none}
+.quote-copy .ss{text-align:left;margin:34px 0 20px}
+.quote-points{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+.quote-points li{font-size:.95rem;color:var(--text2);display:flex;align-items:center;gap:10px}
+.quote-points i{color:var(--accent)}
+.quote-wa{font-size:.9rem;color:var(--muted)}
+.quote-wa a{color:var(--accent);font-weight:600}
+.quote-wa a:hover{text-decoration:underline}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.rv-ready .rv{opacity:0;transform:translateY(22px);transition:opacity .45s var(--ease-out),transform .45s var(--ease-out)}
+.rv-ready .rv.in{opacity:1;transform:translateY(0)}
+.rv-ready .t-head img.rv-photo{opacity:.55;transform:scale(.95);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.rv-ready .t-head img.rv-photo.in{opacity:1;transform:scale(1)}@media(max-width:992px){
+  .nav{display:none}.nav.open{display:flex;flex-direction:column;position:fixed;top:0;right:0;width:280px;height:100dvh;background:#fff;padding:80px 24px 24px;gap:8px;box-shadow:-4px 0 24px rgba(51,71,91,.15);z-index:999;border-left:1px solid var(--border)}
+  .mt{display:block;z-index:1000}.hero-in{grid-template-columns:1fr;gap:44px;text-align:center}
+  .hero-media{order:-1}
+  .hero-btns{justify-content:center}
+  .hero h1{font-size:2.2rem}.t-grid{grid-template-columns:1fr}
+  .quote-grid{grid-template-columns:1fr;gap:36px;align-items:start}
+  
+  .footer-g{grid-template-columns:1fr;text-align:center}.footer-brand{align-items:center}.footer-social{justify-content:center}
+}
+@media(max-width:768px){.support-plan-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+@media(max-width:600px){
+  .sp{padding:60px 0}.sp-tight{padding:44px 0}.hero{padding:120px 0 48px}.hero h1{font-size:1.85rem}.hero p{font-size:1rem}
+  .form-grid{grid-template-columns:1fr}.reg-form{padding:22px 18px}
+  .hero-btns{flex-direction:column}.hero-btns .btn{width:100%}
+  .st{font-size:1.6rem}.final-cta h2{font-size:1.5rem}
+  .t-head img{width:48px;height:48px}
+  .wa-float{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#fff;border-top:1px solid var(--border);padding:10px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -6px 24px rgba(51,71,91,.12)}
+  .wa-float a{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:12px;min-height:48px;border-radius:8px;background:var(--accent);color:#fff;font-weight:700;font-size:.95rem;animation:waPulse 2.8s ease-out infinite}
+  body{padding-bottom:76px}.back-to-top{bottom:96px;left:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .rv-ready .rv,.rv-ready .t-head img.rv-photo{opacity:1;transform:none;transition:none}
+  .wa-float a{animation:none}
+}
+  .bk-modal-backdrop{position:fixed;inset:0;background:rgba(20,35,55,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}
+  .bk-modal-backdrop.open{display:flex}
+  .bk-modal{background:var(--bg);border-radius:16px;max-width:460px;width:100%;padding:28px;box-shadow:0 24px 60px rgba(20,35,55,.28);position:relative;max-height:90vh;overflow:auto}
+  .bk-modal h3{margin:0 0 4px;color:var(--text);font-size:1.25rem}
+  .bk-modal .bk-sub{color:var(--muted);font-size:.9rem;margin:0 0 18px}
+  .bk-close{position:absolute;top:12px;right:14px;border:0;background:transparent;font-size:24px;color:var(--muted);cursor:pointer;line-height:1;padding:4px}
+  .bk-modal .form-group{margin-bottom:14px}
+  .bk-modal label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+  .bk-modal input,.bk-modal select{width:100%;padding:11px 12px;border:1px solid #D7DEE8;border-radius:10px;font:inherit;color:var(--text);background:#fff}
+  .bk-modal input:focus,.bk-modal select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+  .bk-modal .bk-submit{width:100%;justify-content:center;margin-top:4px}
+  .bk-msg{font-size:.88rem;margin-top:10px;min-height:20px}
+  .bk-msg.err{color:#D64545}
+  .bk-msg.ok{color:#1E9E6A}
+  .bk-wa{display:block;text-align:center;font-size:.82rem;color:var(--muted);margin-top:14px}
+  .bk-wa a{color:var(--accent);font-weight:600;text-decoration:none}
+  /* Contraste: Servicios, Respaldo y footer en color acento */
+  #servicios .st, #respaldo .st{color:#fff}
+  #servicios .st::after, #respaldo .st::after{background:#fff}
+  #servicios .srv-line, #respaldo .ss{color:#fff}
+  #servicios .srv-line span{color:rgba(255,255,255,.72)}
+  #respaldo{background:#33475b;border-top:0;border-bottom:0}
+  #respaldo .support-setup-note, #respaldo .support-setup-note i{color:#fff}
+  .footer{background:var(--accent);border-top:0}
+  .footer, .footer-col h4, .footer-btm{color:#fff}
+  .footer-col ul li a{color:rgba(255,255,255,.92)}
+  .footer-col ul li a:hover{color:#fff;text-decoration:underline}
+  .footer-col ul li i{color:#fff}
+  .footer-btm{border-top-color:rgba(255,255,255,.3)}
+  /* Nuevas secciones — respaldo, diferenciadores y pasos */
+  .btn-outline{background:#fff;color:var(--accent);border:1.5px solid var(--accent-border)}
+  .btn-outline:hover{background:var(--accent-soft);border-color:var(--accent);transform:translateY(-2px)}
+  .h-sub{text-align:center;font-size:1.5rem;font-weight:700;margin:56px 0 8px}
+  #respaldo .h-sub{color:#fff}
+  .pain-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:28px 30px;max-width:900px;margin:0 auto}
+  .pain-box h3{color:#fff;font-size:1.12rem;margin:0 0 16px}
+  .pain-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px}
+  .pain-list li{display:flex;gap:10px;font-size:.9rem;color:#DCE6F2;line-height:1.6}
+  .pain-list i{color:var(--accent);margin-top:5px;flex-shrink:0;font-size:.85rem}
+  .ico{width:24px;height:24px;display:block}
+  .btn .ico{width:18px;height:18px}
+  .srv-ico{position:relative}
+  .srv-ico .ico-pin{position:absolute;right:-5px;bottom:-5px;width:22px;height:22px;padding:3px;background:#fff;border:1px solid var(--border);border-radius:50%;color:var(--accent)}
+  .ico-grid{display:grid;grid-template-columns:1fr 1fr;margin-top:48px;border-top:1px solid var(--border)}
+  .ico-item{display:flex;flex-direction:column;gap:10px;padding:40px 48px 40px 0}
+  .ico-item:nth-child(even){padding-left:48px;border-left:1px solid var(--border)}
+  .ico-item:nth-child(n+3){border-top:1px solid var(--border)}
+  .ico-line{color:var(--slate);margin-bottom:6px;transition:color var(--dur) var(--ease)}
+  .ico-line .ico{width:32px;height:32px}
+  .ico-item:hover .ico-line{color:var(--accent)}
+  .ico-item h3{font-size:1.05rem;margin:0;color:var(--text)}
+  .ico-item p{font-size:.9rem;color:var(--text2);margin:0;max-width:48ch}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+  .step{background:#fff;border:1px solid var(--border);border-radius:18px;padding:26px 22px;box-shadow:var(--shadow)}
+  .step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;margin-bottom:14px}
+  .step h3{font-size:1rem;margin:0 0 8px}
+  .step p{font-size:.88rem;color:var(--text2);margin:0}
+  @media(max-width:992px){.steps{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:900px){
+    .ico-grid{grid-template-columns:1fr}
+    .ico-item{padding:28px 0}
+    .ico-item:nth-child(even){padding-left:0;border-left:0}
+    .ico-item:nth-child(n+2){border-top:1px solid var(--border)}
+  }
+  @media(max-width:768px){.pain-list{grid-template-columns:1fr}}
+  @media(max-width:640px){
+    .steps{grid-template-columns:1fr}
+  }
+  .final-points{list-style:none;display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;margin:0 0 26px}
+  .final-points li{display:inline-flex;align-items:center;gap:8px;font-size:.88rem;color:#DCE6F2}
+  .final-points i{color:var(--accent)}
+  .final-cta .final-note{margin:16px auto 0;font-size:.82rem;color:#9FB4CC}
+  .final-cta .final-note a{color:#fff;font-weight:600;text-decoration:underline}
+  .footer .footer-brand p{color:var(--slate)}
+  .footer .footer-upsell{margin-top:10px}
+  .footer .footer-upsell .ico{width:16px;height:16px;display:inline-block;vertical-align:-3px;margin-right:6px}
+  .footer .footer-upsell a{color:var(--slate);font-weight:700;text-decoration:underline}
+  /* Sección Cotiza — fondo con gradiente, iconos de bullets, mapa y formulario compacto */
+  #cotizar{background:linear-gradient(180deg,#E9F0F8 0%,#FFFFFF 58%,#FDF2ED 100%)}
+  .quote-points{gap:12px}
+  .quote-ico{width:20px;height:20px;color:var(--accent);flex-shrink:0}
+  .mapa-mexicali{margin:26px 0 0;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#F2F7FC;box-shadow:var(--shadow)}
+  .mapa-fallback svg{display:block;width:100%;height:auto}
+  .mapa-leaflet{display:none;position:relative;z-index:0;width:100%;height:280px;background:#E8EEF5}
+  .mapa-mexicali.mapa-listo .mapa-leaflet{display:block}
+  .mapa-mexicali.mapa-listo .mapa-fallback{display:none}
+  .mapa-leaflet.leaflet-container{font:inherit;background:#E8EEF5}
+  .mapa-pin{background:transparent;border:0}
+  .mapa-mexicali figcaption{padding:10px 16px;font-size:.8rem;color:var(--muted);background:#fff;border-top:1px solid var(--border);display:flex;align-items:center;gap:8px}
+  .mapa-mexicali figcaption::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+  .reg-form{padding:24px 22px}
+  .reg-form .form-group{margin-bottom:12px}
+  .reg-form .form-group label{margin-bottom:4px;font-size:.82rem}
+  .reg-form .form-group input,.reg-form .form-group select,.reg-form .form-group textarea{padding:9px 12px;min-height:40px;font-size:.92rem}
+  .reg-form .form-group textarea{min-height:80px}
+  .reg-form .radio-group{gap:6px}
+  .reg-form .radio-option{padding:9px 12px;min-height:40px;font-size:.88rem}
+  .reg-form .field-err{margin-top:4px}
+  .reg-form .form-hint{margin-top:4px}
+  .reg-form .btn{margin-top:2px}
+  @media(max-width:600px){
+    .final-points{flex-direction:column;align-items:center;gap:8px}
+    .reg-form{padding:18px 16px}
+    .mapa-mexicali{margin-top:20px}
+    .mapa-leaflet{height:220px}
+    .mapa-fallback svg{height:140px}
+  }
+  /* Sección Compatibilidad (Windows 10/11) */
+  .compat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:920px;margin:0 auto}
+  .compat-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:30px 28px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:16px;transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease)}
+  .compat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .compat-head{display:flex;align-items:center;gap:14px}
+  .compat-ico{width:48px;height:48px;border-radius:14px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .compat-ico .ico{width:24px;height:24px}
+  .compat-card h3{font-size:1.05rem;margin:0;color:var(--text)}
+  .compat-card--no .compat-ico{background:rgba(91,122,153,.12);color:var(--muted)}
+  .compat-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin:0}
+  .compat-list li{display:flex;align-items:center;gap:10px;font-size:.92rem;color:var(--text2);line-height:1.5}
+  .compat-list .ico{width:20px;height:20px;flex-shrink:0}
+  .compat-list li.ok .ico{color:#1E9E6A}
+  .compat-list li.no .ico{color:#C0392B}
+  .plan-compat-note{text-align:center;color:#C7D6E8;font-size:.83rem;margin-top:12px}
+  @media(max-width:640px){.compat-grid{grid-template-columns:1fr;max-width:480px}}
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Saltar al contenido</a>
+<div id="scrollProgress" aria-hidden="true"></div>
+<div class="cookie" id="cookieBanner"><div class="cookie-in"><p>Usamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas su uso. <a href="aviso-privacidad.html">Más información</a></p><button class="btn btn-accent" id="cookieAccept">Aceptar</button></div></div>
+
+<header class="hdr" id="hdr">
+  <div class="w hdr-in">
+    <a class="logo" href="#main" aria-label="FixIT Soluciones — inicio"><img src="assets/logo-fixit.png" alt="FixIT Soluciones" width="44" height="44"><span>FixIT <small>Soluciones</small></span></a>
+    <button class="mt" id="menuBtn" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+    <nav class="nav" id="navMenu" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#planes">Planes</a>
+      <a href="#respaldo">Respaldo</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener" class="btn btn-wa" style="padding:8px 18px;font-size:.85rem;min-height:44px"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Escríbenos</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="w hero-in">
+    <div class="hero-copy">
+      <h1 id="hero-title">Soporte técnico y respaldo automático para negocios <span>que no pueden detenerse.</span></h1>
+      <p>Impresoras, redes y equipos, más respaldos cifrados en la nube que realmente puedes recuperar. Remoto y presencial en Mexicali. Cuando algo falla, respondemos el mismo día.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener" class="btn btn-wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Cotizar por WhatsApp</a>
+        <a href="#respaldo" class="btn btn-outline"><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="m8 17 4-4 4 4"/></svg> Ver planes de respaldo</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="assets/confianza-empresarial.jpg" width="800" height="600" alt="Negocio de Mexicali confiando su operación a FixIT Soluciones" fetchpriority="high" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="sp" id="servicios" aria-labelledby="srv-title">
+  <div class="w">
+    <h2 class="st rv" id="srv-title">Servicios</h2>
+    <p class="srv-line rv">Impresoras y redes <span aria-hidden="true">·</span> Mantenimiento preventivo <span aria-hidden="true">·</span> Soporte Remoto y local en Mexicali</p>
+    <div class="srv-grid" data-rv-group>
+      <article class="srv-card rv">
+        <div class="srv-ico"><svg class="ico" role="img" aria-label="Impresoras y redes" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg></div>
+        <h3>Impresoras y redes</h3>
+        <p>Instalación, configuración y solución de fallas de impresoras, wifi y redes de tu negocio.</p>
+      </article>
+      <article class="srv-card rv">
+        <div class="srv-ico"><svg class="ico" role="img" aria-label="Mantenimiento preventivo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg></div>
+        <h3>Mantenimiento preventivo</h3>
+        <p>Limpieza, optimización y revisiones programadas para alargar la vida de tus equipos.</p>
+      </article>
+      <article class="srv-card rv">
+        <div class="srv-ico"><svg class="ico" role="img" aria-label="Soporte remoto y local" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg><svg class="ico-pin" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Soporte remoto y local</h3>
+        <p>Atención remota y presencial el mismo día en Mexicali y alrededores.</p>
+      </article>
+      <article class="srv-card rv">
+        <div class="srv-ico"><svg class="ico" role="img" aria-label="Respaldo empresarial" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>Respaldo empresarial</h3>
+        <p>Backups automáticos y cifrados en la nube, con restauración gestionada cuando la necesites.</p>
+        <a class="srv-link" href="#respaldo">Ver planes de respaldo →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="sp" id="planes" aria-labelledby="plans-title">
+  <div class="w">
+    <h2 class="st rv" id="plans-title">Planes de soporte técnico</h2>
+    <p class="ss rv">Elige el plan que va con el tamaño de tu operación. Todos incluyen atención por WhatsApp.</p>
+    <div class="support-plan-grid" data-rv-group>
+      <div class="support-plan-card rv"><div class="plan-name">Plan Básico</div><div class="plan-minutes">1 equipo</div><div class="plan-price"><span class="precio-num" data-soporte-precio="basico">$450</span> <span>MXN/mes</span></div><div class="plan-features"><div>✓ Impresoras, redes y configuración básica</div><div>✓ Mantenimiento preventivo remoto</div><div>✓ Respuesta en 24–48h por WhatsApp</div><div>✓ 1 equipo cubierto</div></div><a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20cotizar%20el%20plan%20B%C3%A1sico" target="_blank" rel="noopener" class="plan-cta">Solicitar cotización</a></div>
+      <div class="support-plan-card popular rv"><div class="popular-badge">Más popular</div><div class="plan-name">Plan Profesional</div><div class="plan-minutes">2 a 3 equipos</div><div class="plan-price"><span class="precio-num" data-soporte-precio="profesional">$700 a $900</span> <span>MXN/mes</span></div><div class="plan-features"><div>✓ Todo lo del plan Básico</div><div>✓ Diagnóstico y resolución</div><div>✓ Reporte mensual de servicios atendidos</div><div>✓ De 2 a 3 equipos cubiertos</div></div><a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20cotizar%20el%20plan%20Profesional" target="_blank" rel="noopener" class="plan-cta filled">Solicitar cotización</a></div>
+      <div class="support-plan-card rv"><div class="plan-name">Plan Empresarial</div><div class="plan-minutes">4 a 10 equipos</div><div class="plan-price"><span class="precio-num" data-soporte-precio="empresarial">$1,500 a $2,000</span> <span>MXN/mes</span></div><div class="plan-features"><div>✓ Todo lo del plan Profesional</div><div>✓ De 4 a 10 equipos cubiertos</div></div><a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20cotizar%20el%20plan%20Empresarial" target="_blank" rel="noopener" class="plan-cta">Solicitar cotización</a></div>
+    </div>
+    <div class="plan-quote-cta rv">
+      <p>El precio exacto depende del número de equipos. Cotiza el tuyo en segundos.</p>
+      <a href="https://www.fixitsoluciones.com/cotizador" target="_blank" rel="noopener" class="btn btn-wa">Cotizar mi plan</a>
+    </div>
+    <p class="support-setup-note rv"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>Precios pueden variar según número de equipos · Cancela con 5 días de aviso.</p>
+    <div class="extras-box rv">
+      <div>
+        <h3>Servicios adicionales a la carta</h3>
+        <p><strong>¿Necesitas algo más específico?</strong> También ofrecemos actualización o reemplazo de componentes — memoria RAM, procesador, tarjeta gráfica, disco duro/SSD — con cotización por el <strong>servicio de instalación</strong>, según la pieza que necesites (no incluye el componente).</p>
+      </div>
+      <a href="https://wa.me/526861959581?text=Hola%2C%20necesito%20cotizar%20la%20instalaci%C3%B3n%20de%20un%20componente" target="_blank" rel="noopener" class="btn btn-wa"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Cotizar por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- RESPALDO EMPRESARIAL -->
+<section class="sp" id="respaldo" aria-labelledby="respaldo-title">
+  <div class="w">
+    <h2 class="st rv" id="respaldo-title">No vendemos backups. Vendemos la certeza de que puedes recuperar.</h2>
+    <p class="ss rv">Cuando el ransomware ataca a las 2am, cuando el servidor muere, cuando el deploy sale mal — no necesitas un backup sentado en storage. Necesitas tu negocio de vuelta.</p>
+    <div class="pain-box rv">
+      <h3>¿Te suena familiar?</h3>
+      <ul class="pain-list">
+        <li><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>El ransomware ataca a las 2am y la única salida es una copia limpia en la que puedas confiar.</li>
+        <li><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>El backup lleva meses corriendo y nunca lo has restaurado. Estás confiando en que funciona.</li>
+        <li><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>Llegas al límite de storage en tu semana más ocupada. Las subidas fallan.</li>
+        <li><i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i>La línea de backup en la factura se duplicó y nadie sabe por qué.</li>
+      </ul>
+    </div>
+    <h3 class="h-sub rv">Planes de respaldo que cumplen lo que prometen</h3>
+    <p class="ss rv">El espacio indicado es el almacenamiento total ocupado en la nube (incluye el historial de versiones). Si se alcanza el tope del plan, el respaldo se pausa automáticamente hasta que amplíes tu plan.</p>
+    <div class="support-plan-grid" data-rv-group>
+      <div class="support-plan-card rv">
+        <div class="plan-name">Backup Básico</div>
+        <div class="plan-minutes">500 GB de almacenamiento</div>
+        <div class="plan-price">$<span class="precio-num" data-plan-precio="basico">499</span> <span>MXN/mes + IVA</span></div>
+        <div class="plan-features">
+          <div>✓ Respaldo automático diario</div>
+          <div>✓ Cifrado AES-256-GCM en tu equipo (las llaves nunca salen de tu infraestructura)</div>
+          <div>✓ Historial de versiones de 30 días</div>
+          <div>✓ Backups inmutables 30 días (protección anti-ransomware real)</div>
+          <div>✓ Solicitud de restauración desde el panel (te entregamos el archivo)</div>
+          <div>✓ Soporte por correo</div>
+        </div>
+        <button type="button" class="plan-cta" data-plan-cta="basico">Contratar ahora</button>
+      </div>
+      <div class="support-plan-card popular rv">
+        <div class="popular-badge">Más popular</div>
+        <div class="plan-name">Backup Negocio</div>
+        <div class="plan-minutes">1 TB de almacenamiento</div>
+        <div class="plan-price">$<span class="precio-num" data-plan-precio="negocio">999</span> <span>MXN/mes + IVA</span></div>
+        <div class="plan-features">
+          <div>✓ Todo lo del plan Básico</div>
+          <div>✓ Historial de versiones de 90 días</div>
+          <div>✓ Backups inmutables 90 días</div>
+          <div>✓ Reanudación de subidas (si se corta la red, sigue donde quedó)</div>
+          <div>✓ Mayor espacio para crecer</div>
+          <div>✓ Soporte prioritario (respuesta el mismo día hábil)</div>
+        </div>
+        <button type="button" class="plan-cta filled" data-plan-cta="negocio">Contratar ahora</button>
+      </div>
+      <div class="support-plan-card rv">
+        <div class="plan-name">Backup Empresa</div>
+        <div class="plan-minutes">3 TB de almacenamiento</div>
+        <div class="plan-price">$<span class="precio-num" data-plan-precio="empresa">2,999</span> <span>MXN/mes + IVA</span></div>
+        <div class="plan-features">
+          <div>✓ Todo lo del plan Negocio</div>
+          <div>✓ Historial de hasta 365 días</div>
+          <div>✓ Backups inmutables 365 días</div>
+          <div>✓ Retención personalizada</div>
+          <div>✓ Keys aisladas por empresa (si una se compromete, las demás están seguras)</div>
+          <div>✓ Asistencia de restauración (un técnico de FixIT te ayuda si lo necesitas)</div>
+          <div>✓ Soporte prioritario (respuesta el mismo día hábil)</div>
+        </div>
+        <button type="button" class="plan-cta" data-plan-cta="empresa">Contratar ahora</button>
+      </div>
+    </div>
+    <p class="support-setup-note rv"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i>Backups inmutables (protección anti-ransomware real) · Facturación mensual segura con Stripe · Cancela cuando quieras.</p>
+    <p class="plan-compat-note rv">Compatibilidad: Windows 10 y Windows 11. Actualmente no compatible con macOS ni Linux.</p>
+
+  </div>
+</section>
+
+<!-- DIFERENCIADORES -->
+<section class="sp" id="diferenciadores" aria-labelledby="diff-title">
+  <div class="w">
+    <h2 class="st rv" id="diff-title">Lo que nos hace diferentes</h2>
+    <div class="ico-grid" data-rv-group>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Tus backups grandes no van a fallar" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="1"/><rect x="3" y="10" width="18" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/></svg></div>
+        <h3>Tus backups grandes no van a fallar</h3>
+        <p>Muchos sistemas de respaldo se rompen o se tardan una eternidad con archivos grandes. El nuestro los sube por partes, así que un backup de varios GB no truena a medio camino.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Si se corta el internet, no empiezas de cero" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></div>
+        <h3>Si se corta el internet, no empiezas de cero</h3>
+        <p>Tu backup sigue exactamente donde se quedó cuando la conexión regresa. No pierdes horas de subida por un corte de luz o de internet.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Ni nosotros podemos borrar tus backups" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Ni nosotros podemos borrar tus backups</h3>
+        <p>Una vez subido, tu respaldo queda protegido 30, 90 o 365 días (según tu plan) — nadie puede borrarlo ni modificarlo en ese tiempo. Ni el ransomware, ni un error humano, ni nosotros mismos.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Tu información nunca se mezcla con la de otro cliente" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z"/><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"/></svg></div>
+        <h3>Tu información nunca se mezcla con la de otro cliente</h3>
+        <p>Cada negocio tiene su propia llave de acceso. Si algo le pasa a otra empresa, la tuya queda completamente aislada.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Ve el estado de tus backups cuando quieras" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg></div>
+        <h3>Ve el estado de tus backups cuando quieras</h3>
+        <p>Entra a tu panel y revisa cuándo fue tu último respaldo, cuánto espacio has usado y el historial — sin tener que preguntarnos.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Te contesta alguien que conoce tu negocio" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Te contesta alguien que conoce tu negocio</h3>
+        <p>No eres un número de ticket. Cuando escribes, te responde la misma persona que instaló tu equipo y sabe cómo trabajas.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CUANDO ALGO FALLA -->
+<section class="sp sec-alt" id="cuando-falla" aria-labelledby="humano-title">
+  <div class="w">
+    <h2 class="st rv" id="humano-title">Cuando algo falla, no hablas con un robot</h2>
+    <div class="ico-grid" data-rv-group>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Te conocemos antes de que llames" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div>
+        <h3>Te conocemos antes de que llames</h3>
+        <p>No partimos de cero en cada ticket — ya sabemos qué equipo tienes, qué plan contrataste y cómo trabaja tu negocio.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Respuesta el mismo día hábil, no en 3-5 días" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"/></svg></div>
+        <h3>Respuesta el mismo día hábil, no "en 3-5 días"</h3>
+        <p>Sabemos lo que cuesta una impresora caída o una red lenta un día de trabajo — por eso respondemos rápido, no cuando nos toque.</p>
+      </article>
+      <article class="ico-item rv">
+        <div class="ico-line"><svg class="ico" role="img" aria-label="Solicita tu restauración desde el panel, o escríbenos y te ayudamos" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="5" x="2" y="3" rx="1"/><path d="M4 8v11a2 2 0 0 0 2 2h2"/><path d="M20 8v11a2 2 0 0 1-2 2h-2"/><path d="m9 15 3-3 3 3"/><path d="M12 12v9"/></svg></div>
+        <h3>Solicita tu restauración desde el panel, o escríbenos y te ayudamos</h3>
+        <p>Puedes solicitar la restauración desde el panel; el equipo de FixIT procesa la solicitud y te entrega los archivos. Si prefieres que lo hagamos todo nosotros, también podemos.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section class="sp" id="como-funciona" aria-labelledby="how-title">
+  <div class="w">
+    <h2 class="st rv" id="how-title">Cómo funciona</h2>
+    <div class="steps" data-rv-group>
+      <article class="step rv">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3><span class="sr-only">Paso 1: </span>Instalamos el agente</h3>
+        <p>Un técnico de FixIT instala el agente en tus equipos. Configuramos las carpetas y el plan.</p>
+      </article>
+      <article class="step rv">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3><span class="sr-only">Paso 2: </span>Tu backup corre solo</h3>
+        <p>Cada día, el agente cifra tus archivos y los sube a la nube. Tú no haces nada.</p>
+      </article>
+      <article class="step rv">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3><span class="sr-only">Paso 3: </span>Tú controlas desde el dashboard</h3>
+        <p>Ve el estado, el espacio usado, el historial. Solicita la restauración de tus archivos cuando los necesites.</p>
+      </article>
+      <article class="step rv">
+        <span class="step-num" aria-hidden="true">4</span>
+        <h3><span class="sr-only">Paso 4: </span>Si algo falla, estamos aquí</h3>
+        <p>Soporte local en Mexicali. Respuesta el mismo día hábil.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COMPATIBILIDAD -->
+<section class="sp sec-alt" id="compatibilidad" aria-labelledby="compat-title">
+  <div class="w">
+    <h2 class="st rv" id="compat-title">Compatibilidad</h2>
+    <p class="ss rv">FixIT Backup actualmente funciona en equipos con Windows 10 y Windows 11.</p>
+    <div class="compat-grid" data-rv-group>
+      <article class="compat-card rv">
+        <div class="compat-head">
+          <div class="compat-ico"><svg class="ico" role="img" aria-label="Windows" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>
+          <h3>Windows</h3>
+        </div>
+        <ul class="compat-list">
+          <li class="ok"><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Windows 10</li>
+          <li class="ok"><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Windows 11</li>
+        </ul>
+      </article>
+      <article class="compat-card compat-card--no rv">
+        <div class="compat-head">
+          <div class="compat-ico"><svg class="ico" role="img" aria-label="macOS y Linux" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg></div>
+          <h3>macOS y Linux</h3>
+        </div>
+        <ul class="compat-list">
+          <li class="no"><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>No compatible con macOS ni Linux</li>
+        </ul>
+      </article>
+    </div>
+    <p class="support-setup-note rv"><i class="fa-solid fa-circle-info" aria-hidden="true"></i>La protección se instala directamente en el equipo que quieres respaldar.</p>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="sp" id="clientes" aria-labelledby="t-title">
+  <div class="w">
+    <h2 class="st rv" id="t-title">Negocios en Mexicali que ya trabajan con FixIT</h2>
+    <p class="ss rv">Tres negocios de Mexicali que confían su operación a FixIT.</p>
+    <div class="t-grid" data-rv-group>
+      <article class="t-card rv"><div class="t-head"><img src="assets/testimonials/daniel-rodriguez-160.jpg" class="rv-photo" alt="Foto de Daniel Gutierrez, cliente de FixIT" width="112" height="112" loading="lazy" decoding="async"><div><strong>Daniel Gutierrez</strong><small>Mantenimiento y reparación de montacargas</small></div></div><p class="t-desc">FixIT me ayudó bastante con la optimización de mis equipos, muy eficientes.</p><p class="t-loc"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Mexicali, B.C.</p></article>
+      <article class="t-card rv"><div class="t-head"><img src="assets/testimonials/german-aranda-160.jpg" class="rv-photo" alt="Foto del Ing. Germán Aranda, cliente de FixIT" width="112" height="112" loading="lazy" decoding="async"><div><strong>Ing. Germán Aranda</strong><small>Socio — RAG / Constructora</small></div></div><p class="t-desc">Le hicieron un downgrade súper rápido a un equipo que uso para el trabajo, se los recomiendo.</p><p class="t-loc"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Mexicali, B.C.</p></article>
+      <article class="t-card rv"><div class="t-head"><img src="assets/testimonials/alejandra-arreguin-160.jpg" class="rv-photo" alt="Foto de Alejandra Arreguín, cliente de FixIT" width="112" height="112" loading="lazy" decoding="async"><div><strong>Alejandra Arreguín</strong><small>Gerente — City Express</small></div></div><p class="t-desc">Excelente servicio, siempre responden rápido y resuelven a la primera. Nos da mucha tranquilidad tenerlos cerca para cualquier falla.</p><p class="t-loc"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Mexicali, B.C.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- COTIZAR -->
+<section class="sp sp-tight sec-alt" id="cotizar" aria-labelledby="quote-title">
+  <div class="w quote-grid">
+    <div class="quote-copy rv">
+      <h2 class="st" id="quote-title">Cotiza o reporta una falla</h2>
+      <p class="ss">Cuéntanos qué necesitas y te contactamos con una propuesta a tu medida.</p>
+      <ul class="quote-points">
+        <li><svg class="quote-ico" role="img" aria-label="Diagnóstico inicial sin costo" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2v2"/><path d="M5 2v2"/><path d="M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></svg>Diagnóstico inicial sin costo</li>
+        <li><svg class="quote-ico" role="img" aria-label="Respuesta el mismo día hábil" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Respuesta el mismo día hábil</li>
+        <li><svg class="quote-ico" role="img" aria-label="Remoto y visitas locales en Mexicali" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>Remoto y visitas locales en Mexicali</li>
+      </ul>
+      <p class="quote-wa">¿Prefieres WhatsApp? <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Escríbenos directo</a></p>
+      <figure class="mapa-mexicali" id="mapa-mexicali">
+        <div id="mapa-leaflet" class="mapa-leaflet" role="region" aria-label="Mapa interactivo de Mexicali, B.C. con la ubicación de FixIT Soluciones"></div>
+        <div class="mapa-fallback" id="mapa-fallback">
+        <svg viewBox="0 0 640 300" role="img" aria-label="Mapa estilizado de Mexicali, B.C., con la ubicación de FixIT Soluciones" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="300" fill="#F2F7FC"/>
+          <g fill="#FFFFFF" stroke="#E4EBF3" stroke-width="1">
+            <rect x="12" y="14" width="88" height="78" rx="3"/>
+            <rect x="112" y="14" width="88" height="78" rx="3"/>
+            <rect x="212" y="14" width="88" height="78" rx="3"/>
+            <rect x="312" y="14" width="88" height="78" rx="3"/>
+            <rect x="412" y="14" width="88" height="78" rx="3"/>
+            <rect x="512" y="14" width="116" height="78" rx="3"/>
+            <rect x="12" y="104" width="88" height="78" rx="3"/>
+            <rect x="112" y="104" width="88" height="78" rx="3"/>
+            <rect x="212" y="104" width="88" height="78" rx="3"/>
+            <rect x="312" y="104" width="88" height="78" rx="3"/>
+            <rect x="412" y="104" width="88" height="78" rx="3"/>
+            <rect x="512" y="104" width="116" height="78" rx="3"/>
+            <rect x="12" y="194" width="88" height="78" rx="3"/>
+            <rect x="112" y="194" width="88" height="78" rx="3"/>
+            <rect x="212" y="194" width="88" height="78" rx="3"/>
+            <rect x="312" y="194" width="88" height="78" rx="3"/>
+            <rect x="412" y="194" width="88" height="78" rx="3"/>
+            <rect x="512" y="194" width="116" height="78" rx="3"/>
+          </g>
+          <path d="M-20 288 L 430 -10" fill="none" stroke="#E1EAF4" stroke-width="16"/>
+          <path d="M-30 250 C 120 214, 250 288, 400 232 S 620 168, 680 196" fill="none" stroke="#CBE2F5" stroke-width="10" stroke-linecap="round"/>
+          <g fill="#FF7A59">
+            <circle cx="325" cy="150" r="30" opacity=".10"/>
+            <circle cx="325" cy="150" r="18" opacity=".16"/>
+          </g>
+          <path d="M325 116c-12.7 0-23 10.3-23 23 0 17.2 23 37 23 37s23-19.8 23-37c0-12.7-10.3-23-23-23z" fill="#FF7A59"/>
+          <circle cx="325" cy="139" r="8" fill="#FFFFFF"/>
+        </svg>
+        </div>
+        <figcaption>Mexicali, B.C.</figcaption>
+      </figure>
+    </div>
+    <div class="reg-form rv">
+      <form id="quoteForm" novalidate>
+          <div class="form-group"><fieldset style="border:0;padding:0;margin:0"><legend id="tipoLabel" style="font-size:.85rem;font-weight:600;color:var(--text2);margin-bottom:6px;padding:0">¿Qué necesitas?</legend><div class="radio-group" role="radiogroup" aria-labelledby="tipoLabel"><label class="radio-option"><input type="radio" name="tipo" value="cotizacion" checked> <span>Cotización de un servicio</span></label><label class="radio-option"><input type="radio" name="tipo" value="ticket"> <span>Reportar una falla (ya soy cliente)</span></label></div></fieldset></div>
+          <div class="form-grid">
+          <div class="form-group"><label for="name">Nombre completo *</label><input type="text" id="name" name="name" placeholder="Ej: Juan Pérez" required autocomplete="name" data-hint=""></div>
+          <div class="form-group"><label for="company">Nombre de tu empresa *</label><input type="text" id="company" name="company" placeholder="Ej: Mi Empresa S.A. de C.V." required autocomplete="organization"></div>
+          <div class="form-group"><label for="phone">WhatsApp (obligatorio para contactarte) *</label><input type="tel" id="phone" name="phone" placeholder="Ej: 6861234567" required autocomplete="tel" inputmode="tel"></div>
+          <div class="form-group"><label for="location">Ciudad o ubicación</label><input type="text" id="location" name="location" placeholder="Ej: Mexicali, B.C." autocomplete="address-level2"></div>
+          <div class="form-group"><label for="serviceType">Servicio que necesitas *</label><select id="serviceType" name="serviceType" required><option value="">Selecciona una opción</option><option value="Soporte remoto de impresoras y redes">Soporte remoto de impresoras y redes</option><option value="Mantenimiento preventivo de equipos">Mantenimiento preventivo de equipos</option><option value="Soporte local en Mexicali (visita física)">Soporte local en Mexicali (visita física)</option><option value="Plan de soporte mensual">Plan de soporte mensual</option><option value="Solicitud especial">Solicitud especial</option></select></div>
+          <div class="form-group"><label for="priority">Prioridad</label><select id="priority" name="priority"><option value="Normal">Normal</option><option value="Alta">Alta (urgente)</option></select></div>
+          </div>
+          <div class="form-group"><label for="description" id="descriptionLabel">Cuéntanos brevemente qué necesitas</label><textarea id="description" name="description" placeholder="Ej: Tenemos 3 equipos y una impresora de red que se desconecta seguido..."></textarea><p class="form-hint" id="ticketNote" hidden><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Si ya eres cliente y es urgente, escríbenos también por WhatsApp.</p></div>
+          <div class="hp" aria-hidden="true"><label for="website_hp">No llenar</label><input type="text" id="website_hp" name="website_hp" tabindex="-1" autocomplete="off"></div>
+          <button type="submit" class="btn btn-accent" id="submitBtn"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Enviar solicitud</button>
+          <div class="reg-msg" id="formMessage" aria-live="polite"></div>
+          <p style="margin-top:12px;font-size:.8rem;color:var(--muted);text-align:center">Al enviar aceptas nuestro <a href="aviso-privacidad.html" style="color:var(--accent)">Aviso de Privacidad</a>.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sp" id="faq" aria-labelledby="faq-title">
+  <div class="w">
+    <h2 class="st rv" id="faq-title">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <details class="faq-item rv"><summary>¿Puedo cancelar mi plan mensual?</summary><div class="faq-body">Sí. Avisa con al menos 5 días naturales antes de tu siguiente facturación, por WhatsApp o correo electrónico.</div></details>
+      <details class="faq-item rv"><summary>¿El soporte es solo remoto o también van a mi negocio?</summary><div class="faq-body">La mayoría de los problemas los resolvemos en remoto. Cuando se requiere presencia física, hacemos visitas locales en Mexicali.</div></details>
+      <details class="faq-item rv"><summary>¿Atienden sistemas de terceros como puntos de venta (POS)?</summary><div class="faq-body">No damos soporte a sistemas de terceros salvo autorización expresa del negocio y del proveedor. Sí apoyamos con la infraestructura: red, equipos e impresoras.</div></details>
+      <details class="faq-item rv"><summary>¿Qué pasa si el ransomware ataca mis backups?</summary><div class="faq-body">Los backups son inmutables durante 30/90/365 días según tu plan. Ni siquiera nosotros podemos borrarlos. El ransomware no puede tocar tus copias.</div></details>
+      <details class="faq-item rv"><summary>¿Dónde están mis backups?</summary><div class="faq-body">En infraestructura de almacenamiento de objetos de nivel empresarial, con cifrado AES-256-GCM. Los datos viajan cifrados y se almacenan cifrados. Las llaves de cifrado están en tu equipo.</div></details>
+      <details class="faq-item rv"><summary>¿Puedo restaurar yo mismo?</summary><div class="faq-body">Sí, puedes solicitar una restauración desde el portal. El equipo de FixIT procesa la solicitud y te entrega el archivo. También puedes escribirnos por WhatsApp.</div></details>
+      <details class="faq-item rv"><summary>¿Cuánto tarda un backup?</summary><div class="faq-body">Depende del tamaño. El primer backup (FULL) tarda más. Los siguientes son incrementales y son mucho más rápidos.</div></details>
+      <details class="faq-item rv"><summary>¿FixIT Backup funciona en Mac o Linux?</summary><div class="faq-body">Por ahora, no. FixIT Backup es compatible exclusivamente con Windows 10 y Windows 11. Estamos enfocados en ofrecer una experiencia de respaldo sólida y confiable para equipos Windows.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="sp sec-alt" id="cierre" aria-labelledby="final-title">
+  <div class="w">
+      <div class="final-cta rv">
+        <h2 id="final-title">Tu operación, estable otra vez</h2>
+      <p>Un mensaje es suficiente para empezar. Cuéntanos qué está fallando —o qué quieres proteger— y te respondemos el mismo día hábil con una propuesta clara.</p>
+      <ul class="final-points">
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Diagnóstico inicial sin costo</li>
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Remoto y presencial en Mexicali</li>
+        <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i>Respuesta el mismo día hábil</li>
+      </ul>
+      <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener" class="btn btn-wa" style="font-size:1rem;padding:14px 36px"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Cotizar por WhatsApp</a>
+      <p class="final-note">Lun–Vie 9:00–18:00 · Sáb 9:00–14:00 · <a href="#respaldo">Conoce nuestros planes de respaldo →</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer" id="contact">
+  <div class="w">
+    <div class="footer-g">
+      <div class="footer-brand"><div class="footer-brand-top"><img src="assets/logo-fixit.png" alt="FixIT Soluciones" width="40" height="40" loading="lazy"><span>FixIT Soluciones</span></div><p>Soporte técnico remoto y presencial para negocios en Mexicali: impresoras, redes y mantenimiento preventivo, más respaldo automático cifrado en la nube para tu operación.</p><p class="footer-upsell"><svg class="ico" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13v8"/><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="m8 17 4-4 4 4"/></svg>Respaldo automático con restauración gestionada. <a href="#respaldo">Ver planes de respaldo →</a></p><div class="footer-social"><a href="https://wa.me/526861959581" target="_blank" rel="noopener" aria-label="WhatsApp de FixIT"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i></a><a href="https://www.facebook.com/fixitsolociones" target="_blank" rel="noopener" aria-label="Facebook de FixIT"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i></a><a href="https://www.tiktok.com/@fxit_soluciones" target="_blank" rel="noopener" aria-label="TikTok de FixIT"><i class="fa-brands fa-tiktok" aria-hidden="true"></i></a></div></div>
+      <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#servicios">Impresoras y redes</a></li><li><a href="#servicios">Mantenimiento preventivo</a></li><li><a href="#servicios">Soporte remoto y local</a></li><li><a href="#respaldo">Respaldo empresarial</a></li></ul></div>
+      <div class="footer-col"><h4>Empresa</h4><ul><li><a href="#planes">Planes</a></li><li><a href="#faq">FAQ</a></li><li><a href="#cotizar">Cotización</a></li><li><a href="aviso-privacidad.html">Aviso de Privacidad</a></li><li><a href="terminos.html">Términos</a></li></ul></div>
+      <div class="footer-col"><h4>Contacto</h4><ul><li><i class="fa-solid fa-envelope" aria-hidden="true"></i> hola@fixitsoluciones.com</li><li><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> 686 195 9581</li><li><i class="fa-regular fa-clock" aria-hidden="true"></i> Lun–Vie 9:00–18:00</li><li><i class="fa-regular fa-clock" aria-hidden="true"></i> Sáb 9:00–14:00</li></ul></div>
+    </div>
+    <div class="footer-btm"><span>&copy; 2026 FixIT Soluciones — Todos los derechos reservados.</span><a href="#main" id="footerTopLink"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i> Volver arriba</a></div>
+  </div>
+</footer>
+
+<div class="wa-float"><a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n%20de%20soporte%20t%C3%A9cnico" target="_blank" rel="noopener" aria-label="Cotizar por WhatsApp"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i> Cotizar por WhatsApp</a></div>
+<button class="back-to-top" id="backToTop" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i></button>
+
+<div class="bk-modal-backdrop" id="backupModal" role="dialog" aria-modal="true" aria-labelledby="bk-modal-title">
+  <div class="bk-modal">
+    <button type="button" class="bk-close" id="bk-close" aria-label="Cerrar">&times;</button>
+    <h3 id="bk-modal-title">Contratar respaldo</h3>
+    <p class="bk-sub" id="bk-plan-nombre">Configuración mensual recurrente · Pago seguro con Stripe</p>
+    <form id="bk-form" novalidate>
+      <input type="hidden" id="bk-plan" value="">
+      <div class="form-group">
+        <label for="bk-nombre">Nombre completo *</label>
+        <input type="text" id="bk-nombre" name="nombre" required autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="bk-email">Correo electrónico *</label>
+        <input type="email" id="bk-email" name="email" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="bk-empresa">Nombre de tu empresa</label>
+        <input type="text" id="bk-empresa" name="empresa" autocomplete="organization">
+      </div>
+      <div class="form-group">
+        <label for="bk-rfc">RFC (opcional, para factura)</label>
+        <input type="text" id="bk-rfc" name="rfc" maxlength="13">
+      </div>
+      <button type="submit" class="btn btn-accent bk-submit" id="bk-submit"><i class="fa-solid fa-lock" aria-hidden="true"></i> Ir a pago seguro</button>
+      <div class="bk-msg" id="bk-msg" aria-live="polite"></div>
+      <span class="bk-wa">¿Prefieres que lo activemos contigo? <a href="https://wa.me/526861959581?text=Hola%2C%20quiero%20contratar%20el%20respaldo%20empresarial" target="_blank" rel="noopener">Escríbenos por WhatsApp</a></span>
+    </form>
+  </div>
+</div>
+
+<script src="assets/precios.js" defer></script>
+<script src="assets/precios-landing.js" defer></script>
+<script src="assets/motion.js" defer></script>
+<script src="assets/reveal.js" defer></script>
+<script src="assets/form.js" defer></script>
+<script src="assets/backup-planes.js" defer></script>
+<script src="assets/mapa.js" defer></script>
+</body>
+</html>

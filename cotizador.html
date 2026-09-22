@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcng9IjIyIiBmaWxsPSIjRkY3QTU5Ii8+PHRleHQgeD0iNTAiIHk9IjcwIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkY8L3RleHQ+PC9zdmc+">
+<title>Cotizador — FixIT Soluciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F6FA;
+    --card:#FFFFFF;
+    --text:#33475B;
+    --text2:#516F90;
+    --accent:#FF7A59;
+    --accent-hover:#FF8F73;
+    --accent-soft:rgba(255,122,89,.10);
+    --accent-border:rgba(255,122,89,.35);
+    --border:#CBD6E2;
+    --radius:14px;
+    --error:#D64545;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    padding:24px 16px 60px;
+  }
+  .wrap{max-width:520px;margin:0 auto;}
+  h1{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:1.5rem;
+    font-weight:700;
+    margin:0 0 4px;
+  }
+  .sub{color:var(--text2);font-size:.9rem;margin:0 0 24px;}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:24px;}
+  .brand-logo{
+    width:52px;height:52px;object-fit:contain;flex-shrink:0;
+    border-radius:12px;border:1px solid var(--border);background:#fff;
+  }
+  .brand h1{margin:0 0 2px;}
+  .brand .sub{margin:0;}
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .field{margin-bottom:16px;}
+  .field:last-child{margin-bottom:0;}
+  label{
+    display:block;
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:8px;
+    color:var(--text);
+  }
+  .req{color:var(--accent);}
+  .opt{color:var(--text2);font-weight:400;}
+  .toggle-group{
+    display:flex;
+    gap:8px;
+  }
+  .toggle-btn{
+    flex:1;
+    padding:10px 8px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:var(--card);
+    color:var(--text2);
+    font-family:'Inter',sans-serif;
+    font-size:.85rem;
+    font-weight:500;
+    cursor:pointer;
+    transition:all .15s ease;
+    text-align:center;
+  }
+  .toggle-btn.active{
+    background:var(--accent);
+    border-color:var(--accent);
+    color:#fff;
+    font-weight:600;
+  }
+  select, input[type=number], input[type=text], input[type=tel]{
+    width:100%;
+    padding:10px 12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-size:.95rem;
+    color:var(--text);
+    background:#fff;
+  }
+  input.input-error{border-color:var(--error);box-shadow:0 0 0 2px rgba(214,69,69,.15);}
+  .stepper{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .step-btn{
+    width:38px;height:38px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#fff;
+    font-size:1.1rem;
+    color:var(--text);
+    cursor:pointer;
+  }
+  .step-val{
+    flex:1;
+    text-align:center;
+    font-weight:600;
+    font-size:1.05rem;
+  }
+  .result{
+    background:var(--text);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:22px;
+    text-align:center;
+  }
+  .result .plan-name{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:.85rem;
+    font-weight:600;
+    color:#B8C4D4;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-bottom:6px;
+  }
+  .result .price{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:2.1rem;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+  .result .price span{font-size:1rem;color:#B8C4D4;font-weight:500;}
+  .result .detail{
+    font-size:.85rem;
+    color:#D3DCE6;
+    line-height:1.5;
+  }
+  .wa-btn{
+    display:block;
+    text-align:center;
+    margin-top:16px;
+    padding:14px;
+    background:var(--accent);
+    color:#fff;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:600;
+    font-size:.95rem;
+  }
+  .wa-btn:active{background:var(--accent-hover);}
+  .hidden{display:none;}
+
+  /* ===== Aviso de firma remota ===== */
+  .firma-notice{
+    background:var(--accent-soft);
+    border:1px solid var(--accent-border);
+    color:var(--text);
+    border-radius:12px;
+    padding:12px 14px;
+    font-size:.85rem;
+    margin-bottom:16px;
+  }
+  .firma-highlight{border-color:var(--accent) !important;box-shadow:0 0 0 3px rgba(255,122,89,.15);}
+
+  /* ===== Link de firma remota ===== */
+  .link-btn{
+    display:block;width:100%;margin-top:10px;padding:13px;
+    background:#fff;color:var(--accent);
+    border:1px solid var(--accent-border);border-radius:10px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:.9rem;cursor:pointer;
+  }
+  .link-btn:hover{background:var(--accent-soft);}
+  .link-panel{
+    margin-top:12px;padding:16px;
+    border:1px dashed var(--accent-border);border-radius:12px;
+    background:var(--accent-soft);
+  }
+  .link-panel-title{
+    font-family:'Lexend Deca',sans-serif;font-size:.8rem;font-weight:600;
+    color:var(--text);margin-bottom:8px;
+  }
+  .link-field{
+    width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;
+    font-size:.78rem;color:var(--text2);background:#fff;margin-bottom:10px;
+    font-family:'Inter',sans-serif;
+  }
+  .link-actions{display:flex;gap:8px;flex-wrap:wrap;}
+  .link-actions .clear-btn{flex:1;margin-top:0;}
+  .wa-share-btn{
+    flex:1;text-align:center;padding:8px 14px;border-radius:10px;
+    background:var(--accent);color:#fff;font-weight:600;font-size:.8rem;
+    text-decoration:none;
+  }
+  .wa-share-btn:hover{background:var(--accent-hover);}
+
+  /* ===== Firma ===== */
+  .canvas-wrap{
+    position:relative;
+    border:2px dashed var(--border);
+    border-radius:10px;
+    background:#fff;
+    overflow:hidden;
+  }
+  .canvas-wrap.signed{border-style:solid;border-color:var(--accent);}
+  #firma{
+    display:block;
+    width:100%;
+    height:150px;
+    touch-action:none;
+    cursor:crosshair;
+  }
+  .canvas-ph{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#A9B8C9;
+    font-size:.9rem;
+    pointer-events:none;
+  }
+  .clear-btn{
+    margin-top:10px;
+    background:#fff;
+    border:1px solid var(--border);
+    color:var(--text2);
+    border-radius:10px;
+    padding:8px 14px;
+    font-size:.8rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .clear-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ===== Boton aceptar y errores ===== */
+  .accept-btn{
+    display:block;
+    width:100%;
+    margin-top:10px;
+    padding:14px;
+    background:var(--text);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+  }
+  .accept-btn:hover{background:#243447;}
+  .form-error{
+    margin-top:12px;
+    padding:10px 12px;
+    background:#FDECEA;
+    border:1px solid #F3B8AE;
+    color:#B23B2E;
+    border-radius:10px;
+    font-size:.85rem;
+  }
+
+  /* ===== Recibo ===== */
+  .ticket{
+    max-width:380px;
+    margin:0 auto;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:22px 20px;
+    font-size:.82rem;
+    color:var(--text);
+    line-height:1.5;
+  }
+  .pl-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .pl-logo{width:56px;height:56px;object-fit:contain;border-radius:12px;flex-shrink:0;}
+  .pl-head-text{flex:1;min-width:0;}
+  .pl-head-text .tk-brand{text-align:left;font-size:1rem;}
+  .pl-head-text .tk-brand-sub{text-align:left;margin-bottom:0;}
+  .pl-folio{background:#F5F6FA;border:1px solid var(--border);border-radius:10px;padding:8px 12px;text-align:right;flex-shrink:0;}
+  .pl-folio-label{font-size:.58rem;text-transform:uppercase;letter-spacing:.12em;color:#7C98B6;font-weight:600;}
+  .pl-folio-id{font-family:'Courier New',monospace;font-weight:700;font-size:.82rem;color:#000;}
+  .pl-folio-fecha{font-size:.62rem;color:var(--text2);white-space:nowrap;}
+  .tk-brand{
+    font-family:'Lexend Deca',sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    text-align:center;
+  }
+  .tk-brand-sub{
+    text-align:center;
+    font-size:.7rem;
+    color:#7C98B6;
+    margin-bottom:14px;
+  }
+  .tk-title{
+    text-align:center;
+    font-family:'Lexend Deca',sans-serif;
+    font-weight:700;
+    letter-spacing:.14em;
+    font-size:1.05rem;
+    text-transform:uppercase;
+    padding:10px 0;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    margin:0 0 4px;
+  }
+  .pl-section{border-top:1px solid var(--border);padding-top:12px;margin-top:12px;}
+  .pl-section-first{border-top:none;padding-top:6px;margin-top:6px;}
+  .pl-section-title{
+    font-family:'Lexend Deca',sans-serif;
+    font-size:.7rem;font-weight:600;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:8px;
+  }
+  .pl-clausulas{position:relative;overflow:hidden;}
+  .pl-clausulas .tk-policy{position:relative;z-index:1;}
+  .pl-watermark{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:170px;opacity:0.06;pointer-events:none;z-index:0;
+  }
+  .tk-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin:4px 0;}
+  .tk-row span{color:#7C98B6;flex-shrink:0;}
+  .tk-row strong{font-weight:600;text-align:right;flex:1 1 auto;min-width:0;overflow-wrap:anywhere;}
+  .tk-sep{border-top:1px dashed var(--border);margin:12px 0;}
+  .tk-plan{font-family:'Lexend Deca',sans-serif;font-weight:600;font-size:.95rem;}
+  .tk-price{font-family:'Courier New',monospace;font-size:1.15rem;font-weight:700;margin:4px 0;color:#000;}
+  .tk-detail{color:var(--text2);font-size:.78rem;}
+  .tk-accepted{font-size:.78rem;color:#7C98B6;margin-bottom:6px;}
+  .tk-firma{max-width:190px;height:auto;display:block;border-bottom:1px solid var(--text);}
+  .tk-policy{
+    margin:0;
+    font-size:.7rem;
+    line-height:1.55;
+    color:var(--text2);
+    text-align:left;
+  }
+  .tk-foot{
+    text-align:center;
+    font-size:.72rem;
+    color:var(--text2);
+    border-top:1px solid var(--border);
+    padding-top:10px;
+    margin-top:12px;
+  }
+  .recibo-actions{
+    max-width:380px;
+    margin:16px auto 0;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .print-btn{
+    padding:14px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+  }
+  .print-btn:hover{background:var(--accent-hover);}
+  .new-btn{
+    padding:13px;
+    background:#fff;
+    color:var(--text);
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:.9rem;
+    cursor:pointer;
+  }
+  .new-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* ===== Pantalla de agradecimiento (firma desde link remoto) ===== */
+  .gracias-card{
+    max-width:380px;margin:48px auto 0;background:#fff;
+    border:1px solid var(--border);border-radius:16px;
+    padding:36px 26px;text-align:center;
+  }
+  .gracias-icon{
+    width:58px;height:58px;margin:0 auto 18px;border-radius:50%;
+    background:var(--accent);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;font-weight:700;
+  }
+  .gracias-title{
+    font-family:'Lexend Deca',sans-serif;font-size:1.15rem;
+    color:var(--text);margin-bottom:10px;
+  }
+  .gracias-text{font-size:.9rem;color:var(--text2);line-height:1.6;}
+
+  /* ===== Impresion: solo el recibo ===== */
+  @page{size:auto;margin:0;}
+  @media print{
+    body{background:#fff;margin:14mm;padding:0;}
+    #cotizador-view,.recibo-actions,.no-print{display:none !important;}
+    #recibo-view{display:block !important;}
+    .ticket{
+      max-width:380px;
+      margin:0 auto;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+      padding:0;
+    }
+    .tk-brand,.tk-title,.tk-plan,.tk-price,.tk-row strong{color:#000;}
+    .tk-brand-sub,.tk-row span,.tk-detail,.tk-policy,.tk-foot,.tk-accepted{color:#444;}
+    .tk-firma{max-width:200px;}
+    .pl-folio{background:#fff;border-color:#999;}
+    .pl-section-title{color:#000;}
+    .pl-watermark{opacity:0.05;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="cotizador-view">
+    <div class="brand">
+      <img class="brand-logo" src="/assets/logo-fixit.png" alt="FixIT Soluciones">
+      <div>
+        <h1>Cotizador FixIT</h1>
+        <p class="sub">Herramienta interna — precio sugerido para dar en el momento</p>
+      </div>
+    </div>
+
+    <div class="firma-notice hidden" id="aviso-firma">Cotización enviada por FixIT Soluciones. Revisa tus datos, firma y acepta para generar tu póliza.</div>
+
+    <div class="card">
+      <div class="field">
+        <label>Tipo de servicio</label>
+        <div class="toggle-group">
+          <button type="button" class="toggle-btn active" id="btn-remoto" onclick="setModo('remoto')">Plan mensual remoto</button>
+          <button type="button" class="toggle-btn" id="btn-local" onclick="setModo('local')">Servicio local único</button>
+        </div>
+      </div>
+
+      <div id="bloque-remoto">
+        <div class="field">
+          <label>Número de equipos</label>
+          <div class="stepper">
+            <button type="button" class="step-btn" onclick="cambiarEquipos(-1)">−</button>
+            <div class="step-val" id="equipos-val">1</div>
+            <button type="button" class="step-btn" onclick="cambiarEquipos(1)">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="bloque-local" class="hidden">
+        <div class="field">
+          <label>Tipo de servicio local</label>
+          <select id="tipo-local" onchange="calcular()">
+            <option value="visita">Visita / soporte único</option>
+            <option value="diag-torre">Diagnóstico + limpieza (torre)</option>
+            <option value="diag-laptop">Diagnóstico + limpieza (laptop)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="field">
+        <label for="cli-nombre">Nombre del cliente <span class="req">*</span></label>
+        <input type="text" id="cli-nombre" placeholder="Nombre completo" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="cli-telefono">Teléfono <span class="req">*</span></label>
+        <input type="tel" id="cli-telefono" placeholder="Ej: 6861234567" autocomplete="tel">
+      </div>
+      <div class="field">
+        <label for="cli-empresa">Empresa / negocio <span class="opt">(opcional)</span></label>
+        <input type="text" id="cli-empresa" placeholder="Nombre del negocio" autocomplete="organization">
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="plan-name" id="res-nombre">Remoto Básico</div>
+      <div class="price" id="res-precio">$450 <span>MXN/mes</span></div>
+      <div class="detail" id="res-detalle">1 equipo cubierto · respuesta 24–48h</div>
+    </div>
+
+    <a href="#" class="wa-btn" id="wa-link" target="_blank">Enviar cotización por WhatsApp</a>
+
+    <div class="card" id="firma-card" style="margin-top:16px;">
+      <div class="field">
+        <label>Firma del cliente <span class="req">*</span></label>
+        <div class="canvas-wrap" id="canvas-wrap">
+          <canvas id="firma"></canvas>
+          <span class="canvas-ph" id="firma-ph">Firme aquí</span>
+        </div>
+        <button type="button" class="clear-btn" id="btn-borrar-firma">Borrar firma</button>
+      </div>
+    </div>
+
+    <button type="button" class="accept-btn" id="btn-aceptar">Aceptar y firmar póliza</button>
+    <div class="form-error hidden" id="form-error"></div>
+
+    <button type="button" class="link-btn" id="btn-generar-link">Generar link para que el cliente firme</button>
+    <div class="link-panel hidden" id="link-panel">
+      <div class="link-panel-title">Link de firma remota</div>
+      <input type="text" class="link-field" id="link-field" readonly>
+      <div class="link-actions">
+        <button type="button" class="clear-btn" id="btn-copiar-link">Copiar link</button>
+        <a class="wa-share-btn" id="wa-share-btn" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="recibo-view" class="hidden">
+    <div class="ticket">
+      <div class="pl-head">
+        <img class="pl-logo" src="/assets/logo-fixit.png" alt="FixIT Soluciones">
+        <div class="pl-head-text">
+          <div class="tk-brand">FixIT Soluciones</div>
+          <div class="tk-brand-sub">Soporte técnico remoto y presencial</div>
+        </div>
+        <div class="pl-folio">
+          <div class="pl-folio-label">Póliza</div>
+          <div class="pl-folio-id" id="tk-id">—</div>
+          <div class="pl-folio-fecha" id="tk-fecha">—</div>
+        </div>
+      </div>
+      <div class="tk-title">Póliza de Servicio</div>
+      <div class="pl-section pl-section-first">
+        <div class="pl-section-title">Datos del cliente</div>
+        <div class="tk-row"><span>Cliente</span><strong id="tk-nombre">—</strong></div>
+        <div class="tk-row"><span>Teléfono</span><strong id="tk-telefono">—</strong></div>
+        <div class="tk-row" id="tk-empresa-row"><span>Empresa</span><strong id="tk-empresa">—</strong></div>
+      </div>
+      <div class="pl-section">
+        <div class="pl-section-title">Plan contratado</div>
+        <div class="tk-plan" id="tk-plan">—</div>
+        <div class="tk-price" id="tk-precio">—</div>
+        <div class="tk-detail" id="tk-detalle">—</div>
+        <div class="tk-row" style="margin-top:8px;"><span>Vigencia</span><strong id="tk-vigencia">—</strong></div>
+      </div>
+      <div class="pl-section pl-clausulas">
+        <img class="pl-watermark" src="/assets/logo-fixit.png" alt="" aria-hidden="true">
+        <div class="pl-section-title">Cláusulas</div>
+        <p class="tk-policy">Esta póliza confirma la contratación del servicio/plan indicado. El pago se realiza conforme a lo acordado por WhatsApp. Los planes mensuales se renuevan automáticamente salvo cancelación con 5 días de anticipación. No se ofrece soporte a sistemas o software de terceros (POS, licencias externas) salvo autorización expresa del proveedor. FixIT Soluciones no se hace responsable por fallas de hardware irreversibles previas a la contratación del servicio. Términos completos en fixitsoluciones.com/terminos</p>
+      </div>
+      <div class="pl-section pl-firma">
+        <div class="pl-section-title">Firma del cliente</div>
+        <div class="tk-accepted">Aceptado por:</div>
+        <img class="tk-firma" id="tk-firma" alt="Firma del cliente">
+      </div>
+      <div class="tk-foot">WhatsApp: 686 195 9581 · fixitsoluciones.com</div>
+    </div>
+    <div class="recibo-actions no-print">
+      <button type="button" class="print-btn" id="btn-imprimir" onclick="imprimirRecibo()">Imprimir / Guardar como PDF</button>
+      <button type="button" class="new-btn" id="btn-nueva" onclick="nuevaCotizacion()">Nueva cotización</button>
+    </div>
+  </div>
+
+  <div id="gracias-view" class="hidden">
+    <div class="gracias-card">
+      <div class="gracias-icon">✓</div>
+      <h2 class="gracias-title">¡Gracias, <span id="gracias-nombre">cliente</span>!</h2>
+      <p class="gracias-text">Tu póliza con FixIT Soluciones quedó registrada. Nos pondremos en contacto contigo por WhatsApp para coordinar los siguientes pasos.</p>
+    </div>
+  </div>
+</div>
+
+<script src="assets/precios.js"></script>
+<script>
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby2703gHvfR_B5J7s1z_VEXJFpxUsF4zsURqLXtHFcyPB-IkhgVTohWv9C-LX4oXchEEw/exec';
+
+let modo = 'remoto';
+let equipos = 1;
+let ticketActual = '';
+let precioActual = null;
+let nombreClienteActual = '';
+let firmaBloqueada = false;
+let guardiaHistorial = false;
+let urlPoliza = '';
+
+function setModo(m){
+  modo = m;
+  document.getElementById('btn-remoto').classList.toggle('active', m==='remoto');
+  document.getElementById('btn-local').classList.toggle('active', m==='local');
+  document.getElementById('bloque-remoto').classList.toggle('hidden', m!=='remoto');
+  document.getElementById('bloque-local').classList.toggle('hidden', m!=='local');
+  document.getElementById('btn-aceptar').textContent = (m === 'remoto') ? 'Aceptar y firmar póliza' : 'Aceptar y generar recibo';
+  calcular();
+}
+
+function cambiarEquipos(delta){
+  equipos = Math.max(1, Math.min(15, equipos + delta));
+  document.getElementById('equipos-val').textContent = equipos;
+  calcular();
+}
+
+function formatoMXN(n){
+  return '$' + Number(n).toLocaleString('es-MX');
+}
+
+function calcular(){
+  let nombre, precioMin, precioMax, detalle, beneficios, esLocal = false, unidad = 'MXN/mes';
+
+  if(modo === 'remoto'){
+    const plan = window.FIXIT_PRECIOS.calcularRemoto(equipos);
+    nombre = plan.nombre;
+    precioMin = plan.precioMin;
+    precioMax = plan.precioMax;
+    detalle = plan.detalle;
+    beneficios = plan.beneficios;
+  } else {
+    esLocal = true;
+    const tipo = document.getElementById('tipo-local').value;
+    unidad = 'MXN';
+    if(tipo === 'visita'){
+      nombre = 'Visita / soporte único';
+      precioMin = 350; precioMax = 450;
+      detalle = 'Un solo servicio, sin mensualidad';
+    } else if(tipo === 'diag-torre'){
+      nombre = 'Diagnóstico + limpieza (torre)';
+      precioMin = 500; precioMax = 600;
+      detalle = 'Equipo de escritorio, servicio único';
+    } else {
+      nombre = 'Diagnóstico + limpieza (laptop)';
+      precioMin = 600; precioMax = 700;
+      detalle = 'Laptop, requiere manejo delicado, servicio único';
+    }
+    beneficios = detalle;
+  }
+
+  document.getElementById('res-nombre').textContent = nombre;
+  document.getElementById('res-detalle').textContent = detalle;
+  precioActual = precioMin;
+
+  if(precioMin === null){
+    document.getElementById('res-precio').innerHTML = 'A cotizar';
+  } else if(precioMin === precioMax){
+    document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + ' <span>' + unidad + '</span>';
+  } else {
+    document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + '–' + formatoMXN(precioMax).replace('$', '') + ' <span>' + unidad + '</span>';
+  }
+
+  let msg = 'Hola, te comparto la cotización de FixIT Soluciones:\n\n';
+  msg += '📋 Plan: ' + nombre + '\n';
+  if(!esLocal){
+    msg += '💻 Equipos: ' + equipos + '\n';
+  }
+  if(precioMin === null){
+    msg += '💰 Precio: a cotizar\n';
+  } else if(esLocal){
+    msg += '💵 ' + formatoMXN(precioMin) + (precioMax !== precioMin ? '–' + formatoMXN(precioMax).replace('$', '') : '') + ' MXN (pago único)\n';
+  } else {
+    msg += '💰 ' + formatoMXN(precioMin) + ' MXN/mes\n';
+  }
+  msg += '✅ Incluye: ' + beneficios + '\n\n';
+  msg += 'Cualquier duda, quedo al pendiente. — FixIT Soluciones';
+  document.getElementById('wa-link').href = 'https://wa.me/526861959581?text=' + encodeURIComponent(msg);
+}
+
+calcular();
+
+/* ============================================================
+   Firma del cliente en canvas
+   ============================================================ */
+const canvas = document.getElementById('firma');
+const ctx = canvas.getContext('2d');
+const canvasWrap = document.getElementById('canvas-wrap');
+const firmaPh = document.getElementById('firma-ph');
+let firmaDibujada = false;
+let dibujando = false;
+let canvasDpr = 1;
+
+function initCanvas(){
+  const rect = canvas.getBoundingClientRect();
+  if(rect.width === 0) return;
+  canvasDpr = window.devicePixelRatio || 1;
+  canvas.width = Math.round(rect.width * canvasDpr);
+  canvas.height = Math.round(150 * canvasDpr);
+  ctx.setTransform(canvasDpr, 0, 0, canvasDpr, 0, 0);
+  ctx.lineWidth = 2.5;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.strokeStyle = '#33475B';
+  firmaDibujada = false;
+}
+
+function posCanvas(e){
+  const rect = canvas.getBoundingClientRect();
+  const p = e.touches ? e.touches[0] : e;
+  return { x: p.clientX - rect.left, y: p.clientY - rect.top };
+}
+
+function empezarTrazo(e){
+  if(firmaBloqueada) return;
+  e.preventDefault();
+  dibujando = true;
+  if(!firmaDibujada){
+    firmaDibujada = true;
+    firmaPh.style.display = 'none';
+    canvasWrap.classList.add('signed');
+    ocultarError();
+  }
+  const p = posCanvas(e);
+  ctx.beginPath();
+  ctx.moveTo(p.x, p.y);
+}
+
+function trazar(e){
+  if(!dibujando) return;
+  e.preventDefault();
+  const p = posCanvas(e);
+  ctx.lineTo(p.x, p.y);
+  ctx.stroke();
+}
+
+function terminarTrazo(){
+  dibujando = false;
+}
+
+canvas.addEventListener('mousedown', empezarTrazo);
+canvas.addEventListener('mousemove', trazar);
+window.addEventListener('mouseup', terminarTrazo);
+canvas.addEventListener('touchstart', empezarTrazo, { passive: false });
+canvas.addEventListener('touchmove', trazar, { passive: false });
+canvas.addEventListener('touchend', terminarTrazo);
+canvas.addEventListener('touchcancel', terminarTrazo);
+
+function borrarFirma(){
+  ctx.save();
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+  firmaDibujada = false;
+  canvasWrap.classList.remove('signed');
+  firmaPh.style.display = 'flex';
+}
+document.getElementById('btn-borrar-firma').addEventListener('click', borrarFirma);
+document.getElementById('btn-aceptar').addEventListener('click', aceptarCotizacion);
+
+initCanvas();
+
+/* ============================================================
+   Datos del cliente, validacion y recibo
+   ============================================================ */
+const inNombre = document.getElementById('cli-nombre');
+const inTelefono = document.getElementById('cli-telefono');
+const inEmpresa = document.getElementById('cli-empresa');
+const errorBox = document.getElementById('form-error');
+const btnAceptar = document.getElementById('btn-aceptar');
+const btnRemoto = document.getElementById('btn-remoto');
+const btnLocal = document.getElementById('btn-local');
+const btnGenerarLink = document.getElementById('btn-generar-link');
+const btnBorrarFirma = document.getElementById('btn-borrar-firma');
+const btnNueva = document.getElementById('btn-nueva');
+const selectTipoLocal = document.getElementById('tipo-local');
+const botonesStep = Array.prototype.slice.call(document.querySelectorAll('.step-btn'));
+
+[inNombre, inTelefono].forEach(function(input){
+  input.addEventListener('input', function(){
+    input.classList.remove('input-error');
+  });
+});
+
+function mostrarError(texto){
+  errorBox.textContent = texto;
+  errorBox.classList.remove('hidden');
+}
+
+function ocultarError(){
+  errorBox.classList.add('hidden');
+  errorBox.textContent = '';
+}
+
+function generarTicketId(){
+  return 'FIX' + Math.floor(1000000 + Math.random() * 9000000);
+}
+
+/* ============================================================
+   Persistencia de polizas firmadas
+   ============================================================ */
+function clavePoliza(ticket){ return 'poliza_' + ticket; }
+function clavePolizaDatos(ticket){ return 'polizaDatos_' + ticket; }
+function clavePolizaPdf(ticket){ return 'polizaPdf_' + ticket; }
+
+function leerPolizaGuardada(ticket){
+  try {
+    const raw = localStorage.getItem(clavePolizaDatos(ticket));
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function reunirDatosPoliza(){
+  if(!ticketActual) ticketActual = generarTicketId();
+  return {
+    ticketId: ticketActual,
+    nombre: inNombre.value.trim(),
+    telefono: inTelefono.value.replace(/\s+/g, ' ').trim(),
+    empresa: inEmpresa.value.trim(),
+    plan: document.getElementById('res-nombre').textContent,
+    detalle: document.getElementById('res-detalle').textContent,
+    precioTexto: document.getElementById('res-precio').textContent.trim(),
+    vigencia: (modo === 'remoto') ? 'Mensual (renovación automática)' : 'Servicio único',
+    equipos: equipos,
+    precio: precioActual,
+    modo: modo,
+    fechaFirma: new Date().toISOString(),
+    firma: ''
+  };
+}
+
+function pintarRecibo(datos){
+  const fecha = new Date(datos.fechaFirma);
+  document.getElementById('tk-id').textContent = datos.ticketId;
+  document.getElementById('tk-fecha').textContent = fecha.toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
+  document.getElementById('tk-nombre').textContent = datos.nombre;
+  document.getElementById('tk-telefono').textContent = datos.telefono;
+  document.getElementById('tk-empresa').textContent = datos.empresa || '—';
+  document.getElementById('tk-empresa-row').style.display = datos.empresa ? '' : 'none';
+
+  document.getElementById('tk-plan').textContent = datos.plan;
+  document.getElementById('tk-precio').textContent = datos.precioTexto;
+  document.getElementById('tk-detalle').textContent = datos.detalle;
+  document.getElementById('tk-vigencia').textContent = datos.vigencia;
+  document.getElementById('tk-firma').src = datos.firma;
+
+  nombreClienteActual = datos.nombre;
+  if(datos.modo) modo = datos.modo;
+  document.getElementById('cotizador-view').classList.add('hidden');
+  document.getElementById('recibo-view').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+/* ============================================================
+   Bloqueo del formulario una vez firmado
+   ============================================================ */
+function bloquearFormulario(){
+  firmaBloqueada = true;
+  [inNombre, inTelefono, inEmpresa, selectTipoLocal].forEach(function(el){ el.disabled = true; });
+  [btnRemoto, btnLocal, btnGenerarLink, btnBorrarFirma, btnAceptar].forEach(function(el){ el.disabled = true; });
+  botonesStep.forEach(function(b){ b.disabled = true; });
+  canvas.style.pointerEvents = 'none';
+}
+
+function desbloquearFormulario(){
+  firmaBloqueada = false;
+  [inNombre, inTelefono, inEmpresa, selectTipoLocal].forEach(function(el){ el.disabled = false; });
+  [btnRemoto, btnLocal, btnGenerarLink, btnBorrarFirma, btnAceptar].forEach(function(el){ el.disabled = false; });
+  botonesStep.forEach(function(b){ b.disabled = false; });
+  canvas.style.pointerEvents = '';
+}
+
+/* ============================================================
+   Guardia de navegacion: no volver al formulario tras firmar
+   ============================================================ */
+function activarGuardiaHistorial(ticket){
+  if(guardiaHistorial || !ticket) return;
+  guardiaHistorial = true;
+  const u = new URL(window.location.href);
+  u.searchParams.set('ticket', ticket);
+  urlPoliza = u.pathname + u.search + u.hash;
+  history.pushState({ fixitPoliza: ticket }, '', urlPoliza);
+  window.addEventListener('popstate', alRetroceder);
+}
+
+function alRetroceder(){
+  if(!ticketActual) return;
+  if(localStorage.getItem(clavePoliza(ticketActual)) !== 'firmada') return;
+  history.pushState({ fixitPoliza: ticketActual }, '', urlPoliza || window.location.href);
+  if(localStorage.getItem(clavePolizaPdf(ticketActual)) === '1'){
+    mostrarGracias(nombreClienteActual);
+  } else {
+    document.getElementById('cotizador-view').classList.add('hidden');
+    document.getElementById('recibo-view').classList.remove('hidden');
+    window.scrollTo(0, 0);
+  }
+}
+
+function desactivarGuardiaHistorial(){
+  if(!guardiaHistorial) return;
+  guardiaHistorial = false;
+  window.removeEventListener('popstate', alRetroceder);
+}
+
+/* ============================================================
+   Aviso al cerrar la pestana antes de guardar el PDF
+   ============================================================ */
+function avisoSalida(e){
+  e.preventDefault();
+  e.returnValue = '';
+  return '';
+}
+
+function activarAvisoSalida(){
+  window.addEventListener('beforeunload', avisoSalida);
+}
+
+function desactivarAvisoSalida(){
+  window.removeEventListener('beforeunload', avisoSalida);
+}
+
+function marcarPolizaFirmada(datos){
+  bloquearFormulario();
+  if(!llegoPorLink) return;
+  try {
+    localStorage.setItem(clavePoliza(datos.ticketId), 'firmada');
+    localStorage.setItem(clavePolizaDatos(datos.ticketId), JSON.stringify(datos));
+  } catch (e) {}
+  guardarFirmaLocal(datos);
+  activarGuardiaHistorial(datos.ticketId);
+  activarAvisoSalida();
+}
+
+function marcarPdfGuardado(){
+  if(!ticketActual) return;
+  try {
+    localStorage.setItem(clavePolizaPdf(ticketActual), '1');
+    for(let i = 0; i < localStorage.length; i++){
+      const k = localStorage.key(i);
+      if(k && k.indexOf('fixitPolizaFirmada:') === 0){
+        try {
+          const reg = JSON.parse(localStorage.getItem(k));
+          if(reg && reg.ticketId === ticketActual){
+            reg.pdfGuardado = true;
+            localStorage.setItem(k, JSON.stringify(reg));
+          }
+        } catch (e) {}
+      }
+    }
+  } catch (e) {}
+}
+
+function enviarPolizaFirmada(datos){
+  const payload = {
+    tipo: 'poliza-firmada',
+    ticketId: datos.ticketId,
+    nombre: datos.nombre,
+    telefono: datos.telefono,
+    empresa: datos.empresa,
+    plan: datos.plan,
+    equipos: datos.equipos,
+    precio: datos.precio,
+    fechaFirma: datos.fechaFirma
+  };
+  const ctrl = new AbortController();
+  const timer = setTimeout(function(){ ctrl.abort(); }, 15000);
+  return fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(payload),
+    signal: ctrl.signal
+  }).then(function(){
+    clearTimeout(timer);
+  }).catch(function(err){
+    clearTimeout(timer);
+    throw err;
+  });
+}
+
+async function aceptarCotizacion(){
+  ocultarError();
+  inNombre.classList.remove('input-error');
+  inTelefono.classList.remove('input-error');
+
+  let valido = true;
+  if(!inNombre.value.trim()){ inNombre.classList.add('input-error'); valido = false; }
+  if(!inTelefono.value.trim()){ inTelefono.classList.add('input-error'); valido = false; }
+
+  if(!valido){
+    mostrarError('Completa nombre y teléfono para continuar.');
+    return;
+  }
+  if(!firmaDibujada){
+    mostrarError('Falta la firma');
+    return;
+  }
+
+  const datos = reunirDatosPoliza();
+  const textoOriginal = btnAceptar.textContent;
+
+  if(modo === 'remoto'){
+    btnAceptar.disabled = true;
+    btnAceptar.textContent = 'Registrando firma...';
+    try {
+      await enviarPolizaFirmada(datos);
+    } catch (e) {
+      btnAceptar.disabled = false;
+      btnAceptar.textContent = textoOriginal;
+      mostrarError('No se pudo registrar tu firma. Revisa tu conexión e intenta de nuevo.');
+      return;
+    }
+    btnAceptar.textContent = textoOriginal;
+  }
+
+  datos.firma = canvas.toDataURL('image/png');
+  marcarPolizaFirmada(datos);
+  pintarRecibo(datos);
+}
+
+function nuevaCotizacion(){
+  desactivarAvisoSalida();
+  desactivarGuardiaHistorial();
+  desbloquearFormulario();
+  ticketActual = '';
+  nombreClienteActual = '';
+  inNombre.value = '';
+  inTelefono.value = '';
+  inEmpresa.value = '';
+  inNombre.classList.remove('input-error');
+  inTelefono.classList.remove('input-error');
+  ocultarError();
+  borrarFirma();
+  document.getElementById('tipo-local').selectedIndex = 0;
+  equipos = 1;
+  document.getElementById('equipos-val').textContent = '1';
+  setModo('remoto');
+  document.getElementById('link-panel').classList.add('hidden');
+  document.getElementById('link-field').value = '';
+  document.getElementById('aviso-firma').classList.add('hidden');
+  document.getElementById('firma-card').classList.remove('firma-highlight');
+  document.getElementById('recibo-view').classList.add('hidden');
+  document.getElementById('cotizador-view').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+/* ============================================================
+   Impresion: titulo dinamico para el PDF
+   ============================================================ */
+const tituloOriginal = document.title;
+
+function imprimirRecibo(){
+  const ticket = document.getElementById('tk-id').textContent.trim();
+  const nombre = document.getElementById('tk-nombre').textContent.trim();
+  document.title = 'Póliza ' + ticket + ' - ' + nombre;
+  window.print();
+}
+
+window.onafterprint = function(){
+  document.title = tituloOriginal;
+  if(!llegoPorLink) return;
+  if(document.getElementById('recibo-view').classList.contains('hidden')) return;
+  if(!ticketActual) return;
+  marcarPdfGuardado();
+  desactivarAvisoSalida();
+  desactivarGuardiaHistorial();
+  if(modo === 'remoto') mostrarGracias(nombreClienteActual || inNombre.value.trim());
+};
+
+/* ============================================================
+   Firma remota: link con datos precargados
+   ============================================================ */
+const paramsURL = new URLSearchParams(window.location.search);
+const llegoPorLink = ['modo', 'plan', 'equipos', 'tipo', 'nombre', 'telefono', 'empresa', 'ticket'].some(function(k){ return paramsURL.has(k); });
+
+const CLAVE_FIRMA = 'fixitPolizaFirmada:' + paramsURL.toString();
+
+function leerFirmaGuardada(){
+  try {
+    const raw = localStorage.getItem(CLAVE_FIRMA);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function guardarFirmaLocal(datos){
+  try {
+    localStorage.setItem(CLAVE_FIRMA, JSON.stringify({
+      ticketId: ticketActual,
+      nombre: (datos && datos.nombre) || inNombre.value.trim(),
+      fecha: new Date().toISOString(),
+      pdfGuardado: false,
+      datos: datos || null
+    }));
+  } catch (e) {}
+}
+
+function mostrarGracias(nombre){
+  document.getElementById('gracias-nombre').textContent = nombre || '';
+  document.getElementById('cotizador-view').classList.add('hidden');
+  document.getElementById('recibo-view').classList.add('hidden');
+  document.getElementById('gracias-view').classList.remove('hidden');
+  window.scrollTo(0, 0);
+}
+
+if (llegoPorLink) {
+  const firmaGuardada = leerFirmaGuardada();
+  const ticketParam = paramsURL.get('ticket') || '';
+  const polizaFirmada = ticketParam ? (localStorage.getItem(clavePoliza(ticketParam)) === 'firmada') : false;
+
+  if (polizaFirmada) {
+    const datos = leerPolizaGuardada(ticketParam);
+    ticketActual = ticketParam;
+    if (localStorage.getItem(clavePolizaPdf(ticketParam)) === '1' || !datos) {
+      mostrarGracias((datos && datos.nombre) || (firmaGuardada && firmaGuardada.nombre) || '');
+    } else {
+      nombreClienteActual = datos.nombre;
+      bloquearFormulario();
+      pintarRecibo(datos);
+      activarGuardiaHistorial(ticketParam);
+      activarAvisoSalida();
+    }
+  } else if (firmaGuardada) {
+    // Compatibilidad con polizas firmadas antes de este cambio
+    const datos = firmaGuardada.datos || null;
+    if (firmaGuardada.ticketId) ticketActual = firmaGuardada.ticketId;
+    if (datos && firmaGuardada.pdfGuardado !== true) {
+      nombreClienteActual = datos.nombre;
+      bloquearFormulario();
+      pintarRecibo(datos);
+      if (ticketActual) activarGuardiaHistorial(ticketActual);
+      activarAvisoSalida();
+    } else {
+      mostrarGracias((firmaGuardada && firmaGuardada.nombre) || (datos && datos.nombre) || '');
+    }
+  } else {
+    if (paramsURL.has('equipos')) {
+      const n = parseInt(paramsURL.get('equipos'), 10);
+      if (!isNaN(n)) {
+        equipos = Math.max(1, Math.min(15, n));
+        document.getElementById('equipos-val').textContent = equipos;
+      }
+    }
+    if (paramsURL.has('tipo')) {
+      const sel = document.getElementById('tipo-local');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === paramsURL.get('tipo')) { sel.selectedIndex = i; break; }
+      }
+    }
+    setModo(paramsURL.get('modo') === 'local' ? 'local' : 'remoto');
+    if (paramsURL.has('nombre')) inNombre.value = paramsURL.get('nombre');
+    if (paramsURL.has('telefono')) inTelefono.value = paramsURL.get('telefono');
+    if (paramsURL.has('empresa')) inEmpresa.value = paramsURL.get('empresa');
+
+    ticketActual = ticketParam || generarTicketId();
+    if (!ticketParam) {
+      const u = new URL(window.location.href);
+      u.searchParams.set('ticket', ticketActual);
+      history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+    }
+
+    document.getElementById('aviso-firma').classList.remove('hidden');
+    document.getElementById('firma-card').classList.add('firma-highlight');
+    setTimeout(function(){
+      document.getElementById('firma-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+  }
+
+  btnNueva.classList.add('hidden');
+}
+
+function construirLinkFirma(){
+  const nombre = inNombre.value.trim();
+  const p = new URLSearchParams();
+  p.set('modo', modo);
+  p.set('plan', document.getElementById('res-nombre').textContent);
+  if (modo === 'remoto') {
+    p.set('equipos', equipos);
+  } else {
+    p.set('tipo', document.getElementById('tipo-local').value);
+  }
+  if (nombre) p.set('nombre', nombre);
+  if (inTelefono.value.trim()) p.set('telefono', inTelefono.value.trim());
+  if (inEmpresa.value.trim()) p.set('empresa', inEmpresa.value.trim());
+  return window.location.origin + window.location.pathname + '?' + p.toString();
+}
+
+document.getElementById('btn-generar-link').addEventListener('click', function(){
+  ocultarError();
+  inNombre.classList.remove('input-error');
+  const nombre = inNombre.value.trim();
+  if (!nombre) {
+    inNombre.classList.add('input-error');
+    mostrarError('Ingresa el nombre del cliente para generar el link.');
+    return;
+  }
+  const link = construirLinkFirma();
+  document.getElementById('link-field').value = link;
+
+  const mensaje = 'Hola ' + nombre + ', aquí está tu cotización de FixIT Soluciones, solo necesitas confirmar tus datos y firmar: ' + link;
+  const tel = inTelefono.value.replace(/\D/g, '');
+  const waBase = (tel.length === 10) ? 'https://wa.me/52' + tel : 'https://wa.me/';
+  document.getElementById('wa-share-btn').href = waBase + '?text=' + encodeURIComponent(mensaje);
+
+  document.getElementById('link-panel').classList.remove('hidden');
+  document.getElementById('link-panel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+document.getElementById('btn-copiar-link').addEventListener('click', function(){
+  const btn = this;
+  const link = document.getElementById('link-field').value;
+  const confirmar = function(){
+    const original = btn.textContent;
+    btn.textContent = 'Copiado';
+    setTimeout(function(){ btn.textContent = original; }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(link).then(confirmar).catch(function(){
+      document.getElementById('link-field').select();
+      document.execCommand('copy');
+      confirmar();
+    });
+  } else {
+    document.getElementById('link-field').select();
+    document.execCommand('copy');
+    confirmar();
+  }
+});
+</script>
+</body>
+</html>

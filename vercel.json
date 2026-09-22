@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/portfolio", "destination": "/portfolio/dist" },
+    { "source": "/portfolio/:path*", "destination": "/portfolio/dist/:path*" }
+  ],
+  "cleanUrls": true
+}

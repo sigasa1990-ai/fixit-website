@@ -1,0 +1,59 @@
+OK   desktop-1440 grid columnas = 2 -> 2
+OK   desktop-1440 2 tarjetas compat -> 2
+OK   desktop-1440 3 items compat -> 3
+OK   desktop-1440 texto Windows 10/11
+OK   desktop-1440 texto no compatible -> No compatible con macOS ni Linux
+OK   desktop-1440 check verde -> rgb(30, 158, 106)
+OK   desktop-1440 cruz roja -> rgb(192, 57, 43)
+OK   desktop-1440 fondo gris de seccion (sec-alt) -> rgb(245, 246, 250)
+OK   desktop-1440 nota al pie visible -> La protección se instala directamente en el equipo que quieres respaldar.
+OK   desktop-1440 nota pricing texto
+OK   desktop-1440 nota pricing gris -> rgb(199, 214, 232)
+OK   desktop-1440 nota pricing ~13px -> 13.28px
+OK   desktop-1440 nota pricing visible
+OK   desktop-1440 FAQ 8 items -> 8
+OK   desktop-1440 FAQ Mac/Linux ultima -> ¿FixIT Backup funciona en Mac o Linux?
+OK   desktop-1440 sin overflow horizontal -> 0
+OK   desktop-1440 orden visual como-funciona < compat < clientes < faq -> [5602.65625,6120.578125,6684.34375,8032.953125]
+OK   desktop-1440 sin errores de consola -> 
+OK   desktop-1440 sin requests fallidos locales -> 
+OK   tablet-768 grid columnas = 2 -> 2
+OK   tablet-768 2 tarjetas compat -> 2
+OK   tablet-768 3 items compat -> 3
+OK   tablet-768 texto Windows 10/11
+OK   tablet-768 texto no compatible -> No compatible con macOS ni Linux
+OK   tablet-768 check verde -> rgb(30, 158, 106)
+OK   tablet-768 cruz roja -> rgb(192, 57, 43)
+OK   tablet-768 fondo gris de seccion (sec-alt) -> rgb(245, 246, 250)
+OK   tablet-768 nota al pie visible -> La protección se instala directamente en el equipo que quieres respaldar.
+OK   tablet-768 nota pricing texto
+OK   tablet-768 nota pricing gris -> rgb(199, 214, 232)
+OK   tablet-768 nota pricing ~13px -> 13.28px
+OK   tablet-768 nota pricing visible
+OK   tablet-768 FAQ 8 items -> 8
+OK   tablet-768 FAQ Mac/Linux ultima -> ¿FixIT Backup funciona en Mac o Linux?
+OK   tablet-768 sin overflow horizontal -> 0
+OK   tablet-768 orden visual como-funciona < compat < clientes < faq -> [9035.625,9757.09375,10320.859375,12783.3125]
+OK   tablet-768 sin errores de consola -> 
+OK   tablet-768 sin requests fallidos locales -> 
+OK   movil-390 grid columnas = 1 -> 1
+OK   movil-390 2 tarjetas compat -> 2
+OK   movil-390 3 items compat -> 3
+OK   movil-390 texto Windows 10/11
+OK   movil-390 texto no compatible -> No compatible con macOS ni Linux
+OK   movil-390 check verde -> rgb(30, 158, 106)
+OK   movil-390 cruz roja -> rgb(192, 57, 43)
+OK   movil-390 fondo gris de seccion (sec-alt) -> rgb(245, 246, 250)
+OK   movil-390 nota al pie visible -> La protección se instala directamente en el equipo que quieres respaldar.
+OK   movil-390 nota pricing texto
+OK   movil-390 nota pricing gris -> rgb(199, 214, 232)
+OK   movil-390 nota pricing ~13px -> 13.28px
+OK   movil-390 nota pricing visible
+OK   movil-390 FAQ 8 items -> 8
+OK   movil-390 FAQ Mac/Linux ultima -> ¿FixIT Backup funciona en Mac o Linux?
+OK   movil-390 sin overflow horizontal -> 0
+OK   movil-390 orden visual como-funciona < compat < clientes < faq -> [9710.171875,10740.125,11440.140625,13938.671875]
+OK   movil-390 sin errores de consola -> 
+OK   movil-390 sin requests fallidos locales -> 
+
+FAILS: 0

@@ -1,0 +1,453 @@
+@import "tailwindcss";
+
+:root {
+  --font: 'Inter', sans-serif;
+  --text: #fafafa;
+}
+
+/* === USER PROVIDED PREMIUM DARK THEME === */
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+
+  /* === BASE OSCURA PROFUNDA === */
+  background-color: #040509;
+
+  /* === PARALLAX FEEL === */
+  background-attachment: fixed;
+
+  /* === CAPAS DEL FONDO === */
+  background-image:
+
+    /* Glow superior */
+    radial-gradient(
+      circle at top center,
+      rgba(0, 212, 170, 0.10) 0%,
+      rgba(0, 212, 170, 0.04) 18%,
+      transparent 42%
+    ),
+
+    /* Glow lateral */
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(59, 130, 246, 0.08) 0%,
+      transparent 35%
+    ),
+
+    /* Glow inferior */
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255,255,255,0.03) 0%,
+      transparent 45%
+    ),
+
+    /* Vignette cinematográfico */
+    radial-gradient(
+      circle at center,
+      transparent 45%,
+      rgba(0,0,0,0.45) 100%
+    ),
+
+    /* GRID PRINCIPAL */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.035) 80px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.035) 80px
+    ),
+
+    /* GRID SECUNDARIO */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 20px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 20px
+    ),
+
+    /* BASE PROFUNDA */
+    linear-gradient(
+      180deg,
+      #040509 0%,
+      #070b12 40%,
+      #040509 100%
+    );
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    80px 80px,
+    80px 80px,
+    20px 20px,
+    20px 20px,
+    100% 100%;
+
+  background-position: center;
+}
+
+
+/* ===== EFECTO 3D / DEPTH ===== */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.025),
+      transparent 25%
+    );
+
+  transform: perspective(1200px) rotateX(65deg) scale(2.2);
+  transform-origin: top center;
+
+  opacity: 0.45;
+}
+
+
+/* ===== NOISE PREMIUM ===== */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: -1;
+
+  opacity: 0.03;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+
+/* ===== GLASS CARDS ===== */
+
+.glass-card {
+  background: rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  border-radius: 24px;
+}
+
+
+/* ===== PREMIUM GLOW ===== */
+
+.premium-glow {
+  position: relative;
+}
+
+.premium-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      transparent 30%,
+      rgba(0,212,170,0.08)
+    );
+
+  opacity: 0.6;
+
+  pointer-events: none;
+}
+
+/* Keep essential Tailwind utilities for components */
+.gradient-glow {
+  background: radial-gradient(ellipse at center, var(--tw-gradient-from) 0%, transparent 70%);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #fafafa 0%, #a1a1aa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, #00d4aa 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.03) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* === USER PROVIDED PREMIUM DARK THEME === */
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+
+  /* === BASE OSCURA PROFUNDA === */
+  background-color: #040509;
+
+  /* === PARALLAX FEEL === */
+  background-attachment: fixed;
+
+  /* === CAPAS DEL FONDO === */
+  background-image:
+
+    /* Glow superior */
+    radial-gradient(
+      circle at top center,
+      rgba(0, 212, 170, 0.10) 0%,
+      rgba(0, 212, 170, 0.04) 18%,
+      transparent 42%
+    ),
+
+    /* Glow lateral */
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(59, 130, 246, 0.08) 0%,
+      transparent 35%
+    ),
+
+    /* Glow inferior */
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255,255,255,0.03) 0%,
+      transparent 45%
+    ),
+
+    /* Vignette cinematográfico */
+    radial-gradient(
+      circle at center,
+      transparent 45%,
+      rgba(0,0,0,0.45) 100%
+    ),
+
+    /* GRID PRINCIPAL */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.035) 80px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(255,255,255,0.035) 80px
+    ),
+
+    /* GRID SECUNDARIO */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 20px
+    ),
+
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 20px
+    ),
+
+    /* BASE PROFUNDA */
+    linear-gradient(
+      180deg,
+      #040509 0%,
+      #070b12 40%,
+      #040509 100%
+    );
+
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    80px 80px,
+    80px 80px,
+    20px 20px,
+    20px 20px,
+    100% 100%;
+
+  background-position: center;
+}
+
+
+/* ===== EFECTO 3D / DEPTH ===== */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.025),
+      transparent 25%
+    );
+
+  transform: perspective(1200px) rotateX(65deg) scale(2.2);
+  transform-origin: top center;
+
+  opacity: 0.45;
+}
+
+
+/* ===== NOISE PREMIUM ===== */
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  pointer-events: none;
+  z-index: -1;
+
+  opacity: 0.03;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+}
+
+
+/* ===== GLASS CARDS ===== */
+
+.glass-card {
+  background: rgba(255,255,255,0.04);
+
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+
+  border-radius: 24px;
+}
+
+
+/* ===== PREMIUM GLOW ===== */
+
+.premium-glow {
+  position: relative;
+}
+
+.premium-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      transparent 30%,
+      rgba(0,212,170,0.08)
+    );
+
+  opacity: 0.6;
+
+  pointer-events: none;
+}
