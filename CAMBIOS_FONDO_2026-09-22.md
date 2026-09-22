@@ -1,6 +1,8 @@
 # Fondo de las secciones grises a #33475B — 2026-09-22
 
-Estado: **borrador verificado** (cambios locales en `index.html`, pendiente de subir).
+Estado: **PUBLICADO** en https://www.fixitsoluciones.com (deploy Vercel producción
+`fixit-landing-63g80hw9g`, ✓ Ready) y **subido a GitHub** en `sigasa1990-ai/fixit-website`
+(commit `38f6a6d`, rama `main`), al final del trabajo y con el QA en verde.
 Archivo modificado: `index.html` (solo CSS: un bloque nuevo en `index.html:262`).
 Ningún JS, HTML de secciones, textos ni estructura fueron modificados.
 Documento nuevo: `CAMBIOS_FONDO_2026-09-22.md`.
@@ -96,12 +98,19 @@ Capturas tomadas con `prefers-reduced-motion: reduce` para congelar el revelado.
 
 ## 6. Restricciones respetadas
 
-- Desarrollo en borrador; la publicación se hace al final por instrucción del dueño.
+- Desarrollo en borrador; la publicación se hizo al final por instrucción del dueño.
 - **No se tocaron las secciones blancas** (verificado por computed styles en los 3 viewports).
 - **Solo se cambiaron fondos y colores** de las secciones grises: nada de estructura,
   contenido, textos, padding ni tipografía.
 - `#cotizar` quedó intacta (gradiente original).
 
-## 7. Pendiente
+## 7. Publicación y verificación post-deploy (2026-09-22)
 
-- `CAMBIOS_FONDO_2026-09-22.md` agregado a `.vercelignore` (los docs no se publican; devuelven 404).
+- **Git**: commit `38f6a6d` ("Cambia el fondo de las secciones grises a #33475B con contraste
+  ajustado") subido a `main`; incluye capturas y este documento. `CAMBIOS_FONDO_2026-09-22.md`
+  agregado a `.vercelignore` (404 en producción).
+- **Deploy**: `npx vercel --prod --yes` → alias https://www.fixitsoluciones.com.
+- **QA contra producción**: mismos 31 checks × 3 viewports = **93/93 OK, 0 errores de consola**
+  (computed styles reales desde el sitio en vivo; capturas en
+  `_capturas/fondo-2026-09-22-prod/`).
+- **HTTP**: home 200 con la regla CSS nueva presente; docs y capturas devuelven 404.
