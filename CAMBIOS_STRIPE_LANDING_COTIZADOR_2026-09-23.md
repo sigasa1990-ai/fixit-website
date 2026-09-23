@@ -109,6 +109,12 @@ privacidad y vigencia/renovación automática. La sección de soporte existente 
 
 Archivo actualizado en el repo: `apps_script_backend.js` (copia).
 
+**Implementación nueva (2026-09-23):**
+`https://script.google.com/macros/s/AKfycbx7HmDDWbuFmbh3Kk-mLC8LjNtBZ0J4JqspALYcSVqjNQ2bZKT7_GA9F9AncCRutQNq9A/exec`
+— esta URL reemplazó a la anterior en `cotizador.html`, `checklist.html`, `reportes.html` y
+`assets/form.js` (todos apuntan al mismo proyecto). Verificado con `GET` al nuevo deployment:
+responde `{"success":true,"servicio":"fixit-tickets",...}`.
+
 **Qué cambió:**
 1. En `doPost`, caso `poliza-firmada`: después de guardar la póliza y avisar por WhatsApp, se
    llama `enviarPolizaEmailCliente(datos)` dentro de `try/catch`.
