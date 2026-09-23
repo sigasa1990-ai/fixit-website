@@ -62,8 +62,13 @@ Los 6 productos de soporte y backup siguen **activos** (verificado contra la API
   local (6 planes activos: 3 backup + 3 soporte; 3 combinados inactivos).
 - **Landing/cotizador/términos**: HTML balanceado, sin IDs duplicados, JavaScript válido
   (`new Function`); 0 referencias a `combinado`/`PyME`/`pyme-`/`paquete` en los archivos servidos.
-- **Pendiente de prueba real**: checkout de soporte y de backup con pago real (webhook →
-  suscripción en DB → correo con póliza). No se hicieron cargos.
+- **Producción (2026-09-23)**: landing desplegada sin referencias a combinados, con rangos 2-5 /
+  6-10 equipos y CTA "Contactar a soporte" (WhatsApp conservado); `/api/public/backup-plans`
+  devuelve solo los 3 planes de backup; el checkout de soporte responde con URL de Stripe
+  (`soporte-basico`, `soporte-empresarial`) y los slugs de combinados responden **404** (planes
+  desactivados). Stripe: 3 combinados archivados y 6 productos activos.
+- **Pendiente de prueba real**: pago real de soporte y backup (webhook → suscripción en DB →
+  correo con póliza). No se hicieron cargos.
 
 ## 5. Archivos modificados (pendientes de revisión)
 
