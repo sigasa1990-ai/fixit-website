@@ -65,14 +65,8 @@
     if (isNaN(n)) n = 1;
     n = Math.max(1, Math.min(LIMITE_EQUIPOS, n));
     if (n <= 1) return { min: 450, max: 450 };
-    if (n <= 3) {
-      var p = redondearDecena(700 + (n - 2) * 200);
-      return { min: p, max: p };
-    }
-    if (n <= 10) {
-      var e = redondearDecena(1500 + (n - 4) * (500 / 6));
-      return { min: e, max: e };
-    }
+    if (n <= 3) return { min: 900, max: 900 };
+    if (n <= 10) return { min: 2000, max: 2000 };
     return { min: null, max: null };
   }
 

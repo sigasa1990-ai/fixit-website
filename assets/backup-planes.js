@@ -5,6 +5,18 @@
   var PLANES = {};
   var planesCargados = false;
 
+  // Servicios que no viven en /backup-plans (soporte y paquetes combinados).
+  // El precio y el nombre son solo para mostrar en el modal; el backend
+  // resuelve el precio real de Stripe por slug.
+  var SERVICIOS = {
+    'soporte-basico': { nombre: 'Soporte Básico', tipo: 'soporte', precio_mxn: 450 },
+    'soporte-profesional': { nombre: 'Soporte Profesional', tipo: 'soporte', precio_mxn: 900 },
+    'soporte-empresarial': { nombre: 'Soporte Empresarial', tipo: 'soporte', precio_mxn: 2000 },
+    'pyme-esencial': { nombre: 'PyME Esencial', tipo: 'combinado', precio_mxn: 899 },
+    'pyme-profesional': { nombre: 'PyME Profesional', tipo: 'combinado', precio_mxn: 1699 },
+    'pyme-empresarial': { nombre: 'PyME Empresarial', tipo: 'combinado', precio_mxn: 4499 },
+  };
+
   function formatearPrecio(valor) {
     return '$' + Number(valor).toLocaleString('es-MX');
   }
@@ -37,11 +49,15 @@
     restaurarBotonPago();
     document.getElementById('bk-plan').value = slug;
     var titulo = document.getElementById('bk-plan-nombre');
-    var plan = PLANES[slug];
+    var plan = PLANES[slug] || SERVICIOS[slug];
     if (titulo) {
-      titulo.textContent = plan
-        ? ('Plan ' + plan.nombre + ' · ' + (plan.almacenamiento_gb || '') + ' GB · ' + formatearPrecio(plan.precio_mxn) + ' MXN/mes')
-        : 'Configuración mensual recurrente · Pago seguro con Stripe';
+      if (!plan) {
+        titulo.textContent = 'Configuración mensual recurrente · Pago seguro con Stripe';
+      } else if (SERVICIOS[slug]) {
+        titulo.textContent = plan.nombre + ' · ' + formatearPrecio(plan.precio_mxn) + ' MXN/mes + IVA';
+      } else {
+        titulo.textContent = 'Plan ' + plan.nombre + ' · ' + (plan.almacenamiento_gb || '') + ' GB · ' + formatearPrecio(plan.precio_mxn) + ' MXN/mes + IVA';
+      }
     }
     var msg = document.getElementById('bk-msg');
     if (msg) { msg.textContent = ''; msg.className = 'bk-msg'; }
@@ -66,7 +82,7 @@
     var slug = document.getElementById('bk-plan').value;
 
     if (!planesCargados) await cargarPlanes();
-    var plan = PLANES[slug];
+    var plan = PLANES[slug] || SERVICIOS[slug];
     if (!plan) {
       msg.textContent = 'No pudimos conectar con el servicio de pagos. Intenta de nuevo en un momento o escríbenos por WhatsApp.';
       msg.className = 'bk-msg err';
@@ -74,7 +90,8 @@
     }
 
     var payload = {
-      planId: plan.id,
+      planId: plan.id || undefined,
+      slug: slug,
       email: (document.getElementById('bk-email').value || '').trim(),
       name: (document.getElementById('bk-nombre').value || '').trim(),
       company: (document.getElementById('bk-empresa').value || '').trim(),
@@ -124,10 +141,10 @@
   document.addEventListener('DOMContentLoaded', function () {
     cargarPlanes();
 
-    document.querySelectorAll('[data-plan-cta]').forEach(function (b) {
+    document.querySelectorAll('[data-plan-cta], [data-service-cta]').forEach(function (b) {
       b.addEventListener('click', function (e) {
         e.preventDefault();
-        abrirModal(b.getAttribute('data-plan-cta'));
+        abrirModal(b.getAttribute('data-plan-cta') || b.getAttribute('data-service-cta'));
       });
     });
 

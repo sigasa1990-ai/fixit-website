@@ -173,6 +173,7 @@
     margin-bottom:16px;
   }
   .firma-highlight{border-color:var(--accent) !important;box-shadow:0 0 0 3px rgba(255,122,89,.15);}
+  .payment-note{font-size:.9rem;color:var(--text2);line-height:1.6;margin:6px 0 12px;}
 
   /* ===== Link de firma remota ===== */
   .link-btn{
@@ -441,6 +442,21 @@
 
     <div class="card">
       <div class="field">
+        <label for="servicio">Servicio a cotizar</label>
+        <select id="servicio" onchange="cambiarServicio()">
+          <option value="soporte">Soporte técnico</option>
+          <option value="backup">Backup (respaldo)</option>
+          <option value="combinado">Paquete combinado</option>
+        </select>
+      </div>
+      <div class="field hidden" id="bloque-plan-servicio">
+        <label for="plan-servicio">Plan</label>
+        <select id="plan-servicio" onchange="calcular()"></select>
+      </div>
+    </div>
+
+    <div class="card" id="bloque-soporte-controls">
+      <div class="field">
         <label>Tipo de servicio</label>
         <div class="toggle-group">
           <button type="button" class="toggle-btn active" id="btn-remoto" onclick="setModo('remoto')">Plan mensual remoto</button>
@@ -484,6 +500,10 @@
         <label for="cli-empresa">Empresa / negocio <span class="opt">(opcional)</span></label>
         <input type="text" id="cli-empresa" placeholder="Nombre del negocio" autocomplete="organization">
       </div>
+      <div class="field">
+        <label for="cli-email">Correo electrónico <span class="opt" id="cli-email-req">(opcional)</span></label>
+        <input type="email" id="cli-email" placeholder="correo@negocio.com" autocomplete="email">
+      </div>
     </div>
 
     <div class="result">
@@ -493,6 +513,15 @@
     </div>
 
     <a href="#" class="wa-btn" id="wa-link" target="_blank">Enviar cotización por WhatsApp</a>
+
+    <div class="card hidden" id="pago-card" style="margin-top:16px;">
+      <div class="field">
+        <label>Pago seguro con Stripe</label>
+        <p class="payment-note" id="pago-resumen">—</p>
+        <button type="button" class="accept-btn" id="btn-pagar">Pagar con Stripe</button>
+        <div class="form-error hidden" id="pago-error"></div>
+      </div>
+    </div>
 
     <div class="card" id="firma-card" style="margin-top:16px;">
       <div class="field">
@@ -546,11 +575,12 @@
         <div class="tk-price" id="tk-precio">—</div>
         <div class="tk-detail" id="tk-detalle">—</div>
         <div class="tk-row" style="margin-top:8px;"><span>Vigencia</span><strong id="tk-vigencia">—</strong></div>
+        <div class="tk-row" id="tk-pago-row" style="margin-top:4px;"><span>Pago</span><strong id="tk-pago">—</strong></div>
       </div>
       <div class="pl-section pl-clausulas">
         <img class="pl-watermark" src="/assets/logo-fixit.png" alt="" aria-hidden="true">
         <div class="pl-section-title">Cláusulas</div>
-        <p class="tk-policy">Esta póliza confirma la contratación del servicio/plan indicado. El pago se realiza conforme a lo acordado por WhatsApp. Los planes mensuales se renuevan automáticamente salvo cancelación con 5 días de anticipación. No se ofrece soporte a sistemas o software de terceros (POS, licencias externas) salvo autorización expresa del proveedor. FixIT Soluciones no se hace responsable por fallas de hardware irreversibles previas a la contratación del servicio. Términos completos en fixitsoluciones.com/terminos</p>
+        <p class="tk-policy" id="tk-clausulas">Esta póliza confirma la contratación del servicio/plan indicado. El pago se realiza conforme a lo acordado por WhatsApp. Los planes mensuales se renuevan automáticamente salvo cancelación con 5 días de anticipación. No se ofrece soporte a sistemas o software de terceros (POS, licencias externas) salvo autorización expresa del proveedor. FixIT Soluciones no se hace responsable por fallas de hardware irreversibles previas a la contratación del servicio. Términos completos en fixitsoluciones.com/terminos</p>
       </div>
       <div class="pl-section pl-firma">
         <div class="pl-section-title">Firma del cliente</div>
@@ -586,6 +616,47 @@ let nombreClienteActual = '';
 let firmaBloqueada = false;
 let guardiaHistorial = false;
 let urlPoliza = '';
+let servicio = 'soporte';
+let pagoConfirmado = false;
+
+const PLANES_SERVICIO = {
+  backup: [
+    { slug: 'backup-basico', nombre: 'Backup Básico', precio: 499, detalle: '500 GB de almacenamiento · Retención 30 días' },
+    { slug: 'backup-negocio', nombre: 'Backup Negocio', precio: 999, detalle: '1 TB de almacenamiento · Retención 90 días' },
+    { slug: 'backup-empresa', nombre: 'Backup Empresa', precio: 2999, detalle: '3 TB de almacenamiento · Retención 365 días' }
+  ],
+  combinado: [
+    { slug: 'pyme-esencial', nombre: 'PyME Esencial', precio: 899, detalle: 'Soporte Básico (1 equipo) + Backup Básico (500 GB) · Ahorras $50 MXN/mes' },
+    { slug: 'pyme-profesional', nombre: 'PyME Profesional', precio: 1699, detalle: 'Soporte Profesional (2-3 equipos) + Backup Negocio (1 TB) · Ahorras $200 MXN/mes' },
+    { slug: 'pyme-empresarial', nombre: 'PyME Empresarial', precio: 4499, detalle: 'Soporte Empresarial (4-10 equipos) + Backup Empresa (3 TB) · Ahorras $500 MXN/mes' }
+  ]
+};
+
+function planServicioActual(){
+  if(servicio === 'soporte') return null;
+  const planes = PLANES_SERVICIO[servicio] || [];
+  const sel = document.getElementById('plan-servicio');
+  return planes[sel.selectedIndex] || planes[0] || null;
+}
+
+function cambiarServicio(){
+  servicio = document.getElementById('servicio').value;
+  const esSoporte = servicio === 'soporte';
+  document.getElementById('bloque-soporte-controls').classList.toggle('hidden', !esSoporte);
+  document.getElementById('bloque-plan-servicio').classList.toggle('hidden', esSoporte);
+  document.getElementById('cli-email-req').textContent = esSoporte ? '(opcional)' : '*';
+  const sel = document.getElementById('plan-servicio');
+  sel.innerHTML = '';
+  if(!esSoporte){
+    (PLANES_SERVICIO[servicio] || []).forEach(function(p, i){
+      const o = document.createElement('option');
+      o.value = String(i);
+      o.textContent = p.nombre + ' — ' + formatoMXN(p.precio) + '/mes + IVA';
+      sel.appendChild(o);
+    });
+  }
+  calcular();
+}
 
 function setModo(m){
   modo = m;
@@ -610,7 +681,16 @@ function formatoMXN(n){
 function calcular(){
   let nombre, precioMin, precioMax, detalle, beneficios, esLocal = false, unidad = 'MXN/mes';
 
-  if(modo === 'remoto'){
+  if(servicio !== 'soporte'){
+    const ps = planServicioActual();
+    if(ps){
+      nombre = ps.nombre;
+      precioMin = ps.precio;
+      precioMax = ps.precio;
+      detalle = ps.detalle;
+      beneficios = ps.detalle;
+    }
+  } else if(modo === 'remoto'){
     const plan = window.FIXIT_PRECIOS.calcularRemoto(equipos);
     nombre = plan.nombre;
     precioMin = plan.precioMin;
@@ -644,7 +724,7 @@ function calcular(){
   if(precioMin === null){
     document.getElementById('res-precio').innerHTML = 'A cotizar';
   } else if(precioMin === precioMax){
-    document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + ' <span>' + unidad + '</span>';
+    document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + ' <span>' + unidad + (servicio !== 'soporte' ? ' + IVA' : '') + '</span>';
   } else {
     document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + '–' + formatoMXN(precioMax).replace('$', '') + ' <span>' + unidad + '</span>';
   }
@@ -659,7 +739,7 @@ function calcular(){
   } else if(esLocal){
     msg += '💵 ' + formatoMXN(precioMin) + (precioMax !== precioMin ? '–' + formatoMXN(precioMax).replace('$', '') : '') + ' MXN (pago único)\n';
   } else {
-    msg += '💰 ' + formatoMXN(precioMin) + ' MXN/mes\n';
+    msg += '💰 ' + formatoMXN(precioMin) + ' MXN/mes' + (servicio !== 'soporte' ? ' + IVA' : '') + '\n';
   }
   msg += '✅ Incluye: ' + beneficios + '\n\n';
   msg += 'Cualquier duda, quedo al pendiente. — FixIT Soluciones';
@@ -754,6 +834,10 @@ initCanvas();
 const inNombre = document.getElementById('cli-nombre');
 const inTelefono = document.getElementById('cli-telefono');
 const inEmpresa = document.getElementById('cli-empresa');
+const inEmail = document.getElementById('cli-email');
+const selectServicio = document.getElementById('servicio');
+const selectPlanServicio = document.getElementById('plan-servicio');
+const btnPagar = document.getElementById('btn-pagar');
 const errorBox = document.getElementById('form-error');
 const btnAceptar = document.getElementById('btn-aceptar');
 const btnRemoto = document.getElementById('btn-remoto');
@@ -764,7 +848,7 @@ const btnNueva = document.getElementById('btn-nueva');
 const selectTipoLocal = document.getElementById('tipo-local');
 const botonesStep = Array.prototype.slice.call(document.querySelectorAll('.step-btn'));
 
-[inNombre, inTelefono].forEach(function(input){
+[inNombre, inTelefono, inEmail].forEach(function(input){
   input.addEventListener('input', function(){
     input.classList.remove('input-error');
   });
@@ -805,16 +889,28 @@ function reunirDatosPoliza(){
     nombre: inNombre.value.trim(),
     telefono: inTelefono.value.replace(/\s+/g, ' ').trim(),
     empresa: inEmpresa.value.trim(),
+    email: inEmail.value.trim(),
+    servicio: servicio,
+    planSlug: (planServicioActual() || {}).slug || '',
+    pagoConfirmado: pagoConfirmado,
     plan: document.getElementById('res-nombre').textContent,
     detalle: document.getElementById('res-detalle').textContent,
     precioTexto: document.getElementById('res-precio').textContent.trim(),
-    vigencia: (modo === 'remoto') ? 'Mensual (renovación automática)' : 'Servicio único',
+    vigencia: (servicio === 'soporte' && modo === 'local') ? 'Servicio único' : 'Mensual (renovación automática)',
     equipos: equipos,
     precio: precioActual,
     modo: modo,
     fechaFirma: new Date().toISOString(),
     firma: ''
   };
+}
+
+function clausulasDe(datos){
+  const base = 'Esta póliza confirma la contratación del servicio/plan indicado. Los planes mensuales se renuevan automáticamente por periodos iguales salvo cancelación con 5 días de anticipación. La firma de este contrato cubre todas las renovaciones mensuales mientras no existan cambios en el plan, los términos y condiciones, o la naturaleza del servicio. No se ofrece soporte a sistemas o software de terceros (POS, licencias externas) salvo autorización expresa del proveedor. Términos completos en fixitsoluciones.com/terminos';
+  if(datos.servicio === 'backup' || datos.servicio === 'combinado'){
+    return base + ' Respaldo (FixIT Backup): respaldo automático de las carpetas seleccionadas (FULL + incrementales). Cifrado AES-256-GCM en el equipo del Cliente, con llaves únicas por empresa protegidas en el equipo y con respaldo seguro del Proveedor. Backups inmutables (Object Lock) durante la retención del plan: 30 días (Básico), 90 días (Negocio) o 365 días (Empresa); no pueden borrarse ni modificarse en ese periodo, ni siquiera por el Proveedor. La restauración se solicita desde el panel y el Proveedor la procesa y entrega; si el equipo no está disponible, un técnico completa la entrega. Si se alcanza el 100% del almacenamiento contratado, el respaldo se pausa automáticamente y se reanuda al ampliar el plan o liberar espacio. El servicio utiliza infraestructura de almacenamiento de objetos de nivel empresarial provista por terceros. Compatibilidad: Windows 10/11; no compatible con macOS ni Linux. Cancelación con 5 días de anticipación. El respaldo es una medida de protección adicional y no sustituye las copias que el Cliente deba mantener; la responsabilidad del Proveedor se limita al monto pagado en el periodo correspondiente. Los datos se mantienen cifrados en el equipo del Cliente.';
+  }
+  return base;
 }
 
 function pintarRecibo(datos){
@@ -830,6 +926,10 @@ function pintarRecibo(datos){
   document.getElementById('tk-precio').textContent = datos.precioTexto;
   document.getElementById('tk-detalle').textContent = datos.detalle;
   document.getElementById('tk-vigencia').textContent = datos.vigencia;
+  document.getElementById('tk-pago').textContent = datos.pagoConfirmado
+    ? 'Confirmado con Stripe'
+    : ((datos.servicio === 'backup' || datos.servicio === 'combinado') ? 'Pendiente' : (datos.modo === 'remoto' ? 'Acordado por WhatsApp' : 'Pago único'));
+  document.getElementById('tk-clausulas').textContent = clausulasDe(datos);
   document.getElementById('tk-firma').src = datos.firma;
 
   nombreClienteActual = datos.nombre;
@@ -844,16 +944,16 @@ function pintarRecibo(datos){
    ============================================================ */
 function bloquearFormulario(){
   firmaBloqueada = true;
-  [inNombre, inTelefono, inEmpresa, selectTipoLocal].forEach(function(el){ el.disabled = true; });
-  [btnRemoto, btnLocal, btnGenerarLink, btnBorrarFirma, btnAceptar].forEach(function(el){ el.disabled = true; });
+  [inNombre, inTelefono, inEmpresa, inEmail, selectTipoLocal, selectServicio, selectPlanServicio].forEach(function(el){ el.disabled = true; });
+  [btnRemoto, btnLocal, btnGenerarLink, btnBorrarFirma, btnAceptar, btnPagar].forEach(function(el){ el.disabled = true; });
   botonesStep.forEach(function(b){ b.disabled = true; });
   canvas.style.pointerEvents = 'none';
 }
 
 function desbloquearFormulario(){
   firmaBloqueada = false;
-  [inNombre, inTelefono, inEmpresa, selectTipoLocal].forEach(function(el){ el.disabled = false; });
-  [btnRemoto, btnLocal, btnGenerarLink, btnBorrarFirma, btnAceptar].forEach(function(el){ el.disabled = false; });
+  [inNombre, inTelefono, inEmpresa, inEmail, selectTipoLocal, selectServicio, selectPlanServicio].forEach(function(el){ el.disabled = false; });
+  [btnRemoto, btnLocal, btnGenerarLink, btnBorrarFirma, btnAceptar, btnPagar].forEach(function(el){ el.disabled = false; });
   botonesStep.forEach(function(b){ b.disabled = false; });
   canvas.style.pointerEvents = '';
 }
@@ -945,10 +1045,18 @@ function enviarPolizaFirmada(datos){
     nombre: datos.nombre,
     telefono: datos.telefono,
     empresa: datos.empresa,
+    email: datos.email,
+    servicio: datos.servicio,
+    planSlug: datos.planSlug,
+    pagoConfirmado: datos.pagoConfirmado,
+    clausulas: clausulasDe(datos),
     plan: datos.plan,
+    detalle: datos.detalle,
+    precioTexto: datos.precioTexto,
     equipos: datos.equipos,
     precio: datos.precio,
-    fechaFirma: datos.fechaFirma
+    fechaFirma: datos.fechaFirma,
+    firma: datos.firma
   };
   const ctrl = new AbortController();
   const timer = setTimeout(function(){ ctrl.abort(); }, 15000);
@@ -985,6 +1093,7 @@ async function aceptarCotizacion(){
   }
 
   const datos = reunirDatosPoliza();
+  datos.firma = canvas.toDataURL('image/png');
   const textoOriginal = btnAceptar.textContent;
 
   if(modo === 'remoto'){
@@ -1001,7 +1110,6 @@ async function aceptarCotizacion(){
     btnAceptar.textContent = textoOriginal;
   }
 
-  datos.firma = canvas.toDataURL('image/png');
   marcarPolizaFirmada(datos);
   pintarRecibo(datos);
 }
@@ -1138,6 +1246,24 @@ if (llegoPorLink) {
     if (paramsURL.has('nombre')) inNombre.value = paramsURL.get('nombre');
     if (paramsURL.has('telefono')) inTelefono.value = paramsURL.get('telefono');
     if (paramsURL.has('empresa')) inEmpresa.value = paramsURL.get('empresa');
+    if (paramsURL.has('email')) inEmail.value = paramsURL.get('email');
+    if (paramsURL.has('servicio')) document.getElementById('servicio').value = paramsURL.get('servicio');
+    cambiarServicio();
+    if (servicio !== 'soporte' && paramsURL.has('plan')) {
+      const planes = PLANES_SERVICIO[servicio] || [];
+      const idx = planes.findIndex(function(p){ return p.slug === paramsURL.get('plan'); });
+      if (idx >= 0) document.getElementById('plan-servicio').selectedIndex = idx;
+      calcular();
+    }
+    pagoConfirmado = paramsURL.get('pago') === 'ok';
+    if ((servicio === 'backup' || servicio === 'combinado') && !pagoConfirmado) {
+      document.getElementById('firma-card').classList.add('hidden');
+      document.getElementById('btn-aceptar').classList.add('hidden');
+      document.getElementById('pago-card').classList.remove('hidden');
+      document.getElementById('pago-resumen').textContent = document.getElementById('res-nombre').textContent + ' — ' + document.getElementById('res-precio').textContent.trim() + '. Al confirmar el pago te redirigimos a la firma de tu póliza.';
+    }
+    document.getElementById('btn-generar-link').classList.add('hidden');
+    document.getElementById('link-panel').classList.add('hidden');
 
     ticketActual = ticketParam || generarTicketId();
     if (!ticketParam) {
@@ -1147,6 +1273,9 @@ if (llegoPorLink) {
     }
 
     document.getElementById('aviso-firma').classList.remove('hidden');
+    if ((servicio === 'backup' || servicio === 'combinado') && !pagoConfirmado) {
+      document.getElementById('aviso-firma').textContent = 'Revisa tu plan, completa el pago seguro y después firma tu póliza.';
+    }
     document.getElementById('firma-card').classList.add('firma-highlight');
     setTimeout(function(){
       document.getElementById('firma-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1159,16 +1288,24 @@ if (llegoPorLink) {
 function construirLinkFirma(){
   const nombre = inNombre.value.trim();
   const p = new URLSearchParams();
-  p.set('modo', modo);
-  p.set('plan', document.getElementById('res-nombre').textContent);
-  if (modo === 'remoto') {
-    p.set('equipos', equipos);
+  p.set('servicio', servicio);
+  if (servicio === 'soporte') {
+    p.set('modo', modo);
+    p.set('plan', document.getElementById('res-nombre').textContent);
+    if (modo === 'remoto') {
+      p.set('equipos', equipos);
+    } else {
+      p.set('tipo', document.getElementById('tipo-local').value);
+    }
   } else {
-    p.set('tipo', document.getElementById('tipo-local').value);
+    const ps = planServicioActual();
+    p.set('plan', ps ? ps.slug : '');
+    p.set('modo', 'remoto');
   }
   if (nombre) p.set('nombre', nombre);
   if (inTelefono.value.trim()) p.set('telefono', inTelefono.value.trim());
   if (inEmpresa.value.trim()) p.set('empresa', inEmpresa.value.trim());
+  if (inEmail.value.trim()) p.set('email', inEmail.value.trim());
   return window.location.origin + window.location.pathname + '?' + p.toString();
 }
 
@@ -1181,10 +1318,19 @@ document.getElementById('btn-generar-link').addEventListener('click', function()
     mostrarError('Ingresa el nombre del cliente para generar el link.');
     return;
   }
+  if (servicio !== 'soporte') {
+    const email = inEmail.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      inEmail.classList.add('input-error');
+      mostrarError('Ingresa el correo del cliente para el pago con Stripe.');
+      return;
+    }
+  }
   const link = construirLinkFirma();
   document.getElementById('link-field').value = link;
 
-  const mensaje = 'Hola ' + nombre + ', aquí está tu cotización de FixIT Soluciones, solo necesitas confirmar tus datos y firmar: ' + link;
+  const accion = (servicio === 'soporte') ? 'confirmar tus datos y firmar' : 'confirmar tus datos, pagar en línea y firmar';
+  const mensaje = 'Hola ' + nombre + ', aquí está tu cotización de FixIT Soluciones, solo necesitas ' + accion + ': ' + link;
   const tel = inTelefono.value.replace(/\D/g, '');
   const waBase = (tel.length === 10) ? 'https://wa.me/52' + tel : 'https://wa.me/';
   document.getElementById('wa-share-btn').href = waBase + '?text=' + encodeURIComponent(mensaje);
@@ -1211,6 +1357,48 @@ document.getElementById('btn-copiar-link').addEventListener('click', function(){
     document.getElementById('link-field').select();
     document.execCommand('copy');
     confirmar();
+  }
+});
+
+document.getElementById('btn-pagar').addEventListener('click', async function(){
+  const btn = this;
+  const err = document.getElementById('pago-error');
+  err.classList.add('hidden');
+  const plan = planServicioActual();
+  if(!plan) return;
+  const email = inEmail.value.trim();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+    err.textContent = 'Necesitamos tu correo electrónico para el pago y la confirmación.';
+    err.classList.remove('hidden');
+    inEmail.classList.add('input-error');
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Abriendo pago seguro...';
+  const u = new URL(window.location.href);
+  u.searchParams.set('pago', 'ok');
+  const successPath = u.pathname + '?' + u.searchParams.toString();
+  try {
+    const r = await fetch('https://backup.fixitsoluciones.com/api/public/backup-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        slug: plan.slug,
+        email: email,
+        name: inNombre.value.trim(),
+        company: inEmpresa.value.trim(),
+        taxRegion: 'resto',
+        successPath: successPath
+      })
+    });
+    const data = await r.json().catch(function(){ return {}; });
+    if(!r.ok || !data.url) throw new Error(data.error || 'No se pudo iniciar el pago');
+    window.location.href = data.url;
+  } catch (e) {
+    err.textContent = e.message + '. Intenta de nuevo o escríbenos por WhatsApp.';
+    err.classList.remove('hidden');
+    btn.disabled = false;
+    btn.textContent = 'Pagar con Stripe';
   }
 });
 </script>
