@@ -34,28 +34,28 @@
       slug: 'profesional',
       nombre: 'Plan Profesional',
       nombreCotizador: 'Remoto Profesional',
-      equiposTexto: '2 a 3 equipos',
+      equiposTexto: '2 a 5 equipos',
       equiposMin: 2,
-      equiposMax: 3,
+      equiposMax: 5,
       popular: true,
       features: [
         'Todo lo del plan Básico',
         'Diagnóstico y resolución',
         'Reporte mensual de servicios atendidos',
-        'De 2 a 3 equipos cubiertos'
+        'De 2 a 5 equipos cubiertos'
       ]
     },
     {
       slug: 'empresarial',
       nombre: 'Plan Empresarial',
       nombreCotizador: 'Remoto Empresarial',
-      equiposTexto: '4 a 10 equipos',
-      equiposMin: 4,
+      equiposTexto: '6 a 10 equipos',
+      equiposMin: 6,
       equiposMax: 10,
       popular: false,
       features: [
         'Todo lo del plan Profesional',
-        'De 4 a 10 equipos cubiertos'
+        'De 6 a 10 equipos cubiertos'
       ]
     }
   ];
@@ -65,7 +65,7 @@
     if (isNaN(n)) n = 1;
     n = Math.max(1, Math.min(LIMITE_EQUIPOS, n));
     if (n <= 1) return { min: 450, max: 450 };
-    if (n <= 3) return { min: 900, max: 900 };
+    if (n <= 5) return { min: 900, max: 900 };
     if (n <= 10) return { min: 2000, max: 2000 };
     return { min: null, max: null };
   }
@@ -99,7 +99,7 @@
         beneficios: 'respuesta 24–48h'
       };
     }
-    if (n <= 3) {
+    if (n <= 5) {
       return {
         nombre: 'Remoto Profesional',
         plan: 'profesional',

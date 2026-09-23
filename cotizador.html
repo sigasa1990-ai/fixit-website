@@ -446,7 +446,6 @@
         <select id="servicio" onchange="cambiarServicio()">
           <option value="soporte">Soporte técnico</option>
           <option value="backup">Backup (respaldo)</option>
-          <option value="combinado">Paquete combinado</option>
         </select>
       </div>
       <div class="field hidden" id="bloque-plan-servicio">
@@ -624,13 +623,14 @@ const PLANES_SERVICIO = {
     { slug: 'basico', nombre: 'Backup Básico', precio: 499, detalle: '500 GB de almacenamiento · Retención 30 días' },
     { slug: 'negocio', nombre: 'Backup Negocio', precio: 999, detalle: '1 TB de almacenamiento · Retención 90 días' },
     { slug: 'empresa', nombre: 'Backup Empresa', precio: 2999, detalle: '3 TB de almacenamiento · Retención 365 días' }
-  ],
-  combinado: [
-    { slug: 'pyme-esencial', nombre: 'PyME Esencial', precio: 899, detalle: 'Soporte Básico (1 equipo) + Backup Básico (500 GB) · Ahorras $50 MXN/mes' },
-    { slug: 'pyme-profesional', nombre: 'PyME Profesional', precio: 1699, detalle: 'Soporte Profesional (2-3 equipos) + Backup Negocio (1 TB) · Ahorras $200 MXN/mes' },
-    { slug: 'pyme-empresarial', nombre: 'PyME Empresarial', precio: 4499, detalle: 'Soporte Empresarial (4-10 equipos) + Backup Empresa (3 TB) · Ahorras $500 MXN/mes' }
   ]
 };
+
+const PLANES_SOPORTE = [
+  { equiposMax: 1, slug: 'soporte-basico', nombre: 'Soporte Básico', precio: 450 },
+  { equiposMax: 5, slug: 'soporte-profesional', nombre: 'Soporte Profesional', precio: 900 },
+  { equiposMax: 10, slug: 'soporte-empresarial', nombre: 'Soporte Empresarial', precio: 2000 }
+];
 
 function planServicioActual(){
   if(servicio === 'soporte') return null;
@@ -639,12 +639,22 @@ function planServicioActual(){
   return planes[sel.selectedIndex] || planes[0] || null;
 }
 
+// Plan que se cobra con Stripe: soporte remoto (1-10 equipos) o backup.
+// Soporte local y más de 10 equipos se cotizan sin pago en línea.
+function planPagoActual(){
+  if(servicio === 'soporte'){
+    if(modo !== 'remoto' || equipos > 10) return null;
+    return PLANES_SOPORTE.find(function(x){ return equipos <= x.equiposMax; }) || null;
+  }
+  return planServicioActual();
+}
+
 function cambiarServicio(){
   servicio = document.getElementById('servicio').value;
   const esSoporte = servicio === 'soporte';
   document.getElementById('bloque-soporte-controls').classList.toggle('hidden', !esSoporte);
   document.getElementById('bloque-plan-servicio').classList.toggle('hidden', esSoporte);
-  document.getElementById('cli-email-req').textContent = esSoporte ? '(opcional)' : '*';
+  document.getElementById('cli-email-req').textContent = '*';
   const sel = document.getElementById('plan-servicio');
   sel.innerHTML = '';
   if(!esSoporte){
@@ -720,11 +730,15 @@ function calcular(){
   document.getElementById('res-nombre').textContent = nombre;
   document.getElementById('res-detalle').textContent = detalle;
   precioActual = precioMin;
+  const reqEmail = document.getElementById('cli-email-req');
+  if (reqEmail) reqEmail.textContent = planPagoActual() ? '*' : '(opcional)';
+
+  const conIva = servicio !== 'soporte' || modo === 'remoto';
 
   if(precioMin === null){
     document.getElementById('res-precio').innerHTML = 'A cotizar';
   } else if(precioMin === precioMax){
-    document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + ' <span>' + unidad + (servicio !== 'soporte' ? ' + IVA' : '') + '</span>';
+    document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + ' <span>' + unidad + (conIva ? ' + IVA' : '') + '</span>';
   } else {
     document.getElementById('res-precio').innerHTML = formatoMXN(precioMin) + '–' + formatoMXN(precioMax).replace('$', '') + ' <span>' + unidad + '</span>';
   }
@@ -739,7 +753,7 @@ function calcular(){
   } else if(esLocal){
     msg += '💵 ' + formatoMXN(precioMin) + (precioMax !== precioMin ? '–' + formatoMXN(precioMax).replace('$', '') : '') + ' MXN (pago único)\n';
   } else {
-    msg += '💰 ' + formatoMXN(precioMin) + ' MXN/mes' + (servicio !== 'soporte' ? ' + IVA' : '') + '\n';
+    msg += '💰 ' + formatoMXN(precioMin) + ' MXN/mes' + (conIva ? ' + IVA' : '') + '\n';
   }
   msg += '✅ Incluye: ' + beneficios + '\n\n';
   msg += 'Cualquier duda, quedo al pendiente. — FixIT Soluciones';
@@ -891,7 +905,7 @@ function reunirDatosPoliza(){
     empresa: inEmpresa.value.trim(),
     email: inEmail.value.trim(),
     servicio: servicio,
-    planSlug: (planServicioActual() || {}).slug || '',
+    planSlug: (planPagoActual() || {}).slug || '',
     pagoConfirmado: pagoConfirmado,
     plan: document.getElementById('res-nombre').textContent,
     detalle: document.getElementById('res-detalle').textContent,
@@ -907,7 +921,7 @@ function reunirDatosPoliza(){
 
 function clausulasDe(datos){
   const base = 'Esta póliza confirma la contratación del servicio/plan indicado. Los planes mensuales se renuevan automáticamente por periodos iguales salvo cancelación con 5 días de anticipación. La firma de este contrato cubre todas las renovaciones mensuales mientras no existan cambios en el plan, los términos y condiciones, o la naturaleza del servicio. No se ofrece soporte a sistemas o software de terceros (POS, licencias externas) salvo autorización expresa del proveedor. Términos completos en fixitsoluciones.com/terminos';
-  if(datos.servicio === 'backup' || datos.servicio === 'combinado'){
+  if(datos.servicio === 'backup'){
     return base + ' Respaldo (FixIT Backup): respaldo automático de las carpetas seleccionadas (FULL + incrementales). Cifrado AES-256-GCM en el equipo del Cliente, con llaves únicas por empresa protegidas en el equipo y con respaldo seguro del Proveedor. Backups inmutables (Object Lock) durante la retención del plan: 30 días (Básico), 90 días (Negocio) o 365 días (Empresa); no pueden borrarse ni modificarse en ese periodo, ni siquiera por el Proveedor. La restauración se solicita desde el panel y el Proveedor la procesa y entrega; si el equipo no está disponible, un técnico completa la entrega. Si se alcanza el 100% del almacenamiento contratado, el respaldo se pausa automáticamente y se reanuda al ampliar el plan o liberar espacio. El servicio utiliza infraestructura de almacenamiento de objetos de nivel empresarial provista por terceros. Compatibilidad: Windows 10/11; no compatible con macOS ni Linux. Cancelación con 5 días de anticipación. El respaldo es una medida de protección adicional y no sustituye las copias que el Cliente deba mantener; la responsabilidad del Proveedor se limita al monto pagado en el periodo correspondiente. Los datos se mantienen cifrados en el equipo del Cliente.';
   }
   return base;
@@ -928,7 +942,7 @@ function pintarRecibo(datos){
   document.getElementById('tk-vigencia').textContent = datos.vigencia;
   document.getElementById('tk-pago').textContent = datos.pagoConfirmado
     ? 'Confirmado con Stripe'
-    : ((datos.servicio === 'backup' || datos.servicio === 'combinado') ? 'Pendiente' : (datos.modo === 'remoto' ? 'Acordado por WhatsApp' : 'Pago único'));
+    : (datos.modo === 'local' ? 'Pago único' : 'Pendiente');
   document.getElementById('tk-clausulas').textContent = clausulasDe(datos);
   document.getElementById('tk-firma').src = datos.firma;
 
@@ -1256,7 +1270,8 @@ if (llegoPorLink) {
       calcular();
     }
     pagoConfirmado = paramsURL.get('pago') === 'ok';
-    if ((servicio === 'backup' || servicio === 'combinado') && !pagoConfirmado) {
+    const planPago = planPagoActual();
+    if (planPago && !pagoConfirmado) {
       document.getElementById('firma-card').classList.add('hidden');
       document.getElementById('btn-aceptar').classList.add('hidden');
       document.getElementById('pago-card').classList.remove('hidden');
@@ -1273,7 +1288,7 @@ if (llegoPorLink) {
     }
 
     document.getElementById('aviso-firma').classList.remove('hidden');
-    if ((servicio === 'backup' || servicio === 'combinado') && !pagoConfirmado) {
+    if (planPago && !pagoConfirmado) {
       document.getElementById('aviso-firma').textContent = 'Revisa tu plan, completa el pago seguro y después firma tu póliza.';
     }
     document.getElementById('firma-card').classList.add('firma-highlight');
@@ -1291,7 +1306,8 @@ function construirLinkFirma(){
   p.set('servicio', servicio);
   if (servicio === 'soporte') {
     p.set('modo', modo);
-    p.set('plan', document.getElementById('res-nombre').textContent);
+    const pp = planPagoActual();
+    p.set('plan', pp ? pp.slug : document.getElementById('res-nombre').textContent);
     if (modo === 'remoto') {
       p.set('equipos', equipos);
     } else {
@@ -1318,7 +1334,7 @@ document.getElementById('btn-generar-link').addEventListener('click', function()
     mostrarError('Ingresa el nombre del cliente para generar el link.');
     return;
   }
-  if (servicio !== 'soporte') {
+  if (planPagoActual()) {
     const email = inEmail.value.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       inEmail.classList.add('input-error');
@@ -1329,7 +1345,7 @@ document.getElementById('btn-generar-link').addEventListener('click', function()
   const link = construirLinkFirma();
   document.getElementById('link-field').value = link;
 
-  const accion = (servicio === 'soporte') ? 'confirmar tus datos y firmar' : 'confirmar tus datos, pagar en línea y firmar';
+  const accion = planPagoActual() ? 'confirmar tus datos, pagar en línea y firmar' : 'confirmar tus datos y firmar';
   const mensaje = 'Hola ' + nombre + ', aquí está tu cotización de FixIT Soluciones, solo necesitas ' + accion + ': ' + link;
   const tel = inTelefono.value.replace(/\D/g, '');
   const waBase = (tel.length === 10) ? 'https://wa.me/52' + tel : 'https://wa.me/';
@@ -1364,7 +1380,7 @@ document.getElementById('btn-pagar').addEventListener('click', async function(){
   const btn = this;
   const err = document.getElementById('pago-error');
   err.classList.add('hidden');
-  const plan = planServicioActual();
+  const plan = planPagoActual();
   if(!plan) return;
   const email = inEmail.value.trim();
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){

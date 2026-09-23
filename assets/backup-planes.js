@@ -5,16 +5,13 @@
   var PLANES = {};
   var planesCargados = false;
 
-  // Servicios que no viven en /backup-plans (soporte y paquetes combinados).
+  // Servicios que no viven en /backup-plans (los planes de soporte).
   // El precio y el nombre son solo para mostrar en el modal; el backend
   // resuelve el precio real de Stripe por slug.
   var SERVICIOS = {
     'soporte-basico': { nombre: 'Soporte Básico', tipo: 'soporte', precio_mxn: 450 },
     'soporte-profesional': { nombre: 'Soporte Profesional', tipo: 'soporte', precio_mxn: 900 },
     'soporte-empresarial': { nombre: 'Soporte Empresarial', tipo: 'soporte', precio_mxn: 2000 },
-    'pyme-esencial': { nombre: 'PyME Esencial', tipo: 'combinado', precio_mxn: 899 },
-    'pyme-profesional': { nombre: 'PyME Profesional', tipo: 'combinado', precio_mxn: 1699 },
-    'pyme-empresarial': { nombre: 'PyME Empresarial', tipo: 'combinado', precio_mxn: 4499 },
   };
 
   function formatearPrecio(valor) {
