@@ -3,7 +3,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     var form = document.getElementById('quoteForm');
     if (!form) return;
-    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwXOEOxWu-xl40DgGpziaj1D6SC4rg_U2yqctgXkkxUUnGaET1ulLeU5Wy_RPEzb2tCLQ-8ujYsWwPzN/exec';
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby5MyvRvL2hOxe35PHmAT5fc3oE-JtgQ7hqk-XVxf0ZT9Z6aolmQ_C0KWoaLOd-KCDryg-8ujYsWwPzN/exec';
 
     var tipoRadios = form.querySelectorAll('input[name="tipo"]');
     var descLabel = document.getElementById('descriptionLabel');
